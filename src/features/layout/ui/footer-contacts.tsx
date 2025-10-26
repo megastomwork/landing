@@ -2,6 +2,7 @@
 
 import { WorkingHoursList } from '@/features/working-hours';
 import { useContacts } from '@/shared/hooks/use-contacts';
+import { clearAddressSyntax } from '@/shared/utils/addrutils/address';
 import { Loader2, PhoneIcon } from 'lucide-react';
 
 export const FooterContacts = () => {
@@ -18,7 +19,7 @@ export const FooterContacts = () => {
         target="_blank"
         className="text-center font-bold"
       >
-        {contacts.data?.address}
+        {clearAddressSyntax(contacts.data?.address)}
       </a>
       <a href={`tel:${contacts.data?.phone}`} className="flex gap-2">
         <PhoneIcon />
