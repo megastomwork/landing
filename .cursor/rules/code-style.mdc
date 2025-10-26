@@ -1,0 +1,49 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Code Style Guide
+
+This document outlines the naming conventions for files and folders within our project. It's designed to ensure consistency and readability for development, especially when interacting with AI coding models.
+
+## Folder Naming
+
+    Convention: All folders should use kebab-case notation.
+
+        Example: correct-folder-name
+
+## File Naming
+
+    General Files: Files should follow the same kebab-case notation as folders.
+
+        Examples: react-component.tsx, typescript-file.ts
+
+    Specific File Types:
+
+        React Page Components: These files should be named with a .page suffix.
+
+            Example: react-component.page.tsx
+
+        Constants Files: Files containing constants should use a .constants suffix.
+
+            Example: ts-file.constants.ts
+
+        Type Definition Files: Files defining types should include a .type suffix.
+
+            Example: ts-file.type.ts
+
+    Hooks:
+
+        Naming Convention: Hook files must begin with the use keyword and follow kebab-case.
+
+            Examples: use-some-hook.ts, use-other-hook.ts
+
+## Code
+
+    Hooks:
+
+        Functions: All hooks should use default function style with function keyword, not arrow function. But if it need, arrow function also can use.
+
+            Examples: export function useSomeHook() {...}
+            

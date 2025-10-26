@@ -1,0 +1,51 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project structure
+
+Project structure on frontend (current project) is **Evolution design** architecture
+
+This architecture in this project have next file and folder structure
+
+src/ # codes
+    app/
+        providers.tsx
+        layout.tsx
+        page.tsx
+        ...pages for next.js app/
+        ...other app configurations
+    features/
+        layout/
+            header.tsx
+            footer.tsx
+            ui/
+                ... 
+        home/
+            home.page.tsx
+            ui/
+            hooks/
+            ...
+        blog/
+            blog.page.tsx
+            ...
+        article/
+            ...
+        doctors/
+            doctors.page.tsx
+            ...
+        contact-modal/
+            ...
+    shared/
+        components/
+            ui-kit/
+                input.tsx
+                button.tsx
+                ...
+        constants/
+        hooks/
+        lib/
+            query-client.ts
+            utils.ts
+public/ # photos and static files
