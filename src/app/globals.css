@@ -130,7 +130,7 @@
   }
 
   h2 {
-    @apply text-[2rem] font-semibold leading-[150%] lg:text-5xl;
+    @apply text-[2rem] font-semibold leading-none lg:text-3xl mb-4 mt-10;
   }
 
   h3 {
