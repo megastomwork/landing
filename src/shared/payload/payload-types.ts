@@ -183,7 +183,16 @@ export interface Page {
             blockType: 'intro';
           }
         | {
-            showDefaultContent?: boolean | null;
+            title: string;
+            description: string;
+            image: number | Media;
+            stats?:
+              | {
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'about';
@@ -583,7 +592,16 @@ export interface PagesSelect<T extends boolean = true> {
         about?:
           | T
           | {
-              showDefaultContent?: T;
+              title?: T;
+              description?: T;
+              image?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

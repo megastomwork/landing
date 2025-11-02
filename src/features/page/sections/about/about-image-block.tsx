@@ -1,16 +1,21 @@
-import { DirectusImage } from '@/shared/components/ui-kit/directus-image'
-import { useContent } from '@/shared/hooks/use-content'
-import { ContentTextHomePage } from '@/shared/types/content.types'
+import { PayloadImage } from '@/shared/components/ui-kit/directus-image'
+import type { Media } from '@/shared/payload/payload-types'
 
-export default function AboutImageBlock() {
-  const content = useContent<ContentTextHomePage>({
-    context: 'HomePage',
-  })
+interface AboutImageBlockProps {
+  image: (number | null) | Media
+}
+
+export default function AboutImageBlock({ image }: AboutImageBlockProps) {
+  const media = typeof image === 'number' ? null : image
+
+  if (!media) {
+    return null
+  }
 
   return (
     <div className="overflow-hidden rounded-xl shadow-lg">
-      <DirectusImage
-        src={content.data?.aboutImage}
+      <PayloadImage
+        src={media}
         alt="Команда Megastom"
         width={600}
         height={400}
