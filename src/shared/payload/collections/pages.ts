@@ -199,6 +199,135 @@ export const Pages: CollectionConfig = {
                     },
                   ],
                 },
+                // Description Section
+                {
+                  slug: 'description',
+                  labels: {
+                    singular: 'Текстова секція',
+                    plural: 'Текстові секції',
+                  },
+                  imageURL: '/blocks/description.png',
+                  fields: [
+                    {
+                      name: 'text',
+                      type: 'textarea',
+                      label: 'Текст',
+                      required: true,
+                    },
+                  ],
+                },
+                // Doctors Section
+                {
+                  slug: 'doctors',
+                  labels: {
+                    singular: 'Секція лікарів',
+                    plural: 'Секції лікарів',
+                  },
+                  imageURL: '/blocks/doctors.png',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'text',
+                      label: 'Заголовок',
+                      defaultValue: 'Наші лікарі',
+                    },
+                    {
+                      name: 'description',
+                      type: 'textarea',
+                      label: 'Опис',
+                    },
+                  ],
+                },
+                // Blog Hero Section
+                {
+                  slug: 'blogHero',
+                  labels: {
+                    singular: 'Герой секція блогу',
+                    plural: 'Герой секції блогу',
+                  },
+                  imageURL: '/blocks/blog-hero.png',
+                  fields: [
+                    {
+                      name: 'backgroundImage',
+                      type: 'upload',
+                      relationTo: 'media',
+                      label: 'Фонове зображення',
+                    },
+                    {
+                      name: 'title',
+                      type: 'text',
+                      label: 'Заголовок',
+                      defaultValue: 'Блог',
+                    },
+                    {
+                      name: 'description',
+                      type: 'textarea',
+                      label: 'Опис',
+                    },
+                  ],
+                },
+                // FAQ Section
+                {
+                  slug: 'faq',
+                  labels: {
+                    singular: 'Секція питань',
+                    plural: 'Секції питань',
+                  },
+                  imageURL: '/blocks/faq.png',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'text',
+                      label: 'Заголовок',
+                      defaultValue: 'Часті питання',
+                    },
+                  ],
+                },
+                // Prices Section
+                {
+                  slug: 'prices',
+                  labels: {
+                    singular: 'Секція цін',
+                    plural: 'Секції цін',
+                  },
+                  imageURL: '/blocks/prices.png',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'text',
+                      label: 'Заголовок',
+                      defaultValue: 'Ціни',
+                    },
+                    {
+                      name: 'description',
+                      type: 'textarea',
+                      label: 'Опис',
+                    },
+                  ],
+                },
+                // Contact Info Section (with map)
+                {
+                  slug: 'contactInfo',
+                  labels: {
+                    singular: 'Розширена контактна секція',
+                    plural: 'Розширені контактні секції',
+                  },
+                  imageURL: '/blocks/contact-info.png',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'text',
+                      label: 'Заголовок',
+                      defaultValue: 'Контактна інформація',
+                    },
+                    {
+                      name: 'showMap',
+                      type: 'checkbox',
+                      label: 'Показати карту',
+                      defaultValue: true,
+                    },
+                  ],
+                },
               ],
             },
           ],

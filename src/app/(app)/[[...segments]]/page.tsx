@@ -9,6 +9,12 @@ import {
   BlogArticlesSection,
   PageFeedbacksSection,
   PageContactSection,
+  DescriptionSection,
+  DoctorsSection,
+  BlogHeroSection,
+  FaqSection,
+  PricesSection,
+  ContactInfoSection,
 } from '@/features/page/sections'
 
 export default function Page() {
@@ -20,7 +26,6 @@ export default function Page() {
 
   const { data: page, isLoading, error } = usePage(path)
 
-  console.log(page)
   // Show 404 if page not found or is draft
   if (!isLoading && (!page || page.status === 'draft')) {
     notFound()
@@ -70,6 +75,24 @@ export default function Page() {
 
           case 'contact':
             return <PageContactSection key={key} {...section} />
+
+          case 'description':
+            return <DescriptionSection key={key} {...section} />
+
+          case 'doctors':
+            return <DoctorsSection key={key} {...section} />
+
+          case 'blogHero':
+            return <BlogHeroSection key={key} {...section} />
+
+          case 'faq':
+            return <FaqSection key={key} {...section} />
+
+          case 'prices':
+            return <PricesSection key={key} {...section} />
+
+          case 'contactInfo':
+            return <ContactInfoSection key={key} {...section} />
 
           default:
             return null

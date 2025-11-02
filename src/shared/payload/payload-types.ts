@@ -223,6 +223,47 @@ export interface Page {
             blockName?: string | null;
             blockType: 'contact';
           }
+        | {
+            text: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'description';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'doctors';
+          }
+        | {
+            backgroundImage?: (number | null) | Media;
+            title?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogHero';
+          }
+        | {
+            title?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'prices';
+          }
+        | {
+            title?: string | null;
+            showMap?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactInfo';
+          }
       )[]
     | null;
   metaTitle?: string | null;
@@ -569,6 +610,53 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               showImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        description?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+              blockName?: T;
+            };
+        doctors?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        blogHero?:
+          | T
+          | {
+              backgroundImage?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              title?: T;
+              id?: T;
+              blockName?: T;
+            };
+        prices?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactInfo?:
+          | T
+          | {
+              title?: T;
+              showMap?: T;
               id?: T;
               blockName?: T;
             };
