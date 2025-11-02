@@ -76,4 +76,8 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
     },
   }),
+  cors: [
+    "http://localhost:3000",
+    "https://megastom-frontend-git-payload-migration-ginetiks-projects.vercel.app"
+  ]
 })
