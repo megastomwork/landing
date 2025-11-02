@@ -63,26 +63,9 @@ export default buildConfig({
       BoldFeature(),
       ItalicFeature(),
       UnderlineFeature(),
-      StrikethroughFeature(),
-      LinkFeature({
-        fields: [
-          {
-            name: 'rel',
-            label: 'Rel Attribute',
-            type: 'select',
-            hasMany: true,
-            options: ['noopener', 'noreferrer', 'nofollow'],
-            admin: {
-              description: 'The rel attribute defines the relationship between your page and the linked URL',
-            },
-          },
-        ],
-      }),
       UnorderedListFeature(),
       OrderedListFeature(),
       BlockquoteFeature(),
-      AlignFeature(),
-      IndentFeature(),
     ],
   }),
   secret: process.env.PAYLOAD_SECRET || '',
