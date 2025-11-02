@@ -1,6 +1,6 @@
 // Simple sections
 export { IntroSection } from './intro-section'
-export { PageAboutSection } from './about-section'
+export { AboutSection } from './about/about-section'
 export { ServicesSection } from './services-section'
 export { BlogArticlesSection } from './blog-articles-section'
 export { PageFeedbacksSection } from './feedbacks-section'

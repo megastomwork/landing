@@ -4,7 +4,7 @@ import { notFound, useParams } from 'next/navigation'
 import { usePage } from '@/features/page/hooks/use-page'
 import {
   IntroSection,
-  PageAboutSection,
+  AboutSection,
   ServicesSection,
   BlogArticlesSection,
   PageFeedbacksSection,
@@ -54,7 +54,6 @@ export default function Page() {
 
   return (
     <div className="min-h-screen">
-      {/* Render page sections */}
       {page.sections?.map((section, index) => {
         const key = section.id || index
 
@@ -63,7 +62,7 @@ export default function Page() {
             return <IntroSection key={key} {...section} />
 
           case 'about':
-            return <PageAboutSection key={key} {...section} />
+            return <AboutSection key={key} {...section} />
 
           case 'services':
             return <ServicesSection key={key} {...section} />
