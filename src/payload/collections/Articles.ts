@@ -1,0 +1,45 @@
+import type { CollectionConfig } from 'payload'
+
+export const Articles: CollectionConfig = {
+  slug: 'articles',
+  trash: true,
+  access: {
+    read: () => true, // public access
+  },
+  admin: {
+    useAsTitle: 'title',
+    livePreview: {
+      url: ({ data }) => `http://localhost:3000/blog/${data.id}`,
+    },
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      required: true,
+    },
+    {
+      name: 'status',
+      type: 'select',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+      ],
+      defaultValue: 'draft',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+  ],
+}

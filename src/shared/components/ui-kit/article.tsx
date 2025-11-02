@@ -1,9 +1,9 @@
 'use client';
 
 import { Button } from '@/shared/components/ui-kit/button';
-import { CONFIG } from '@/shared/constants/config.constants';
 import { ROUTES } from '@/shared/constants/routes.constants';
 import { cn } from '@/shared/lib/css';
+import { getPayloadImageUrl } from '@/shared/lib/payload-image';
 import { Article } from '@/shared/types/article.types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,10 +23,10 @@ export const ArticleItem = ({ article, className }: ArticleItemProps) => {
     >
       <div>
         <Image
-          src={`${CONFIG.BACKEND_URL}/assets/${article.image}`}
+          src={getPayloadImageUrl(article.image)}
           width={3300}
           height={150}
-          alt="title"
+          alt={article.title || 'Article image'}
           className="h-[200px] rounded-xl object-cover"
         />
       </div>

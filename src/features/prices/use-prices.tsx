@@ -1,28 +1,19 @@
-import client from '@/shared/lib/directus';
+import payloadAPI from '@/shared/lib/payload-rest';
 import { ServicePrice } from '@/shared/types/service-prices.types';
-import { readItems } from '@directus/sdk';
 import { useQuery } from '@tanstack/react-query';
 
 export const usePrices = () => {
   const prices = useQuery({
     queryKey: ['prices'],
-    queryFn: () =>
-      client.request<ServicePrice[]>(
-        readItems('ServicePrices', {
-          filter: {
-            status: {
-              _eq: 'published',
-            },
-          },
-        }),
-      ),
+    queryFn: () => payloadAPI.getCollection<ServicePrice>('service-prices'),
   });
 
   return {
     ...prices,
     data: prices.data?.reduce(
       (acc, price) => {
-        acc[price.serviceId] = [...(acc[price.serviceId] || []), price];
+        const serviceId = typeof price.serviceId === 'object' ? (price.serviceId as any).id : price.serviceId;
+        acc[serviceId] = [...(acc[serviceId] || []), price];
         return acc;
       },
       {} as Record<string, ServicePrice[]>,

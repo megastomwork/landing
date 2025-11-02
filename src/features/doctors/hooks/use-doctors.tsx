@@ -1,20 +1,17 @@
-import client from '@/shared/lib/directus';
+import payloadAPI from '@/shared/lib/payload-rest';
 import { Doctor } from '@/shared/types/doctor.types';
-import { readItems } from '@directus/sdk';
 import { useQuery } from '@tanstack/react-query';
 
 export const useDoctors = () => {
   return useQuery({
     queryKey: ['doctors'],
     queryFn: () =>
-      client.request<Doctor[]>(
-        readItems('Doctors', {
-          filter: {
-            status: {
-              _eq: 'published',
-            },
+      payloadAPI.getCollection<Doctor>('doctors', {
+        where: {
+          status: {
+            equals: 'published',
           },
-        }),
-      ),
+        },
+      }),
   });
 };

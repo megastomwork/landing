@@ -1,6 +1,5 @@
-import client from '@/shared/lib/directus';
+import payloadAPI from '@/shared/lib/payload-rest';
 import { Article } from '@/shared/types/article.types';
-import { readItems } from '@directus/sdk';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 
@@ -9,15 +8,13 @@ export const useArticles = () => {
   const queryResult = useQuery({
     queryKey: ['articles'],
     queryFn: () =>
-      client.request<Article[]>(
-        readItems('Articles', {
-          filter: {
-            status: {
-              _eq: 'published',
-            },
+      payloadAPI.getCollection<Article>('articles', {
+        where: {
+          status: {
+            equals: 'published',
           },
-        }),
-      ),
+        },
+      }),
   });
 
   const toggleShowAll = useCallback(() => {

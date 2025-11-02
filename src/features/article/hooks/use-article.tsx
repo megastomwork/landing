@@ -1,7 +1,6 @@
-import client from '@/shared/lib/directus';
-import { Article } from '@/shared/types/article.types';
-import { readItem } from '@directus/sdk';
+import { payloadAPI } from '@/shared/lib/payload-rest';
 import { useQuery } from '@tanstack/react-query';
+import { Article } from '@types';
 
 type UseArticleOptions = {
   id?: string | null;
@@ -10,16 +9,7 @@ type UseArticleOptions = {
 export const useArticle = ({ id }: UseArticleOptions) => {
   const { data, isLoading } = useQuery({
     queryKey: ['article', id],
-    queryFn: () =>
-      client.request<Article>(
-        readItem('Articles', id!, {
-          filter: {
-            status: {
-              _eq: 'published',
-            },
-          },
-        }),
-      ),
+    queryFn: () => payloadAPI.getItem<Article>('articles', id!),
     enabled: !!id,
   });
 
@@ -27,4 +17,4 @@ export const useArticle = ({ id }: UseArticleOptions) => {
     article: data,
     isArticleLoading: isLoading,
   };
-};
+}

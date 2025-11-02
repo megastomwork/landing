@@ -2,7 +2,7 @@
 
 import { useScrollAnimation } from '@/shared/hooks/use-scroll-animation';
 import { motion, HTMLMotionProps, Variants } from 'framer-motion';
-import { useId, useRef } from 'react';
+import { useRef } from 'react';
 
 type ScrollAnimatedContainerProps = HTMLMotionProps<'div'> & {
   children: React.ReactNode;
@@ -31,11 +31,9 @@ export const ScrollAnimatedContainer = ({
 }: ScrollAnimatedContainerProps) => {
   const motionRef = useRef<HTMLDivElement>(null);
   const { control, initial } = useScrollAnimation(motionRef);
-  const key = useId();
 
   return (
     <motion.div
-      key={key}
       ref={motionRef}
       className={className}
       initial={initial}

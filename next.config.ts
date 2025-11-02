@@ -1,9 +1,14 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from 'next'
+import { withPayload } from '@payloadcms/next/withPayload'
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['directus-production-05c4.up.railway.app'],
+    domains: ['localhost'],
     remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
       {
         protocol: 'https',
         hostname: 'directus-production-05c4.up.railway.app',
@@ -14,7 +19,6 @@ const nextConfig: NextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  output: 'standalone',
-};
+}
 
-export default nextConfig;
+export default withPayload(nextConfig)

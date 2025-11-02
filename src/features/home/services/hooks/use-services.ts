@@ -1,21 +1,18 @@
-import client from '@/shared/lib/directus';
+import payloadAPI from '@/shared/lib/payload-rest';
 import { Services } from '@/shared/types/services.types';
-import { readItems } from '@directus/sdk';
 import { useQuery } from '@tanstack/react-query';
 
 export const useServices = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['services'],
     queryFn: () =>
-      client.request<Services[]>(
-        readItems('Services', {
-          filter: {
-            status: {
-              _eq: 'published',
-            },
+      payloadAPI.getCollection<Services>('services', {
+        where: {
+          status: {
+            equals: 'published',
           },
-        }),
-      ),
+        },
+      }),
   });
 
   return {

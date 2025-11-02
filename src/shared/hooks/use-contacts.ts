@@ -1,11 +1,10 @@
-import client from '@/shared/lib/directus'
+import payloadAPI from '@/shared/lib/payload-rest'
 import { Contact } from '@/shared/types/contact.types'
-import { readItems } from '@directus/sdk'
 import { useQuery } from '@tanstack/react-query'
 
 export const useContacts = () => {
   return useQuery({
     queryKey: ['contacts'],
-    queryFn: () => client.request<Contact>(readItems('Contacts')),
+    queryFn: () => payloadAPI.getGlobal<Contact>('contacts'),
   });
 };

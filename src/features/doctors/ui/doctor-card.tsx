@@ -1,6 +1,6 @@
 import { Button } from '@/shared/components/ui-kit/button';
 import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-contact-modal';
-import { CONFIG } from '@/shared/constants/config.constants';
+import { getPayloadImageUrl } from '@/shared/lib/payload-image';
 import Image from 'next/image';
 
 type DoctorItemProps = {
@@ -23,8 +23,8 @@ export const DoctorItemCard = ({
       <div className="h-[422px] w-full max-w-[330px] flex-none">
         <Image
           className="h-[422px] w-[330px] rounded-[20px] object-cover"
-          src={`${CONFIG.BACKEND_URL}/assets/${photo}`}
-          alt="doctor"
+          src={getPayloadImageUrl(photo)}
+          alt={name || 'doctor'}
           width={330}
           height={422}
           style={{ objectFit: 'cover' }}
