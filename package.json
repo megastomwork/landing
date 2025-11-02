@@ -10,7 +10,7 @@
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
-    "generate:types": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types"
+    "generate:types": "payload generate:types"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.62.0",

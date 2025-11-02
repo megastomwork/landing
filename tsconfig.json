@@ -20,10 +20,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@payload-config": ["./payload.config.ts"],
-      "@types": ["./payload-types.ts"]
+      "@payload-config": ["./src/app/(payload)/payload.config.ts"],
+      "@types": ["./src/shared/payload/payload-types.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "payload.config.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(payload)/payload.config.ts"],
   "exclude": ["node_modules"]
 }
