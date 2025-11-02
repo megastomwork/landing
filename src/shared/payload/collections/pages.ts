@@ -1,11 +1,16 @@
 import type { CollectionConfig } from 'payload'
 import { createGlobalReferenceField } from '../fields/global-reference-field'
 import { createCollectionReferenceField } from '../fields/collection-reference-field'
+import { CONFIG } from '@/shared/constants/config.constants'
+import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     useAsTitle: 'title',
+    livePreview: {
+      url: ({ data }) => `${CONFIG.SERVER_URL}/${data.path}?${LIVE_PREVIEW_FLAG}=true`,
+    }
   },
   access: {
     read: () => true,
