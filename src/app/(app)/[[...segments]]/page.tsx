@@ -10,6 +10,7 @@ import {
   PageFeedbacksSection,
   PageContactSection,
   DescriptionSection,
+  ParagraphSection,
   DoctorsSection,
   BlogHeroSection,
   FaqSection,
@@ -78,6 +79,9 @@ export default function Page() {
 
           case 'description':
             return <DescriptionSection key={key} {...section} />
+
+          case 'paragraph':
+            return <ParagraphSection key={key} {...section} />
 
           case 'doctors':
             return <DoctorsSection key={key} {...section} />

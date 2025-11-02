@@ -221,6 +221,28 @@ export const Pages: CollectionConfig = {
                     },
                   ],
                 },
+                // Paragraph Section
+                {
+                  slug: 'paragraph',
+                  labels: {
+                    singular: 'Секція-параграф',
+                    plural: 'Секції-параграфи',
+                  },
+                  imageURL: '/blocks/paragraph.png',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'text',
+                      label: 'Заголовок',
+                    },
+                    {
+                      name: 'content',
+                      type: 'textarea',
+                      label: 'Контент',
+                      required: true,
+                    },
+                  ],
+                },
                 // Doctors Section
                 {
                   slug: 'doctors',

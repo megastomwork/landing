@@ -231,6 +231,13 @@ export interface Page {
           }
         | {
             title?: string | null;
+            content: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'paragraph';
+          }
+        | {
+            title?: string | null;
             description?: string | null;
             id?: string | null;
             blockName?: string | null;
@@ -617,6 +624,14 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               text?: T;
+              id?: T;
+              blockName?: T;
+            };
+        paragraph?:
+          | T
+          | {
+              title?: T;
+              content?: T;
               id?: T;
               blockName?: T;
             };
