@@ -4,7 +4,7 @@ import { ContentTextHomePage } from '@/shared/types/content.types';
 
 export default function AboutImageBlock() {
   const content = useContent<ContentTextHomePage>({
-    context: 'HomePage',
+    context: 'homePage',
   });
 
   return (

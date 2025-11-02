@@ -1,5 +1,5 @@
 import payloadAPI from '@/shared/lib/payload-rest';
-import { Article } from '@/shared/types/article.types';
+import type { Article } from '@/shared/payload/payload-types';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 

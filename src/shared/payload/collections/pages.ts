@@ -104,7 +104,8 @@ export const Pages: CollectionConfig = {
               admin: {
                 description: 'Наприклад: /blog або /about. Обов\'язково починається з /',
               },
-              validate: (value: string) => {
+              validate: (value: string | null | undefined) => {
+                if (!value) return true
                 if (!value.startsWith('/')) {
                   return 'Шлях повинен починатись з /'
                 }

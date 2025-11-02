@@ -5,13 +5,13 @@ import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-con
 interface Stat {
   value: string
   label: string
-  id?: string
+  id?: string | null
 }
 
 interface AboutTextBlockProps {
   title: string
   description: string
-  stats?: Stat[]
+  stats?: Stat[] | null
 }
 
 export default function AboutTextBlock({ title, description, stats }: AboutTextBlockProps) {

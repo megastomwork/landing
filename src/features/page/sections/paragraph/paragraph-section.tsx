@@ -1,5 +1,5 @@
 interface ParagraphSectionProps {
-  title?: string
+  title?: string | null
   content: string
 }
 

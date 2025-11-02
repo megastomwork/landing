@@ -8,7 +8,7 @@ import ContactSchedule from './ui/contact-schedule';
 
 export default function ContactInfoSection() {
   const content = useContent<ContentTextHomePage>({
-    context: 'HomePage',
+    context: 'homePage',
   });
 
   return (

@@ -6,7 +6,7 @@ import { useContent } from '@/shared/hooks/use-content';
 
 export default function AboutTextBlock() {
   const openModal = useOpenContactModal();
-  const texts = useContent<ContentTextHomePage>({ context: 'HomePage' });
+  const texts = useContent<ContentTextHomePage>({ context: 'homePage' });
 
   return (
     <section className="bg-white px-4 py-4 md:py-12">

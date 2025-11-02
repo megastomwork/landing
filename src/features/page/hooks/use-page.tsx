@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import payloadAPI from '@/shared/lib/payload-rest'
-import type { Article, Page } from '@/shared/payload/payload-types'
+import type { Page } from '@/shared/payload/payload-types'
 import { isLivePreviewMode } from '@/shared/lib/payload-preview';
 import { CONFIG } from '@/shared/constants/config.constants';
 import { useLivePreview } from '@payloadcms/live-preview-react';
@@ -27,8 +27,8 @@ export const usePage = (path: string) => {
     },
   })
 
-  const { data: live } = useLivePreview<Article>({
-    initialData: (data || {}) as Article,
+  const { data: live } = useLivePreview<Page>({
+    initialData: (data || {}) as Page,
     serverURL: CONFIG.SERVER_URL,
     depth: 2,
   })

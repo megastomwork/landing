@@ -1,5 +1,5 @@
 import { ArticleItem } from '@/shared/components/ui-kit/article';
-import { Article } from '@/shared/types/article.types';
+import type { Article } from '@/shared/payload/payload-types';
 
 type Props = {
   articles: Article[];

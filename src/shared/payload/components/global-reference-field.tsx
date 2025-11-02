@@ -11,7 +11,7 @@ interface GlobalReferenceFieldProps {
 
 export const GlobalReferenceField: React.FC<GlobalReferenceFieldProps> = (props) => {
   const { globalSlug, title, fields, fieldLabels = {} } = props
-  const [data, setData] = useState<any>(null)
+  const [data, setData] = useState<Record<string, unknown> | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -30,8 +30,13 @@ export const GlobalReferenceField: React.FC<GlobalReferenceFieldProps> = (props)
     fetchGlobalData()
   }, [globalSlug])
 
-  const getNestedValue = (obj: any, path: string) => {
-    return path.split('.').reduce((current, key) => current?.[key], obj)
+  const getNestedValue = (obj: Record<string, unknown>, path: string): unknown => {
+    return path.split('.').reduce((current, key) => {
+      if (current && typeof current === 'object' && key in current) {
+        return (current as Record<string, unknown>)[key]
+      }
+      return undefined
+    }, obj as unknown)
   }
 
   return (
@@ -73,7 +78,7 @@ export const GlobalReferenceField: React.FC<GlobalReferenceFieldProps> = (props)
           }}
         >
           {fields.map((field) => {
-            const value = getNestedValue(data, field)
+            const value = data ? getNestedValue(data, field) : undefined
             const label = fieldLabels[field] || field
 
             return (

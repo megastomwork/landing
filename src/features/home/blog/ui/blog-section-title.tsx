@@ -3,7 +3,7 @@ import { ContentTextHomePage } from '@/shared/types/content.types';
 
 export default function BlogSectionTitle() {
   const content = useContent<ContentTextHomePage>({
-    context: 'HomePage',
+    context: 'homePage',
   });
 
   return (

@@ -1,5 +1,5 @@
 import payloadAPI from '@/shared/lib/payload-rest';
-import { Doctor } from '@/shared/types/doctor.types';
+import type { Doctor } from '@/shared/payload/payload-types';
 import { useQuery } from '@tanstack/react-query';
 
 export const useDoctors = () => {

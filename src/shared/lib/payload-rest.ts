@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use(
 
 // REST API client for client-side fetching
 export const payloadAPI = {
-  getCollection: async <T>(collection: string, params?: Record<string, any>) => {
+  getCollection: async <T>(collection: string, params?: Record<string, unknown>) => {
     const queryParams = new URLSearchParams()
 
     if (params) {

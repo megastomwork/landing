@@ -1,6 +1,5 @@
 'use client'
 
-import type { Article } from '@/shared/payload/payload-types'
 import { usePageArticles } from '@/features/page/hooks/use-page-articles'
 import Link from 'next/link'
 import { PayloadImage } from '@/shared/components/ui-kit/directus-image'

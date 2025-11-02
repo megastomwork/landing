@@ -3,7 +3,7 @@ import Image, { ImageProps } from 'next/image';
 import { Skeleton } from '@/shared/components/ui-kit/skeleton';
 
 type DirectusImageProps = Omit<ImageProps, 'src'> & {
-  src?: string | { url?: string };
+  src?: string | { url?: string | null };
 };
 
 export function DirectusImage({ src, alt, ...props }: DirectusImageProps) {

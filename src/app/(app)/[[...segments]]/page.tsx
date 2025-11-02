@@ -17,6 +17,9 @@ import {
   PricesSection,
   ContactInfoSection,
 } from '@/features/page/sections'
+import type { Page } from '@/shared/payload/payload-types'
+
+type PageSection = NonNullable<Page['sections']>[number]
 
 const SECTION_COMPONENTS = {
   intro: IntroSection,
@@ -68,18 +71,44 @@ export default function Page() {
     return null
   }
 
+  const renderSection = (section: PageSection, index: number) => {
+    const key = section.id || index
+
+    switch (section.blockType) {
+      case 'intro':
+        return <IntroSection key={key} {...section} />
+      case 'about':
+        return <AboutSection key={key} {...section} />
+      case 'services':
+        return <ServicesSection key={key} {...section} />
+      case 'blogArticles':
+        return <BlogArticlesSection key={key} {...section} />
+      case 'feedbacks':
+        return <PageFeedbacksSection key={key} {...section} />
+      case 'contact':
+        return <PageContactSection key={key} {...section} />
+      case 'description':
+        return <DescriptionSection key={key} {...section} />
+      case 'paragraph':
+        return <ParagraphSection key={key} {...section} />
+      case 'doctors':
+        return <DoctorsSection key={key} {...section} />
+      case 'blogHero':
+        return <BlogHeroSection key={key} {...section} />
+      case 'faq':
+        return <FaqSection key={key} {...section} />
+      case 'prices':
+        return <PricesSection key={key} {...section} />
+      case 'contactInfo':
+        return <ContactInfoSection key={key} {...section} />
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="min-h-screen">
-      {page.sections?.map((section, index) => {
-        const key = section.id || index
-        const SectionComponent = SECTION_COMPONENTS[section.blockType as keyof typeof SECTION_COMPONENTS]
-
-        if (!SectionComponent) {
-          return null
-        }
-
-        return <SectionComponent key={key} {...section} />
-      })}
+      {page.sections?.map((section, index) => renderSection(section, index))}
     </div>
   )
 }

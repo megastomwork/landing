@@ -3,7 +3,7 @@ import { ContentTextCallToActionSection } from '@/shared/types/content.types';
 
 export default function ContactHeader() {
   const content = useContent<ContentTextCallToActionSection>({
-    context: 'CallToActionSection',
+    context: 'callToActionSection',
   });
 
   return (

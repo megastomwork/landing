@@ -1,15 +1,15 @@
 interface Stat {
   value: string
   label: string
-  id?: string
+  id?: string | null
 }
 
 interface AboutStatsProps {
-  stats?: Stat[]
+  stats?: Stat[] | null
 }
 
 export default function AboutStats({ stats }: AboutStatsProps) {
-  const defaultStats = [
+  const defaultStats: Stat[] = [
     { value: '6', label: 'Кваліфікованих лікарів' },
     { value: '4', label: 'Кабінетів стоматологів' },
     { value: '22', label: 'Роки роботи' },

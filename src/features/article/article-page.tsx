@@ -38,7 +38,7 @@ export function ArticlePage() {
           className="mb-3 h-[515px] w-full rounded-[20px] object-cover max-md:max-h-[400px] md:float-left md:mr-6 md:max-w-[50%]"
         />
         <div className={styles.markdown}>
-          {article && <LexicalContent content={article.content} />}
+          {article && <LexicalContent content={article.content as unknown as Parameters<typeof LexicalContent>[0]['content']} />}
         </div>
 
         {/* TODO: add recommended articles */}

@@ -14,7 +14,7 @@ import { ContentTextBlogPage } from '@/shared/types/content.types';
 export function BlogQuestions() {
   const { data: questions, isLoading } = useQuestions();
   const content = useContent<ContentTextBlogPage>({
-    context: 'BlogPage',
+    context: 'blogPage',
   });
 
   return (

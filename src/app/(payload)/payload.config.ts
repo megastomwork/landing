@@ -6,14 +6,10 @@ import {
   BoldFeature,
   ItalicFeature,
   UnderlineFeature,
-  StrikethroughFeature,
   ParagraphFeature,
-  LinkFeature,
   UnorderedListFeature,
   OrderedListFeature,
   BlockquoteFeature,
-  AlignFeature,
-  IndentFeature,
   FixedToolbarFeature,
 } from '@payloadcms/richtext-lexical'
 import path from 'path'

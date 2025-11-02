@@ -12,7 +12,7 @@ export const usePrices = () => {
     ...prices,
     data: prices.data?.reduce(
       (acc, price) => {
-        const serviceId = typeof price.serviceId === 'object' ? (price.serviceId as any).id : price.serviceId;
+        const serviceId = typeof price.serviceId === 'object' ? (price.serviceId as { id: string }).id : price.serviceId;
         acc[serviceId] = [...(acc[serviceId] || []), price];
         return acc;
       },

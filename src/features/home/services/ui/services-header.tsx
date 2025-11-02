@@ -3,7 +3,7 @@ import { useContent } from '@/shared/hooks/use-content';
 import { Markdown } from '@/shared/components/ui-kit/markdown';
 
 export default function ServicesHeader() {
-  const texts = useContent<ContentTextHomePage>({ context: 'HomePage' });
+  const texts = useContent<ContentTextHomePage>({ context: 'homePage' });
 
   return (
     <div className="w-full">

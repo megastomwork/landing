@@ -14,7 +14,7 @@ type MenuItem = {
 export const useMainMenu = (): MenuItem[] => {
   const pathname = usePathname();
   const texts = useContent<ContentTextNavigationMenu>({
-    context: 'NavigationMenu',
+    context: 'navigationMenu',
   });
 
   return useMemo(

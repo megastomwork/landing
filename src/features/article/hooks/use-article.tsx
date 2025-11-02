@@ -3,7 +3,7 @@ import { payloadAPI } from '@/shared/lib/payload-rest';
 import { isLivePreviewMode } from '@/shared/lib/payload-preview';
 import { useLivePreview } from '@payloadcms/live-preview-react';
 import { useQuery } from '@tanstack/react-query';
-import { Article } from '@types';
+import type { Article } from '@types';
 
 type UseArticleOptions = {
   id?: string | null;

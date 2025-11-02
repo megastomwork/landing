@@ -11,7 +11,7 @@ import { Markdown } from '@/shared/components/ui-kit/markdown';
 export function DoctorsPage() {
   const doctors = useDoctors();
   const content = useContent<ContentTextDoctorsPage>({
-    context: 'DoctorsPage',
+    context: 'doctorsPage',
   });
 
   return (

@@ -6,7 +6,7 @@ import { ArticleItem } from '@/shared/components/ui-kit/article';
 import { Button } from '@/shared/components/ui-kit/button';
 import { useContent } from '@/shared/hooks/use-content';
 import { cn } from '@/shared/lib/css';
-import { Article } from '@/shared/types/article.types';
+import type { Article } from '@/shared/payload/payload-types';
 import { ContentTextBlogPage } from '@/shared/types/content.types';
 import { motion } from 'framer-motion';
 import { useArticles } from '../hooks/use-articles';
@@ -20,7 +20,7 @@ export function BlogArticles() {
     toggleShowAll,
   } = useArticles();
   const content = useContent<ContentTextBlogPage>({
-    context: 'BlogPage',
+    context: 'blogPage',
   });
 
   return (

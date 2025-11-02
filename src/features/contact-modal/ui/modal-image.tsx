@@ -4,7 +4,7 @@ import { ContentTextCallToActionSection } from '@/shared/types/content.types';
 
 export const ModalImage = () => {
   const content = useContent<ContentTextCallToActionSection>({
-    context: 'CallToActionSection',
+    context: 'callToActionSection',
   });
 
   return (

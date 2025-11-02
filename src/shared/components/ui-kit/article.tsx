@@ -4,7 +4,7 @@ import { Button } from '@/shared/components/ui-kit/button';
 import { ROUTES } from '@/shared/constants/routes.constants';
 import { cn } from '@/shared/lib/css';
 import { getPayloadImageUrl } from '@/shared/lib/payload-image';
-import { Article } from '@/shared/types/article.types';
+import type { Article } from '@/shared/payload/payload-types';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -34,7 +34,7 @@ export const ArticleItem = ({ article, className }: ArticleItemProps) => {
         {article.title}
       </span>
       <Button variant="white" asChild>
-        <Link href={ROUTES.ARTICLE_BY_ID(article.id)}>Детальніше</Link>
+        <Link href={ROUTES.ARTICLE_BY_ID(String(article.id))}>Детальніше</Link>
       </Button>
     </div>
   );

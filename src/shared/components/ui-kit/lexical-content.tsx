@@ -2,8 +2,20 @@
 
 import React from 'react'
 
+type LexicalNode = {
+  type?: string
+  children?: LexicalNode[]
+  text?: string
+  format?: number
+  tag?: string
+  url?: string
+  newTab?: boolean
+  root?: LexicalNode
+  [k: string]: unknown
+}
+
 type LexicalContentProps = {
-  content: any
+  content: LexicalNode | LexicalNode[] | string | { root: LexicalNode; [k: string]: unknown }
   className?: string
 }
 
@@ -21,14 +33,14 @@ export function LexicalContent({ content, className }: LexicalContentProps) {
   }
 
   // Рендеримо Lexical JSON
-  const renderNode = (node: any, index: number): React.ReactNode => {
+  const renderNode = (node: LexicalNode, index: number): React.ReactNode => {
     if (!node) return null
 
-    const { type, children, text, format, tag, value } = node
+    const { type, children, text, format, tag } = node
 
     // Text node
     if (type === 'text' || text !== undefined) {
-      let textContent = text || ''
+      let textContent: React.ReactNode = text || ''
 
       // Apply text formatting
       if (format) {
@@ -50,7 +62,7 @@ export function LexicalContent({ content, className }: LexicalContentProps) {
         return <p key={index}>{children?.map(renderNode)}</p>
 
       case 'heading':
-        const HeadingTag = (tag || 'h2') as keyof JSX.IntrinsicElements
+        const HeadingTag = (tag || 'h2') as keyof React.JSX.IntrinsicElements
         return <HeadingTag key={index}>{children?.map(renderNode)}</HeadingTag>
 
       case 'list':
@@ -80,18 +92,18 @@ export function LexicalContent({ content, className }: LexicalContentProps) {
   }
 
   try {
-    // Якщо content має root node
-    if (content.root) {
-      return <>{renderNode(content.root, 0)}</>
-    }
-
     // Якщо це масив nodes
     if (Array.isArray(content)) {
       return <div className={className}>{content.map(renderNode)}</div>
     }
 
+    // Якщо content має root node
+    if ('root' in content && content.root) {
+      return <>{renderNode(content.root, 0)}</>
+    }
+
     // Інакше рендеримо як один node
-    return <>{renderNode(content, 0)}</>
+    return <>{renderNode(content as LexicalNode, 0)}</>
   } catch (error) {
     console.error('Error rendering Lexical content:', error)
     return <div className={className}>Error rendering content</div>

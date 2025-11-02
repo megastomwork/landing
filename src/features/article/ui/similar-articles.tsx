@@ -1,6 +1,6 @@
 'use client';
 
-import { Article } from '@/shared/types/article.types';
+import type { Article } from '@/shared/payload/payload-types';
 import { ArticleItem } from '@/shared/components/ui-kit/article';
 
 type ArticleRowProps = {

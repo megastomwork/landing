@@ -2,9 +2,10 @@ import { Button } from '@/shared/components/ui-kit/button';
 import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-contact-modal';
 import { getPayloadImageUrl } from '@/shared/lib/payload-image';
 import Image from 'next/image';
+import type { Media } from '@/shared/payload/payload-types';
 
 type DoctorItemProps = {
-  photo: string;
+  photo: number | Media;
   name: string;
   position: string;
   experience: string;

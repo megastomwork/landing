@@ -2,7 +2,7 @@ import { useContent } from '@/shared/hooks/use-content';
 import { ContentTextHomePage } from '@/shared/types/content.types';
 
 export default function DescriptionSection() {
-  const texts = useContent<ContentTextHomePage>({ context: 'HomePage' });
+  const texts = useContent<ContentTextHomePage>({ context: 'homePage' });
 
   return (
     <section className="bg-accent-60 py-10">

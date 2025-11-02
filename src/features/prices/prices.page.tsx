@@ -17,7 +17,7 @@ export function PricesPage() {
   const { services } = useServices();
   const prices = usePrices();
   const content = useContent<ContentTextPricesPage>({
-    context: 'PricesPage',
+    context: 'pricesPage',
   });
 
   return (

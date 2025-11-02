@@ -7,14 +7,14 @@ import type { Media } from '@/shared/payload/payload-types'
 interface Stat {
   value: string
   label: string
-  id?: string
+  id?: string | null
 }
 
 interface AboutSectionProps {
   title: string
   description: string
   image: (number | null) | Media
-  stats?: Stat[]
+  stats?: Stat[] | null
 }
 
 export function AboutSection({ title, description, image, stats }: AboutSectionProps) {

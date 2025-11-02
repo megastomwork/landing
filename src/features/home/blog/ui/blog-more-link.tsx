@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function BlogMoreLink() {
   const content = useContent<ContentTextHomePage>({
-    context: 'HomePage',
+    context: 'homePage',
   });
 
   return (
