@@ -18,6 +18,22 @@ import {
   ContactInfoSection,
 } from '@/features/page/sections'
 
+const SECTION_COMPONENTS = {
+  intro: IntroSection,
+  about: AboutSection,
+  services: ServicesSection,
+  blogArticles: BlogArticlesSection,
+  feedbacks: PageFeedbacksSection,
+  contact: PageContactSection,
+  description: DescriptionSection,
+  paragraph: ParagraphSection,
+  doctors: DoctorsSection,
+  blogHero: BlogHeroSection,
+  faq: FaqSection,
+  prices: PricesSection,
+  contactInfo: ContactInfoSection,
+} as const
+
 export default function Page() {
   const params = useParams()
   const segments = params.segments as string[] | undefined
@@ -56,50 +72,13 @@ export default function Page() {
     <div className="min-h-screen">
       {page.sections?.map((section, index) => {
         const key = section.id || index
+        const SectionComponent = SECTION_COMPONENTS[section.blockType as keyof typeof SECTION_COMPONENTS]
 
-        switch (section.blockType) {
-          case 'intro':
-            return <IntroSection key={key} {...section} />
-
-          case 'about':
-            return <AboutSection key={key} {...section} />
-
-          case 'services':
-            return <ServicesSection key={key} {...section} />
-
-          case 'blogArticles':
-            return <BlogArticlesSection key={key} {...section} />
-
-          case 'feedbacks':
-            return <PageFeedbacksSection key={key} {...section} />
-
-          case 'contact':
-            return <PageContactSection key={key} {...section} />
-
-          case 'description':
-            return <DescriptionSection key={key} {...section} />
-
-          case 'paragraph':
-            return <ParagraphSection key={key} {...section} />
-
-          case 'doctors':
-            return <DoctorsSection key={key} {...section} />
-
-          case 'blogHero':
-            return <BlogHeroSection key={key} {...section} />
-
-          case 'faq':
-            return <FaqSection key={key} {...section} />
-
-          case 'prices':
-            return <PricesSection key={key} {...section} />
-
-          case 'contactInfo':
-            return <ContactInfoSection key={key} {...section} />
-
-          default:
-            return null
+        if (!SectionComponent) {
+          return null
         }
+
+        return <SectionComponent key={key} {...section} />
       })}
     </div>
   )

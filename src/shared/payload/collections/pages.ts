@@ -1,8 +1,21 @@
 import type { CollectionConfig } from 'payload'
-import { createGlobalReferenceField } from '../fields/global-reference-field'
-import { createCollectionReferenceField } from '../fields/collection-reference-field'
 import { CONFIG } from '@/shared/constants/config.constants'
 import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
+import {
+  introBlock,
+  aboutBlock,
+  servicesBlock,
+  blogArticlesBlock,
+  feedbacksBlock,
+  contactBlock,
+  descriptionBlock,
+  paragraphBlock,
+  doctorsBlock,
+  blogHeroBlock,
+  faqBlock,
+  pricesBlock,
+  contactInfoBlock,
+} from '@/shared/payload/page-blocks'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -34,327 +47,19 @@ export const Pages: CollectionConfig = {
               type: 'blocks',
               label: 'Секції',
               blocks: [
-                // Hero/Intro Section
-                {
-                  slug: 'intro',
-                  labels: {
-                    singular: 'Вступна секція',
-                    plural: 'Вступні секції',
-                  },
-                  imageURL: '/blocks/intro.png',
-                  fields: [
-                    {
-                      name: 'image',
-                      type: 'upload',
-                      relationTo: 'media',
-                      label: 'Зображення',
-                      required: true,
-                    },
-                    {
-                      name: 'alt',
-                      type: 'text',
-                      label: 'Alt текст',
-                      defaultValue: 'Зображення',
-                    },
-                  ],
-                },
-                // About Section
-                {
-                  slug: 'about',
-                  labels: {
-                    singular: 'Секція "Про нас"',
-                    plural: 'Секції "Про нас"',
-                  },
-                  imageURL: '/blocks/about-us.png',
-                  fields: [
-                    {
-                      name: 'showDefaultContent',
-                      type: 'checkbox',
-                      label: 'Показати стандартний контент',
-                      defaultValue: true,
-                    },
-                  ],
-                },
-                // Services Section
-                {
-                  slug: 'services',
-                  labels: {
-                    singular: 'Секція послуг',
-                    plural: 'Секції послуг',
-                  },
-                  imageURL: '/blocks/services.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Наші послуги',
-                    },
-                    {
-                      name: 'description',
-                      type: 'textarea',
-                      label: 'Опис',
-                    },
-                    createCollectionReferenceField({
-                      collectionSlug: 'services',
-                      title: 'Послуги',
-                      description: 'Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.',
-                    }),
-                    {
-                      name: 'selectedServices',
-                      type: 'relationship',
-                      relationTo: 'services',
-                      hasMany: true,
-                      label: 'Обрані послуги',
-                      admin: {
-                        description: 'Якщо не обрано - показуються всі опубліковані послуги',
-                      },
-                    },
-                    {
-                      name: 'displayLimit',
-                      type: 'number',
-                      label: 'Кількість послуг для відображення',
-                      admin: {
-                        description: 'Залиште порожнім щоб показати всі',
-                      },
-                      min: 1,
-                    },
-                  ],
-                },
-                // Blog Articles Section
-                {
-                  slug: 'blogArticles',
-                  labels: {
-                    singular: 'Секція статей блогу',
-                    plural: 'Секції статей блогу',
-                  },
-                  imageURL: '/blocks/blog-articles.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Наш блог',
-                    },
-                    {
-                      name: 'articlesCount',
-                      type: 'number',
-                      label: 'Кількість статей',
-                      defaultValue: 3,
-                      min: 1,
-                      max: 12,
-                    },
-                    {
-                      name: 'showMoreLink',
-                      type: 'checkbox',
-                      label: 'Показати посилання "Більше"',
-                      defaultValue: true,
-                    },
-                  ],
-                },
-                // Feedbacks Section
-                {
-                  slug: 'feedbacks',
-                  labels: {
-                    singular: 'Секція відгуків',
-                    plural: 'Секції відгуків',
-                  },
-                  imageURL: '/blocks/feedbacks.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Відгуки наших клієнтів',
-                    },
-                  ],
-                },
-                // Contact Section
-                {
-                  slug: 'contact',
-                  labels: {
-                    singular: 'Секція контактів',
-                    plural: 'Секції контактів',
-                  },
-                  imageURL: '/blocks/contact.png',
-                  fields: [
-                    createGlobalReferenceField({
-                      globalSlug: 'contacts',
-                      title: 'Контактна інформація',
-                      fields: ['phone', 'email', 'address'],
-                      fieldLabels: {
-                        phone: 'Телефон',
-                        email: 'Email',
-                        address: 'Адреса',
-                      },
-                    }),
-                    createGlobalReferenceField({
-                      globalSlug: 'workingHours',
-                      title: 'Робочі години',
-                      fields: ['schedule'],
-                      fieldLabels: {
-                        schedule: 'Розклад',
-                      },
-                    }),
-                    {
-                      name: 'showImage',
-                      type: 'checkbox',
-                      label: 'Показати зображення',
-                      defaultValue: true,
-                    },
-                  ],
-                },
-                // Description Section
-                {
-                  slug: 'description',
-                  labels: {
-                    singular: 'Текстова секція',
-                    plural: 'Текстові секції',
-                  },
-                  imageURL: '/blocks/description.png',
-                  fields: [
-                    {
-                      name: 'text',
-                      type: 'textarea',
-                      label: 'Текст',
-                      required: true,
-                    },
-                  ],
-                },
-                // Paragraph Section
-                {
-                  slug: 'paragraph',
-                  labels: {
-                    singular: 'Секція-параграф',
-                    plural: 'Секції-параграфи',
-                  },
-                  imageURL: '/blocks/paragraph.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                    },
-                    {
-                      name: 'content',
-                      type: 'textarea',
-                      label: 'Контент',
-                      required: true,
-                    },
-                  ],
-                },
-                // Doctors Section
-                {
-                  slug: 'doctors',
-                  labels: {
-                    singular: 'Секція лікарів',
-                    plural: 'Секції лікарів',
-                  },
-                  imageURL: '/blocks/doctors.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Наші лікарі',
-                    },
-                    {
-                      name: 'description',
-                      type: 'textarea',
-                      label: 'Опис',
-                    },
-                  ],
-                },
-                // Blog Hero Section
-                {
-                  slug: 'blogHero',
-                  labels: {
-                    singular: 'Герой секція блогу',
-                    plural: 'Герой секції блогу',
-                  },
-                  imageURL: '/blocks/blog-hero.png',
-                  fields: [
-                    {
-                      name: 'backgroundImage',
-                      type: 'upload',
-                      relationTo: 'media',
-                      label: 'Фонове зображення',
-                    },
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Блог',
-                    },
-                    {
-                      name: 'description',
-                      type: 'textarea',
-                      label: 'Опис',
-                    },
-                  ],
-                },
-                // FAQ Section
-                {
-                  slug: 'faq',
-                  labels: {
-                    singular: 'Секція питань',
-                    plural: 'Секції питань',
-                  },
-                  imageURL: '/blocks/faq.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Часті питання',
-                    },
-                  ],
-                },
-                // Prices Section
-                {
-                  slug: 'prices',
-                  labels: {
-                    singular: 'Секція цін',
-                    plural: 'Секції цін',
-                  },
-                  imageURL: '/blocks/prices.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Ціни',
-                    },
-                    {
-                      name: 'description',
-                      type: 'textarea',
-                      label: 'Опис',
-                    },
-                  ],
-                },
-                // Contact Info Section (with map)
-                {
-                  slug: 'contactInfo',
-                  labels: {
-                    singular: 'Розширена контактна секція',
-                    plural: 'Розширені контактні секції',
-                  },
-                  imageURL: '/blocks/contact-info.png',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Заголовок',
-                      defaultValue: 'Контактна інформація',
-                    },
-                    {
-                      name: 'showMap',
-                      type: 'checkbox',
-                      label: 'Показати карту',
-                      defaultValue: true,
-                    },
-                  ],
-                },
+                introBlock,
+                aboutBlock,
+                servicesBlock,
+                blogArticlesBlock,
+                feedbacksBlock,
+                contactBlock,
+                descriptionBlock,
+                paragraphBlock,
+                doctorsBlock,
+                blogHeroBlock,
+                faqBlock,
+                pricesBlock,
+                contactInfoBlock,
               ],
             },
           ],
