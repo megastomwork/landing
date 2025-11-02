@@ -1,3 +1,4 @@
+import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
 import type { CollectionConfig } from 'payload'
 
 export const Articles: CollectionConfig = {
@@ -9,7 +10,7 @@ export const Articles: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     livePreview: {
-      url: ({ data }) => `http://localhost:3000/blog/${data.id}`,
+      url: ({ data }) => `http://localhost:3000/blog/${data.id}?${LIVE_PREVIEW_FLAG}=true`,
     },
   },
   fields: [
