@@ -1,4 +1,4 @@
-import { CONFIG } from '@/shared/constants/config.constants';
+import { CONFIG } from '@/shared/constants/client-config.constants';
 import { useContacts } from '@/shared/hooks/use-contacts';
 import { useSocials } from '@/shared/hooks/use-socials';
 import { Loader2, PhoneIcon } from 'lucide-react';

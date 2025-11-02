@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import payloadAPI from '@/shared/lib/payload-rest'
 import type { Page } from '@/shared/payload/payload-types'
 import { isLivePreviewMode } from '@/shared/lib/payload-preview';
-import { CONFIG } from '@/shared/constants/config.constants';
+import { CONFIG } from '@/shared/constants/client-config.constants';
 import { useLivePreview } from '@payloadcms/live-preview-react';
 
 export const usePage = (path: string) => {

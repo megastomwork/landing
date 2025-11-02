@@ -1,4 +1,4 @@
-import { CONFIG } from '@/shared/constants/config.constants';
+import { CONFIG } from '@/shared/constants/client-config.constants';
 import Image, { ImageProps } from 'next/image';
 import { Skeleton } from '@/shared/components/ui-kit/skeleton';
 

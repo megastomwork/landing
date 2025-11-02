@@ -1,5 +1,5 @@
 'use client'
-import { CONFIG } from '@/shared/constants/config.constants'
+import { CONFIG } from '@/shared/constants/client-config.constants'
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
 import { useRouter } from 'next/navigation.js'
 import React from 'react'

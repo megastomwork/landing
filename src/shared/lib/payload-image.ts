@@ -1,4 +1,4 @@
-import { CONFIG } from '@/shared/constants/config.constants'
+import { CONFIG } from '@/shared/constants/client-config.constants'
 import { Media } from '@types'
 
 export function getPayloadImageUrl(media: Media | number | undefined | null): string {

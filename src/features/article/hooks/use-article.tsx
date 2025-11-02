@@ -1,4 +1,4 @@
-import { CONFIG } from '@/shared/constants/config.constants';
+import { CONFIG } from '@/shared/constants/client-config.constants';
 import { payloadAPI } from '@/shared/lib/payload-rest';
 import { isLivePreviewMode } from '@/shared/lib/payload-preview';
 import { useLivePreview } from '@payloadcms/live-preview-react';

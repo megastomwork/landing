@@ -1,7 +1,7 @@
 'use client';
 
 import { Skeleton } from '@/shared/components/ui-kit/skeleton';
-import { CONFIG } from '@/shared/constants/config.constants';
+import { CONFIG } from '@/shared/constants/client-config.constants';
 import { useContacts } from '@/shared/hooks/use-contacts';
 import { useSocials } from '@/shared/hooks/use-socials';
 import { PhoneIcon } from 'lucide-react';

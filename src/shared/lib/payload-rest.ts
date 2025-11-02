@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CONFIG } from '@/shared/constants/config.constants'
+import { CONFIG } from '@/shared/constants/client-config.constants'
 
 // Axios instance for Payload CMS REST API
 const axiosInstance = axios.create({

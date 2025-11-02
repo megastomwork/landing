@@ -1,4 +1,4 @@
-import { CONFIG } from '@/shared/constants/config.constants'
+import { CONFIG } from '@/shared/constants/client-config.constants'
 import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
 import type { CollectionConfig } from 'payload'
 

@@ -1,5 +1,5 @@
 import { Skeleton } from '@/shared/components/ui-kit/skeleton';
-import { CONFIG } from '@/shared/constants/config.constants';
+import { CONFIG } from '@/shared/constants/client-config.constants';
 import { useSocials } from '@/shared/hooks/use-socials';
 import Image from 'next/image';
 import Link from 'next/link';

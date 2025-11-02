@@ -34,6 +34,9 @@ import { Contacts } from '@/shared/payload/globals/contacts'
 import { Content } from '@/shared/payload/globals/content'
 import { WorkingHours } from '@/shared/payload/globals/working-hours'
 
+// Config
+import { SERVER_CONFIG } from '@/shared/constants/server-config.constants'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -68,13 +71,18 @@ export default buildConfig({
       BlockquoteFeature(),
     ],
   }),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: SERVER_CONFIG.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, '../../shared/payload/payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      connectionString: SERVER_CONFIG.DATABASE_URL,
+      // Optimize for serverless environments (Vercel)
+      max: 1, // Maximum number of connections per serverless function instance
+      min: 0, // Minimum connections to keep open
+      idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
+      connectionTimeoutMillis: 10000, // Connection timeout
     },
   }),
   cors: [
@@ -88,15 +96,15 @@ export default buildConfig({
           prefix: 'media',
         },
       },
-      bucket: process.env.S3_BUCKET || '',
+      bucket: SERVER_CONFIG.S3_BUCKET,
       config: {
         forcePathStyle: true,
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+          accessKeyId: SERVER_CONFIG.S3_ACCESS_KEY_ID,
+          secretAccessKey: SERVER_CONFIG.S3_SECRET_ACCESS_KEY,
         },
-        region: process.env.S3_REGION || '',
-        endpoint: process.env.S3_ENDPOINT || '',
+        region: SERVER_CONFIG.S3_REGION,
+        endpoint: SERVER_CONFIG.S3_ENDPOINT,
       },
     }),
   ],
