@@ -170,6 +170,7 @@ export interface Article {
   id: number;
   title: string;
   image: number | Media;
+  status: 'draft' | 'published';
   content: {
     root: {
       type: string;
@@ -185,7 +186,6 @@ export interface Article {
     };
     [k: string]: unknown;
   };
-  status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
@@ -443,8 +443,8 @@ export interface UsersSelect<T extends boolean = true> {
 export interface ArticlesSelect<T extends boolean = true> {
   title?: T;
   image?: T;
-  content?: T;
   status?: T;
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;

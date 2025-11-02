@@ -5,7 +5,7 @@ export const Articles: CollectionConfig = {
   slug: 'articles',
   trash: true,
   access: {
-    read: () => true, // public access
+    read: () => true,
   },
   admin: {
     useAsTitle: 'title',
@@ -26,11 +26,6 @@ export const Articles: CollectionConfig = {
       required: true,
     },
     {
-      name: 'content',
-      type: 'richText',
-      required: true,
-    },
-    {
       name: 'status',
       type: 'select',
       options: [
@@ -38,9 +33,12 @@ export const Articles: CollectionConfig = {
         { label: 'Published', value: 'published' },
       ],
       defaultValue: 'draft',
-      admin: {
-        position: 'sidebar',
-      },
+      required: true,
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      required: true,
     },
   ],
 }
