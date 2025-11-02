@@ -30,6 +30,7 @@ import { Schedule } from '@/shared/payload/collections/schedule'
 import { ServicePrices } from '@/shared/payload/collections/service-prices'
 import { Users } from '@/shared/payload/collections/users'
 import { Media } from '@/shared/payload/collections/media'
+import { Pages } from '@/shared/payload/collections/pages'
 
 // Globals
 import { Contacts } from '@/shared/payload/globals/contacts'
@@ -44,6 +45,7 @@ export default buildConfig({
   },
   collections: [
     Users,
+    Pages,
     Articles,
     Doctors,
     Services,
