@@ -1,0 +1,6 @@
+export { IntroSection } from './intro-section'
+export { PageAboutSection } from './about-section'
+export { ServicesSection } from './services-section'
+export { BlogArticlesSection } from './blog-articles-section'
+export { PageFeedbacksSection } from './feedbacks-section'
+export { PageContactSection } from './contact-section'

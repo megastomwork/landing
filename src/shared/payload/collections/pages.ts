@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload'
+import { createGlobalReferenceField } from '../fields/global-reference-field'
+import { createCollectionReferenceField } from '../fields/collection-reference-field'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -88,6 +90,30 @@ export const Pages: CollectionConfig = {
                       type: 'textarea',
                       label: 'Опис',
                     },
+                    createCollectionReferenceField({
+                      collectionSlug: 'services',
+                      title: 'Послуги',
+                      description: 'Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.',
+                    }),
+                    {
+                      name: 'selectedServices',
+                      type: 'relationship',
+                      relationTo: 'services',
+                      hasMany: true,
+                      label: 'Обрані послуги',
+                      admin: {
+                        description: 'Якщо не обрано - показуються всі опубліковані послуги',
+                      },
+                    },
+                    {
+                      name: 'displayLimit',
+                      type: 'number',
+                      label: 'Кількість послуг для відображення',
+                      admin: {
+                        description: 'Залиште порожнім щоб показати всі',
+                      },
+                      min: 1,
+                    },
                   ],
                 },
                 // Blog Articles Section
@@ -147,6 +173,24 @@ export const Pages: CollectionConfig = {
                   },
                   imageURL: '/blocks/contact.png',
                   fields: [
+                    createGlobalReferenceField({
+                      globalSlug: 'contacts',
+                      title: 'Контактна інформація',
+                      fields: ['phone', 'email', 'address'],
+                      fieldLabels: {
+                        phone: 'Телефон',
+                        email: 'Email',
+                        address: 'Адреса',
+                      },
+                    }),
+                    createGlobalReferenceField({
+                      globalSlug: 'workingHours',
+                      title: 'Робочі години',
+                      fields: ['schedule'],
+                      fieldLabels: {
+                        schedule: 'Розклад',
+                      },
+                    }),
                     {
                       name: 'showImage',
                       type: 'checkbox',

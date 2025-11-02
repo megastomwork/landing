@@ -35,6 +35,7 @@ import { Pages } from '@/shared/payload/collections/pages'
 // Globals
 import { Contacts } from '@/shared/payload/globals/contacts'
 import { Content } from '@/shared/payload/globals/content'
+import { WorkingHours } from '@/shared/payload/globals/working-hours'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -56,7 +57,7 @@ export default buildConfig({
     ServicePrices,
     Media,
   ],
-  globals: [Contacts, Content],
+  globals: [Contacts, Content, WorkingHours],
   editor: lexicalEditor({
     features: () => [
       FixedToolbarFeature(),

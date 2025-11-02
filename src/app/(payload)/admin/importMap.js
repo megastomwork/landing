@@ -1,3 +1,5 @@
+import { CollectionReferenceField as CollectionReferenceField_f696c389e4838a250323b76fa8001be2 } from '@/shared/payload/components/collection-reference-field'
+import { GlobalReferenceField as GlobalReferenceField_e0cf14a95b6d1d3a5d430c92bb7481df } from '@/shared/payload/components/global-reference-field'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { RscEntryLexicalField as RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { LexicalDiffComponent as LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
@@ -12,6 +14,8 @@ import { HeadingFeatureClient as HeadingFeatureClient_e70f5e05f09f93e00b997edb1e
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 
 export const importMap = {
+  "@/shared/payload/components/collection-reference-field#CollectionReferenceField": CollectionReferenceField_f696c389e4838a250323b76fa8001be2,
+  "@/shared/payload/components/global-reference-field#GlobalReferenceField": GlobalReferenceField_e0cf14a95b6d1d3a5d430c92bb7481df,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField": RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#LexicalDiffComponent": LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e,

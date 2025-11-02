@@ -107,10 +107,12 @@ export interface Config {
   globals: {
     contacts: Contact;
     content: Content;
+    workingHours: WorkingHour;
   };
   globalsSelect: {
     contacts: ContactsSelect<false> | ContactsSelect<true>;
     content: ContentSelect<false> | ContentSelect<true>;
+    workingHours: WorkingHoursSelect<false> | WorkingHoursSelect<true>;
   };
   locale: null;
   user: User & {
@@ -189,6 +191,14 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
+            /**
+             * Якщо не обрано - показуються всі опубліковані послуги
+             */
+            selectedServices?: (number | Service)[] | null;
+            /**
+             * Залиште порожнім щоб показати всі
+             */
+            displayLimit?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'services';
@@ -248,6 +258,23 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  Title: string;
+  Description: string;
+  /**
+   * Lucide icon name
+   */
+  Icon?: string | null;
+  IconImage?: (number | null) | Media;
+  status?: ('draft' | 'published') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles".
  */
 export interface Article {
@@ -284,23 +311,6 @@ export interface Doctor {
   photo: number | Media;
   position: string;
   experience: string;
-  status?: ('draft' | 'published') | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services".
- */
-export interface Service {
-  id: number;
-  Title: string;
-  Description: string;
-  /**
-   * Lucide icon name
-   */
-  Icon?: string | null;
-  IconImage?: (number | null) | Media;
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -534,6 +544,8 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              selectedServices?: T;
+              displayLimit?: T;
               id?: T;
               blockName?: T;
             };
@@ -800,6 +812,20 @@ export interface Content {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "workingHours".
+ */
+export interface WorkingHour {
+  id: number;
+  schedule: {
+    days: string;
+    hours: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contacts_select".
  */
 export interface ContactsSelect<T extends boolean = true> {
@@ -883,6 +909,22 @@ export interface ContentSelect<T extends boolean = true> {
     | {
         pageTitle?: T;
         pageDescription?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "workingHours_select".
+ */
+export interface WorkingHoursSelect<T extends boolean = true> {
+  schedule?:
+    | T
+    | {
+        days?: T;
+        hours?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
