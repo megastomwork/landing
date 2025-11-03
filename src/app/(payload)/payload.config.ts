@@ -103,10 +103,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: poolConfig,
   }),
-  cors: [
-    "http://localhost:3000",
-    "https://megastom-frontend-git-payload-migration-ginetiks-projects.vercel.app"
-  ],
+  cors: "*",
   plugins: [
     s3Storage({
       collections: {
