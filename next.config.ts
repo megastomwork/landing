@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'directus-production-05c4.up.railway.app',
       },
+      {
+        protocol: 'https',
+        hostname: 'megastom-frontend-git-payload-migration-ginetiks-projects.vercel.app'
+      }
     ],
     formats: ['image/webp', 'image/avif'],
     dangerouslyAllowSVG: true,
