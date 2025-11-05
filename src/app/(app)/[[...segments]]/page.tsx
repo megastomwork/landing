@@ -21,22 +21,6 @@ import type { Page } from '@/shared/payload/payload-types'
 
 type PageSection = NonNullable<Page['sections']>[number]
 
-const SECTION_COMPONENTS = {
-  intro: IntroSection,
-  about: AboutSection,
-  services: ServicesSection,
-  blogArticles: BlogArticlesSection,
-  feedbacks: PageFeedbacksSection,
-  contact: PageContactSection,
-  description: DescriptionSection,
-  paragraph: ParagraphSection,
-  doctors: DoctorsSection,
-  blogHero: BlogHeroSection,
-  faq: FaqSection,
-  prices: PricesSection,
-  contactInfo: ContactInfoSection,
-} as const
-
 export default function Page() {
   const params = useParams()
   const segments = params.segments as string[] | undefined
