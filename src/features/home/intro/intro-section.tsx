@@ -12,13 +12,6 @@ export default function IntroSection() {
     <section>
       <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-4">
         <div className="w-full overflow-hidden rounded-[20px]">
-          <Image
-            src={content.data?.welcomeImage}
-            alt="Megastom ресепшн"
-            width={1040}
-            height={690}
-            className="h-auto w-full object-cover"
-          />
         </div>
       </div>
     </section>
