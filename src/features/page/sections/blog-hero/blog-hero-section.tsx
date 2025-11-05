@@ -26,7 +26,7 @@ export function BlogHeroSection({
         {media && (
           <div className="absolute inset-0 -z-10">
             <PayloadImage
-              src={media}
+              src={media.url}
               alt={title || 'Blog hero'}
               fill
               className="object-cover"

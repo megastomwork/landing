@@ -46,7 +46,7 @@ export function BlogArticlesSection({
               {image && (
                 <div className="aspect-video overflow-hidden">
                   <PayloadImage
-                    src={image}
+                    src={image.url}
                     alt={article.title}
                     width={400}
                     height={250}

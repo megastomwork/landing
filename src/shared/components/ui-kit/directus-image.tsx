@@ -3,30 +3,17 @@ import Image, { ImageProps } from 'next/image';
 import { Skeleton } from '@/shared/components/ui-kit/skeleton';
 
 type DirectusImageProps = Omit<ImageProps, 'src'> & {
-  src?: string | { url?: string | null };
+  src?: string | null;
 };
 
 export function DirectusImage({ src, alt, ...props }: DirectusImageProps) {
-  console.log(src)
   if (!src) {
     return <Skeleton className="h-full w-full rounded-xl" />;
   }
 
-  // Handle Payload media object format
-  const imageSrc = typeof src === 'object' && src.url
-    ? src.url
-    : typeof src === 'string'
-    ? src
-    : '';
-
-  if (!imageSrc) {
-    return <Skeleton className="h-full w-full rounded-xl" />;
-  }
-
-  // If it's already a full URL, use it as is
-  const imageUrl = imageSrc.startsWith('http')
-    ? imageSrc
-    : `${CONFIG.SERVER_URL}${imageSrc}`;
+  const imageUrl = src.startsWith('http')
+    ? src 
+    : `${CONFIG.SERVER_URL}${src}`;
 
   return (
     <Image src={imageUrl} alt={alt} {...props} />

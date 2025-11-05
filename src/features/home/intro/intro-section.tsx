@@ -1,6 +1,7 @@
 import { DirectusImage } from '@/shared/components/ui-kit/directus-image';
 import { useContent } from '@/shared/hooks/use-content';
 import { ContentTextHomePage } from '@/shared/types/content.types';
+import Image from 'next/image';
 
 export default function IntroSection() {
   const content = useContent<ContentTextHomePage>({
@@ -11,7 +12,7 @@ export default function IntroSection() {
     <section>
       <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-4">
         <div className="w-full overflow-hidden rounded-[20px]">
-          <DirectusImage
+          <Image
             src={content.data?.welcomeImage}
             alt="Megastom ресепшн"
             width={1040}

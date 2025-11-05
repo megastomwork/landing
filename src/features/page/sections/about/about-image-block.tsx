@@ -15,7 +15,7 @@ export default function AboutImageBlock({ image }: AboutImageBlockProps) {
   return (
     <div className="overflow-hidden rounded-xl shadow-lg">
       <PayloadImage
-        src={media}
+        src={media.url}
         alt="Команда Megastom"
         width={600}
         height={400}

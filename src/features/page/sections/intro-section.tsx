@@ -18,7 +18,7 @@ export function IntroSection({ image, alt }: IntroSectionProps) {
       <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-4">
         <div className="w-full overflow-hidden rounded-[20px]">
           <PayloadImage
-            src={media}
+            src={media.url}
             alt={alt || 'Image'}
             width={1040}
             height={690}

@@ -3,7 +3,6 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['localhost', 'megastom-frontend-git-payload-migration-ginetiks-projects.vercel.app'],
     remotePatterns: [
       {
         protocol: 'http',
