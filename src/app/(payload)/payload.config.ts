@@ -43,8 +43,6 @@ const dirname = path.dirname(filename)
 // Determine if we're in production (Vercel) or development
 const _ = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
 
-console.log("test: ", SERVER_CONFIG)
-
 export default buildConfig({
   admin: {
     user: Users.slug,

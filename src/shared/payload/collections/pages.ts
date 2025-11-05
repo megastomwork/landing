@@ -22,7 +22,7 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     livePreview: {
-      url: ({ data }) => `${CONFIG.SERVER_URL}/${data.path}?${LIVE_PREVIEW_FLAG}=true`,
+      url: ({ data }) => `${CONFIG.SERVER_URL}${data.path === '/' ? '' : data.path}?${LIVE_PREVIEW_FLAG}=true`,
     }
   },
   access: {
