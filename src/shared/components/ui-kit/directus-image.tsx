@@ -16,7 +16,7 @@ export function DirectusImage({ src, alt, ...props }: DirectusImageProps) {
     : `${CONFIG.SERVER_URL}${src}`;
 
   return (
-    <Image src={imageUrl} alt={alt} {...props} />
+    <Image src={imageUrl} loader={() => imageUrl} alt={alt} {...props} />
   );
 }
 
