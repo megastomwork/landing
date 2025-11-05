@@ -41,29 +41,9 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 // Determine if we're in production (Vercel) or development
-const isProduction = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
+const _ = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
 
-console.log(SERVER_CONFIG)
-
-// Connection pool configuration
-const poolConfig = isProduction
-  ? {
-      // Production (Vercel) - minimal connections for serverless with Transaction mode
-      connectionString: SERVER_CONFIG.DATABASE_URL,
-      max: 1, // One connection per serverless function
-      min: 0, // Don't keep connections open
-      idleTimeoutMillis: 20000, // 20 seconds
-      connectionTimeoutMillis: 10000, // 10 seconds
-    }
-  : {
-      // Development - Session mode with conservative settings to avoid Supabase limits
-      connectionString: SERVER_CONFIG.DATABASE_URL,
-      max: 3, // Limited connections to stay within Supabase free tier limits
-      min: 0, // Don't keep idle connections
-      idleTimeoutMillis: 30000, // 30 seconds
-      connectionTimeoutMillis: 20000, // 20 seconds
-      allowExitOnIdle: true, // Allow pool to shutdown when idle
-    }
+console.log("test: ", SERVER_CONFIG)
 
 export default buildConfig({
   admin: {
@@ -101,7 +81,14 @@ export default buildConfig({
     outputFile: path.resolve(dirname, '../../shared/payload/payload-types.ts'),
   },
   db: postgresAdapter({
-    pool: poolConfig,
+    pool: {
+      connectionString: SERVER_CONFIG.DATABASE_URL,
+      max: 3, // Limited connections to stay within Supabase free tier limits
+      min: 0, // Don't keep idle connections
+      idleTimeoutMillis: 30000, // 30 seconds
+      connectionTimeoutMillis: 20000, // 20 seconds
+      allowExitOnIdle: true, // Allow pool to shutdown when idle
+    },
   }),
   cors: "*",
   plugins: [
