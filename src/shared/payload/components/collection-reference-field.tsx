@@ -57,26 +57,12 @@ export const CollectionReferenceField: React.FC<CollectionReferenceFieldProps> =
   ]
 
   return (
-    <div
-      style={{
-        padding: '1rem',
-        border: '1px solid var(--theme-elevation-200)',
-        borderRadius: '4px',
-        backgroundColor: 'var(--theme-elevation-50)',
-        marginBottom: '1rem',
-      }}
-    >
-      <div style={{ marginBottom: '0.75rem' }}>
-        <strong style={{ color: 'var(--theme-elevation-800)' }}>
+    <div className="mb-4 rounded border border-field-border bg-field-bg p-4">
+      <div className="mb-3">
+        <strong className="text-field-text">
           ℹ️ {title}
         </strong>
-        <p
-          style={{
-            margin: '0.5rem 0 0 0',
-            fontSize: '0.875rem',
-            color: 'var(--theme-elevation-600)',
-          }}
-        >
+        <p className="mt-2 text-sm text-field-text-muted">
           {description || 'Дані керуються через колекцію. Використайте поля нижче для вибору елементів.'}
         </p>
       </div>
@@ -85,31 +71,13 @@ export const CollectionReferenceField: React.FC<CollectionReferenceFieldProps> =
         href={`/admin/collections/${collectionSlug}`}
         target="_blank"
         rel="noopener noreferrer"
-        style={{
-          display: 'inline-block',
-          padding: '0.5rem 1rem',
-          backgroundColor: 'var(--theme-elevation-200)',
-          color: 'var(--theme-elevation-800)',
-          textDecoration: 'none',
-          borderRadius: '4px',
-          fontSize: '0.875rem',
-          fontWeight: 500,
-          border: '1px solid var(--theme-elevation-300)',
-          transition: 'all 0.2s ease',
-          marginBottom: showTable ? '1rem' : '0',
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = 'var(--theme-elevation-300)'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'var(--theme-elevation-200)'
-        }}
+        className={`inline-block rounded border border-field-border bg-field-link-bg px-4 py-2 text-sm font-medium text-field-text no-underline transition-all duration-200 hover:bg-field-link-hover ${showTable ? 'mb-4' : ''}`}
       >
         Керувати {title.toLowerCase()} →
       </a>
 
       {showTable && columns.length > 0 && data.length > 0 && (
-        <div style={{ marginTop: '1rem' }}>
+        <div className="mt-4 w-full">
           <DataTable
             data={data}
             columns={dataTableColumns}

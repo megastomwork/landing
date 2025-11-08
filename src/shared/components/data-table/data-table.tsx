@@ -3,6 +3,8 @@
 import React, { useState, useMemo } from 'react'
 import type { DataTableProps } from './types'
 import { Pagination } from './pagination'
+import { Button } from '@/shared/components/ui-kit/button'
+import { Pencil, Trash2 } from 'lucide-react'
 
 export function DataTable<T extends Record<string, unknown>>({
   data,
@@ -43,16 +45,16 @@ export function DataTable<T extends Record<string, unknown>>({
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-cyan-600" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-table-border border-t-table-primary" />
       </div>
     )
   }
 
   if (data.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-8 text-gray-500">
+      <div className="flex flex-col items-center justify-center py-8 text-table-text-secondary">
         <svg
-          className="mb-2 h-12 w-12 text-gray-400"
+          className="mb-2 h-12 w-12 text-table-text-secondary"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -69,17 +71,33 @@ export function DataTable<T extends Record<string, unknown>>({
     )
   }
 
+  const getActionIcon = (label: string, variant?: string) => {
+    if (label.toLowerCase().includes('edit') || variant === 'primary') {
+      return <Pencil className="h-4 w-4" />
+    }
+    if (label.toLowerCase().includes('delete') || variant === 'danger') {
+      return <Trash2 className="h-4 w-4" />
+    }
+    return null
+  }
+
+  const getButtonVariant = (variant?: string): 'outline' | 'ghost' | 'default' => {
+    if (variant === 'danger') return 'outline'
+    if (variant === 'secondary') return 'ghost'
+    return 'outline'
+  }
+
   return (
-    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+    <div className="w-full overflow-hidden rounded-lg border-2 border-table-border bg-table-bg shadow-sm">
+      <div className="w-full overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead className="border-b-2 border-table-border bg-table-header-bg">
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                  className="border-r border-table-border px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-table-text-muted last:border-r-0"
                   style={column.width ? { width: column.width } : undefined}
                 >
                   {column.label}
@@ -88,44 +106,45 @@ export function DataTable<T extends Record<string, unknown>>({
               {actions && actions.length > 0 && (
                 <th
                   scope="col"
-                  className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500"
+                  className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-table-text-muted"
+                  style={{ width: '80px' }}
                 >
                   Actions
                 </th>
               )}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 bg-white">
+          <tbody className="bg-table-bg">
             {paginatedData.map((row, rowIndex) => (
-              <tr key={rowIndex} className="hover:bg-gray-50">
+              <tr
+                key={rowIndex}
+                className="border-b border-table-border transition-colors hover:bg-table-hover last:border-b-0"
+              >
                 {columns.map((column) => {
                   const value = getCellValue(row, column.key)
                   return (
                     <td
                       key={column.key}
-                      className="whitespace-nowrap px-6 py-4 text-sm text-gray-900"
+                      className="border-r border-table-border px-6 py-4 text-sm text-table-text last:border-r-0"
                     >
                       {column.render ? column.render(value, row) : String(value ?? '')}
                     </td>
                   )
                 })}
                 {actions && actions.length > 0 && (
-                  <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                    <div className="flex justify-end gap-2">
+                  <td className="px-6 py-4 text-center">
+                    <div className="flex justify-center gap-2">
                       {actions.map((action, actionIndex) => (
-                        <button
+                        <Button
                           key={actionIndex}
                           onClick={() => action.onClick(row)}
-                          className={`inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                            action.variant === 'danger'
-                              ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                              : action.variant === 'secondary'
-                                ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                : 'bg-cyan-100 text-cyan-700 hover:bg-cyan-200'
-                          }`}
+                          variant={getButtonVariant(action.variant)}
+                          size="icon"
+                          className="h-8 w-8"
+                          title={action.label}
                         >
-                          {action.label}
-                        </button>
+                          {getActionIcon(action.label, action.variant)}
+                        </Button>
                       ))}
                     </div>
                   </td>
