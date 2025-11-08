@@ -27,12 +27,16 @@ const buttonVariants = cva(
           'bg-transparent text-center text-base font-sans font-bold text-black shadow-sm hover:bg-[#E5FBFF] rounded-[20px]',
         white:
           'bg-white text-center text-base font-sans font-bold text-black shadow-sm hover:bg-[#f1fdff] rounded-[20px]',
+        'admin-secondary': 'bg-muted hover:bg-white/10 rounded-lg no-underline',
+        'admin-outline': 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground rounded-lg no-underline',
+        'admin-ghost': 'hover:bg-accent hover:text-accent-foreground rounded-lg no-underline'
       },
       size: {
         default: 'h-[40px]  w-[198px] px-4 py-2',
         sm: 'h-[40px] w-[146px] px-3 ',
         lg: 'h-[44px] px-8',
         icon: 'h-[40px] w-[40px]',
+        'admin-default': 'h-10 px-4 py-2'
       },
     },
     defaultVariants: {

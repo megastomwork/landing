@@ -5,6 +5,7 @@ import { DataTable } from '@/shared/components/data-table'
 import type { DataTableColumn, DataTableAction } from '@/shared/components/data-table'
 import type { CollectionReferenceFieldColumn } from '@/shared/payload/fields/collection-reference-field'
 import { useCollectionData } from '@/shared/hooks/use-collection-data'
+import { Button } from '@/shared/components/ui-kit/button'
 
 interface CollectionReferenceFieldProps {
   collectionSlug: string
@@ -60,21 +61,22 @@ export const CollectionReferenceField: React.FC<CollectionReferenceFieldProps> =
     <div className="mb-4 rounded border border-field-border bg-field-bg p-4">
       <div className="mb-3">
         <strong className="text-field-text">
-          ℹ️ {title}
+          {title}
         </strong>
         <p className="mt-2 text-sm text-field-text-muted">
           {description || 'Дані керуються через колекцію. Використайте поля нижче для вибору елементів.'}
         </p>
       </div>
 
-      <a
-        href={`/admin/collections/${collectionSlug}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`inline-block rounded border border-field-border bg-field-link-bg px-4 py-2 text-sm font-medium text-field-text no-underline transition-all duration-200 hover:bg-field-link-hover ${showTable ? 'mb-4' : ''}`}
-      >
-        Керувати {title.toLowerCase()} →
-      </a>
+      <Button variant='admin-secondary' size='admin-default' asChild>
+        <a
+          href={`/admin/collections/${collectionSlug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Керувати {title.toLowerCase()} →
+        </a>
+      </Button>
 
       {showTable && columns.length > 0 && data.length > 0 && (
         <div className="mt-4 w-full">

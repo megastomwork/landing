@@ -81,14 +81,14 @@ export function DataTable<T extends Record<string, unknown>>({
     return null
   }
 
-  const getButtonVariant = (variant?: string): 'outline' | 'ghost' | 'default' => {
-    if (variant === 'danger') return 'outline'
-    if (variant === 'secondary') return 'ghost'
-    return 'outline'
+  const getButtonVariant = (variant?: string): 'admin-outline' | 'admin-ghost' | 'default' => {
+    if (variant === 'danger') return 'admin-outline'
+    if (variant === 'secondary') return 'admin-ghost'
+    return 'admin-outline'
   }
 
   return (
-    <div className="w-full overflow-hidden rounded-lg border-2 border-table-border bg-table-bg shadow-sm">
+    <div className="w-full overflow-hidden rounded-sm border border-table-border bg-table-bg shadow-sm">
       <div className="w-full overflow-x-auto">
         <table className="w-full border-collapse">
           <thead className="border-b-2 border-table-border bg-table-header-bg">
