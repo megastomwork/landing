@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { Button } from '@/shared/components/ui-kit/button'
 
 interface GlobalReferenceFieldProps {
   globalSlug: string
@@ -40,69 +41,35 @@ export const GlobalReferenceField: React.FC<GlobalReferenceFieldProps> = (props)
   }
 
   return (
-    <div
-      style={{
-        padding: '1rem',
-        border: '1px solid var(--theme-elevation-200)',
-        borderRadius: '4px',
-        backgroundColor: 'var(--theme-elevation-50)',
-        marginBottom: '1rem',
-      }}
-    >
-      <div style={{ marginBottom: '0.75rem' }}>
-        <strong style={{ color: 'var(--theme-elevation-800)' }}>
+    <div className="mb-4 rounded border border-field-border bg-field-bg p-4">
+      <div className="mb-3">
+        <strong className="text-field-text">
           ⚠️ {title}
         </strong>
-        <p
-          style={{
-            margin: '0.5rem 0 0 0',
-            fontSize: '0.875rem',
-            color: 'var(--theme-elevation-600)',
-          }}
-        >
+        <p className="mt-2 text-sm text-field-text-muted">
           Ці дані редагуються глобально. Зміни відобразяться на всіх сторінках.
         </p>
       </div>
 
       {loading ? (
-        <p style={{ color: 'var(--theme-elevation-500)', fontSize: '0.875rem' }}>
+        <p className="text-sm text-field-text-muted">
           Завантаження...
         </p>
       ) : (
-        <div
-          style={{
-            padding: '0.75rem',
-            backgroundColor: 'var(--theme-elevation-100)',
-            borderRadius: '4px',
-            marginBottom: '0.75rem',
-          }}
-        >
+        <div className="mb-3 rounded bg-field-bg-secondary p-3">
           {fields.map((field) => {
             const value = data ? getNestedValue(data, field) : undefined
             const label = fieldLabels[field] || field
 
             return (
-              <div key={field} style={{ marginBottom: '0.5rem' }}>
-                <div
-                  style={{
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    color: 'var(--theme-elevation-600)',
-                    marginBottom: '0.25rem',
-                  }}
-                >
+              <div key={field} className="mb-2">
+                <div className="mb-1 text-xs font-semibold uppercase text-field-text-muted">
                   {label}
                 </div>
-                <div
-                  style={{
-                    fontSize: '0.875rem',
-                    color: 'var(--theme-elevation-800)',
-                  }}
-                >
+                <div className="text-sm text-field-text">
                   {Array.isArray(value)
                     ? value.map((item, idx) => (
-                        <div key={idx} style={{ marginBottom: '0.25rem' }}>
+                        <div key={idx} className="mb-1">
                           {typeof item === 'object'
                             ? JSON.stringify(item)
                             : String(item || '—')}
@@ -116,31 +83,15 @@ export const GlobalReferenceField: React.FC<GlobalReferenceFieldProps> = (props)
         </div>
       )}
 
-      <a
-        href={`/admin/globals/${globalSlug}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: 'inline-block',
-          padding: '0.5rem 1rem',
-          backgroundColor: 'var(--theme-elevation-200)',
-          color: 'var(--theme-elevation-800)',
-          textDecoration: 'none',
-          borderRadius: '4px',
-          fontSize: '0.875rem',
-          fontWeight: 500,
-          border: '1px solid var(--theme-elevation-300)',
-          transition: 'all 0.2s ease',
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = 'var(--theme-elevation-300)'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'var(--theme-elevation-200)'
-        }}
-      >
-        Редагувати {title.toLowerCase()} →
-      </a>
+      <Button variant='admin-secondary' size='admin-default' asChild>
+        <a
+          href={`/admin/globals/${globalSlug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Редагувати {title.toLowerCase()} →
+        </a>
+      </Button>
     </div>
   )
 }

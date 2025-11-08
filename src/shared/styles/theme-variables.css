@@ -132,7 +132,7 @@
   --background: #141414;
   --foreground: hsl(0 0% 98%);
 
-  --card: hsl(240 10% 3.9%);
+  --card: #222222;
   --card-foreground: hsl(0 0% 98%);
 
   --popover: hsl(240 10% 3.9%);
@@ -141,7 +141,7 @@
   --primary: hsl(0 0% 98%);
   --primary-foreground: hsl(240 5.9% 10%);
 
-  --secondary: hsl(240 3.7% 15.9%);
+  --secondary: var(--color-zinc-700);
   --secondary-foreground: hsl(0 0% 98%);
 
   --muted: hsl(240 3.7% 15.9%);
@@ -175,12 +175,10 @@
   --table-primary-foreground: hsl(217 33% 17%);
 
   /* Reference Field Colors */
-  --field-bg: var(--color-neutral-900); 
+  --field-bg: var(--color-card); 
   --field-border: var(--color-border);
   --field-text: var(--color-foreground);
   --field-text-muted: var(--color-muted-foreground);
-  --field-link-bg: var(--color-secondary);
-  --field-link-hover: var(--color-muted);
 }
 
 .light {

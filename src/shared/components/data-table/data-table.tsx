@@ -82,7 +82,7 @@ export function DataTable<T extends Record<string, unknown>>({
   }
 
   const getButtonVariant = (variant?: string): 'admin-outline' | 'admin-ghost' | 'default' => {
-    if (variant === 'danger') return 'admin-outline'
+    if (variant === 'danger') return 'admin-ghost'
     if (variant === 'secondary') return 'admin-ghost'
     return 'admin-outline'
   }
@@ -138,9 +138,9 @@ export function DataTable<T extends Record<string, unknown>>({
                         <Button
                           key={actionIndex}
                           onClick={() => action.onClick(row)}
-                          variant={getButtonVariant(action.variant)}
+                          variant='admin-ghost'
                           size="icon"
-                          className="h-8 w-8"
+                          className="w-full h-full"
                           title={action.label}
                         >
                           {getActionIcon(action.label, action.variant)}

@@ -7,7 +7,7 @@ import * as React from 'react';
 import { cn } from '@/shared/lib/css';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer',
   {
     variants: {
       variant: {
@@ -27,9 +27,9 @@ const buttonVariants = cva(
           'bg-transparent text-center text-base font-sans font-bold text-black shadow-sm hover:bg-[#E5FBFF] rounded-[20px]',
         white:
           'bg-white text-center text-base font-sans font-bold text-black shadow-sm hover:bg-[#f1fdff] rounded-[20px]',
-        'admin-secondary': 'bg-muted hover:bg-white/10 rounded-lg no-underline',
+        'admin-secondary': 'bg-secondary hover:bg-white/10 rounded-sm no-underline',
         'admin-outline': 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground rounded-lg no-underline',
-        'admin-ghost': 'hover:bg-accent hover:text-accent-foreground rounded-lg no-underline'
+        'admin-ghost': 'bg-transparent hover:bg-accent hover:text-accent-foreground rounded-lg no-underline border-none'
       },
       size: {
         default: 'h-[40px]  w-[198px] px-4 py-2',
