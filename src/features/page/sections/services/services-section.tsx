@@ -1,24 +1,10 @@
 'use client'
 
 import type { Service } from '@/shared/payload/payload-types'
-import type { Services } from '@/shared/types/services.types'
 import { usePageServices } from '@/features/page/hooks/use-page-services'
 import ServicesCarousel from '@/features/home/services/ui/services-carousel'
 import { Markdown } from '@/shared/components/ui-kit/markdown'
-
-// Adapter to convert Payload Service to Services type
-function adaptService(service: Service): Services {
-  return {
-    id: String(service.id),
-    status: service.status || 'draft',
-    Icon: service.Icon || '',
-    IconImage: typeof service.IconImage === 'object' && service.IconImage?.url
-      ? service.IconImage.url
-      : '',
-    Title: service.Title,
-    Description: service.Description,
-  }
-}
+import { adaptService } from './adapters'
 
 interface ServicesSectionProps {
   title?: string | null
@@ -50,7 +36,6 @@ export function ServicesSection({
     return null
   }
 
-  // Adapt services for the component
   const adaptedServices = services.map(adaptService)
 
   return (

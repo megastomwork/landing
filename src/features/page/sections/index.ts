@@ -1,10 +1,10 @@
 // Simple sections
-export { IntroSection } from './intro-section'
+export { IntroSection } from './intro'
 export { AboutSection } from './about/about-section'
-export { ServicesSection } from './services-section'
-export { BlogArticlesSection } from './blog-articles-section'
-export { PageFeedbacksSection } from './feedbacks-section'
-export { PageContactSection } from './contact-section'
+export { ServicesSection } from './services'
+export { BlogArticlesSection } from './blog-articles'
+export { PageFeedbacksSection } from './feedbacks'
+export { PageContactSection } from './contact'
 
 // New modular sections
 export { DescriptionSection } from './description/description-section'
