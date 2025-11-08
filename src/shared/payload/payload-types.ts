@@ -219,6 +219,9 @@ export interface Page {
             blockType: 'feedbacks';
           }
         | {
+            title?: string | null;
+            description?: string | null;
+            image?: (number | null) | Media;
             showImage?: boolean | null;
             id?: string | null;
             blockName?: string | null;
@@ -621,6 +624,9 @@ export interface PagesSelect<T extends boolean = true> {
         contact?:
           | T
           | {
+              title?: T;
+              description?: T;
+              image?: T;
               showImage?: T;
               id?: T;
               blockName?: T;

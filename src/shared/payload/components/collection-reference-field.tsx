@@ -1,18 +1,61 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
+import { DataTable } from '@/shared/components/data-table'
+import type { DataTableColumn, DataTableAction } from '@/shared/components/data-table'
+import type { CollectionReferenceFieldColumn } from '@/shared/payload/fields/collection-reference-field'
+import { useCollectionData } from '@/shared/hooks/use-collection-data'
 
 interface CollectionReferenceFieldProps {
   collectionSlug: string
   title: string
   description?: string
+  showTable?: boolean
+  columns?: CollectionReferenceFieldColumn[]
+  pageSize?: number
 }
 
 export const CollectionReferenceField: React.FC<CollectionReferenceFieldProps> = ({
   collectionSlug,
   title,
   description,
+  showTable = false,
+  columns = [],
+  pageSize = 10,
 }) => {
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const { data: response, isLoading } = useCollectionData({
+    collectionSlug,
+    page: currentPage,
+    limit: pageSize,
+    enabled: showTable,
+  })
+
+  const data = response?.docs || []
+  const totalItems = response?.totalDocs || 0
+
+  const handleEdit = (row: Record<string, unknown>) => {
+    const id = row.id
+    window.open(`/admin/collections/${collectionSlug}/${id}`, '_blank')
+  }
+
+  const dataTableColumns: DataTableColumn[] = columns.map((col) => ({
+    key: col.key,
+    label: col.label,
+    render: col.render
+      ? (value: unknown) => col.render!(value)
+      : undefined,
+  }))
+
+  const actions: DataTableAction[] = [
+    {
+      label: 'Edit',
+      onClick: handleEdit,
+      variant: 'primary',
+    },
+  ]
+
   return (
     <div
       style={{
@@ -53,6 +96,7 @@ export const CollectionReferenceField: React.FC<CollectionReferenceFieldProps> =
           fontWeight: 500,
           border: '1px solid var(--theme-elevation-300)',
           transition: 'all 0.2s ease',
+          marginBottom: showTable ? '1rem' : '0',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.backgroundColor = 'var(--theme-elevation-300)'
@@ -63,6 +107,22 @@ export const CollectionReferenceField: React.FC<CollectionReferenceFieldProps> =
       >
         Керувати {title.toLowerCase()} →
       </a>
+
+      {showTable && columns.length > 0 && data.length > 0 && (
+        <div style={{ marginTop: '1rem' }}>
+          <DataTable
+            data={data}
+            columns={dataTableColumns}
+            actions={actions}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            totalItems={totalItems}
+            isLoading={isLoading}
+            emptyMessage={`Немає даних для відображення`}
+          />
+        </div>
+      )}
     </div>
   )
 }

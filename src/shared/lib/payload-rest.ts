@@ -41,6 +41,30 @@ export const payloadAPI = {
     return data.docs as T[]
   },
 
+  getCollectionWithPagination: async <T>(collection: string, params?: Record<string, unknown>) => {
+    const queryParams = new URLSearchParams()
+
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          queryParams.append(key, typeof value === 'object' ? JSON.stringify(value) : String(value))
+        }
+      })
+    }
+
+    const url = `/${collection}${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
+    const { data } = await axiosInstance.get(url)
+    return {
+      docs: data.docs as T[],
+      totalDocs: data.totalDocs as number,
+      totalPages: data.totalPages as number,
+      page: data.page as number,
+      limit: data.limit as number,
+      hasNextPage: data.hasNextPage as boolean,
+      hasPrevPage: data.hasPrevPage as boolean,
+    }
+  },
+
   getItem: async <T>(collection: string, id: string) => {
     const { data } = await axiosInstance.get(`/${collection}/${id}`)
     return data as T

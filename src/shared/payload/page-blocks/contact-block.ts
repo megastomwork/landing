@@ -1,5 +1,6 @@
 import type { Block } from 'payload'
 import { createGlobalReferenceField } from '@/shared/payload/fields/global-reference-field'
+import { createCollectionReferenceField } from '@/shared/payload/fields/collection-reference-field'
 
 export const contactBlock: Block = {
   slug: 'contact',
@@ -9,6 +10,29 @@ export const contactBlock: Block = {
   },
   imageURL: '/blocks/contact.png',
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Заголовок',
+      defaultValue: 'Зв\'яжіться з нами',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Опис',
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Зображення',
+    },
+    {
+      name: 'showImage',
+      type: 'checkbox',
+      label: 'Показати зображення',
+      defaultValue: true,
+    },
     createGlobalReferenceField({
       globalSlug: 'contacts',
       title: 'Контактна інформація',
@@ -19,19 +43,18 @@ export const contactBlock: Block = {
         address: 'Адреса',
       },
     }),
-    createGlobalReferenceField({
-      globalSlug: 'workingHours',
-      title: 'Робочі години',
-      fields: ['schedule'],
-      fieldLabels: {
-        schedule: 'Розклад',
-      },
+    createCollectionReferenceField({
+      collectionSlug: 'socials',
+      title: 'Соціальні мережі',
+      description: 'Для редагування соціальних мереж перейдіть до колекції Socials',
+      showTable: true,
+      columns: [
+        { key: 'title', label: 'Назва' },
+        { key: 'username', label: 'Username' },
+        { key: 'link', label: 'Посилання' },
+        { key: 'icon', label: 'Іконка' },
+      ],
+      pageSize: 10,
     }),
-    {
-      name: 'showImage',
-      type: 'checkbox',
-      label: 'Показати зображення',
-      defaultValue: true,
-    },
   ],
 }
