@@ -64,33 +64,6 @@ export const Pages: CollectionConfig = {
             },
           ],
         },
-        // SEO Tab
-        {
-          label: 'SEO',
-          fields: [
-            {
-              name: 'metaTitle',
-              type: 'text',
-              label: 'Meta Title',
-            },
-            {
-              name: 'metaDescription',
-              type: 'textarea',
-              label: 'Meta Description',
-            },
-            {
-              name: 'metaKeywords',
-              type: 'text',
-              label: 'Meta Keywords',
-            },
-            {
-              name: 'ogImage',
-              type: 'upload',
-              relationTo: 'media',
-              label: 'OG Image (для соц. мереж)',
-            },
-          ],
-        },
         // Settings Tab
         {
           label: 'Налаштування',

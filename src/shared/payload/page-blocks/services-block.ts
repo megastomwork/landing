@@ -25,24 +25,5 @@ export const servicesBlock: Block = {
       title: 'Послуги',
       description: 'Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.',
     }),
-    {
-      name: 'selectedServices',
-      type: 'relationship',
-      relationTo: 'services',
-      hasMany: true,
-      label: 'Обрані послуги',
-      admin: {
-        description: 'Якщо не обрано - показуються всі опубліковані послуги',
-      },
-    },
-    {
-      name: 'displayLimit',
-      type: 'number',
-      label: 'Кількість послуг для відображення',
-      admin: {
-        description: 'Залиште порожнім щоб показати всі',
-      },
-      min: 1,
-    },
   ],
 }

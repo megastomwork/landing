@@ -200,14 +200,6 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
-            /**
-             * Якщо не обрано - показуються всі опубліковані послуги
-             */
-            selectedServices?: (number | Service)[] | null;
-            /**
-             * Залиште порожнім щоб показати всі
-             */
-            displayLimit?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'services';
@@ -282,10 +274,6 @@ export interface Page {
           }
       )[]
     | null;
-  metaTitle?: string | null;
-  metaDescription?: string | null;
-  metaKeywords?: string | null;
-  ogImage?: (number | null) | Media;
   /**
    * Наприклад: /blog або /about. Обов'язково починається з /
    */
@@ -313,23 +301,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services".
- */
-export interface Service {
-  id: number;
-  Title: string;
-  Description: string;
-  /**
-   * Lucide icon name
-   */
-  Icon?: string | null;
-  IconImage?: (number | null) | Media;
-  status?: ('draft' | 'published') | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -369,6 +340,23 @@ export interface Doctor {
   photo: number | Media;
   position: string;
   experience: string;
+  status?: ('draft' | 'published') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  Title: string;
+  Description: string;
+  /**
+   * Lucide icon name
+   */
+  Icon?: string | null;
+  IconImage?: (number | null) | Media;
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -611,8 +599,6 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
-              selectedServices?: T;
-              displayLimit?: T;
               id?: T;
               blockName?: T;
             };
@@ -695,10 +681,6 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
-  metaTitle?: T;
-  metaDescription?: T;
-  metaKeywords?: T;
-  ogImage?: T;
   path?: T;
   status?: T;
   updatedAt?: T;

@@ -4,6 +4,7 @@ import type { Service } from '@/shared/payload/payload-types'
 import type { Services } from '@/shared/types/services.types'
 import { usePageServices } from '@/features/page/hooks/use-page-services'
 import ServicesCarousel from '@/features/home/services/ui/services-carousel'
+import { Markdown } from '@/shared/components/ui-kit/markdown'
 
 // Adapter to convert Payload Service to Services type
 function adaptService(service: Service): Services {
@@ -58,8 +59,15 @@ export function ServicesSection({
       className="mx-auto flex max-w-6xl flex-col items-start px-4 py-4"
     >
       <div className="mb-8">
-        {title && <h2 className="mb-4 text-3xl font-bold">{title}</h2>}
-        {description && <p className="text-gray-600">{description}</p>}
+        {title &&  <h2 className="relative mb-6 text-3xl font-bold md:text-6xl">
+          {title}
+          <span className="absolute bottom-[-6px] left-0 h-1 w-[70px] rounded-full bg-cyan-400" />
+        </h2>}
+        {description && (
+          <div className="text-gray-600">
+            <Markdown markdown={description} />
+          </div>
+        )}
       </div>
 
       <ServicesCarousel services={adaptedServices} />
