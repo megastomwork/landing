@@ -11,13 +11,12 @@ import {
 import { useFeedbacks } from '@/shared/hooks/use-feedbacks';
 
 import { useAdvancedCarousel } from '@/shared/hooks/use-advanced-carousel';
+import { SectionProps } from '@/shared/types/page.types';
 import autoHeight from 'embla-carousel-auto-height';
 import { FeedbackCard } from './ui/feedback-card';
 import FeedbackSectionHeader from './ui/feedback-section-header';
 
-interface FeedbacksSectionProps {
-  title?: string | null;
-}
+type FeedbacksSectionProps = SectionProps<'feedbacks'>;
 
 export function PageFeedbacksSection({ title }: FeedbacksSectionProps) {
   const { feedbacks, isFeedbacksLoading } = useFeedbacks();
