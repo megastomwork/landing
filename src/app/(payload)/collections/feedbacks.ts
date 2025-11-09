@@ -6,23 +6,23 @@ export const Feedbacks: CollectionConfig = {
     read: () => true,
   },
   admin: {
-    useAsTitle: 'ClientName',
+    useAsTitle: 'clientName',
   },
   fields: [
     {
-      name: 'ClientName',
+      name: 'clientName',
       type: 'text',
       required: true,
     },
     {
-      name: 'Stars',
+      name: 'stars',
       type: 'number',
       required: true,
       min: 1,
       max: 5,
     },
     {
-      name: 'Content',
+      name: 'content',
       type: 'textarea',
       required: true,
     },

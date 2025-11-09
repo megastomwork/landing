@@ -1,5 +1,10 @@
 import type { Block } from 'payload'
+import { createCollectionReferenceField } from '@/features/payload-admin'
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
+import {
+  createFeedbacksBlockFields,
+  feedbacksReferenceConfig
+} from '@/shared/payload/schemas/page-blocks/feedbacks-schema'
 
 export const feedbacksBlock: Block = {
   slug: BLOCK_TYPES.FEEDBACKS,
@@ -9,11 +14,7 @@ export const feedbacksBlock: Block = {
   },
   imageURL: '/blocks/feedbacks.png',
   fields: [
-    {
-      name: 'title',
-      type: 'text',
-      label: 'Заголовок',
-      defaultValue: 'Відгуки наших клієнтів',
-    },
+    ...createFeedbacksBlockFields(),
+    createCollectionReferenceField(feedbacksReferenceConfig),
   ],
 }

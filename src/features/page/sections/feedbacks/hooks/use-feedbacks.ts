@@ -1,17 +1,13 @@
 import payloadAPI from '@/shared/lib/payload-rest';
-import { Feedbacks } from '@/shared/types/feedbacks.types';
 import { useQuery } from '@tanstack/react-query';
+import { Feedback } from '@types';
 
 export const useFeedbacks = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['feedbacks'],
     queryFn: () =>
-      payloadAPI.getCollection<Feedbacks>('feedbacks', {
-        where: {
-          status: {
-            equals: 'published',
-          },
-        },
+      payloadAPI.getCollection<Feedback>('feedbacks', {
+        "where[status][equals]": "published"
       }),
   });
 

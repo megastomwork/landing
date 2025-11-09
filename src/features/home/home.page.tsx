@@ -13,7 +13,6 @@ const ContactSection = dynamic(() => import('./contact/contact-section'));
 const ContactInfoSection = dynamic(
   () => import('./contact-info/contact-info.section'),
 );
-const FeedbacksSection = dynamic(() => import('./feedbacks/feedbacks-section'));
 const IntroSection = dynamic(() => import('./intro/intro-section'));
 
 export function HomePage() {
@@ -31,9 +30,6 @@ export function HomePage() {
       </ScrollAnimatedContainer>
       <ScrollAnimatedContainer>
         <ContactSection />
-      </ScrollAnimatedContainer>
-      <ScrollAnimatedContainer>
-        <FeedbacksSection />
       </ScrollAnimatedContainer>
       <ScrollAnimatedContainer>
         <BlogArticlesSection />

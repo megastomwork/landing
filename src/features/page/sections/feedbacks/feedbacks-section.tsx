@@ -8,13 +8,13 @@ import {
   CarouselPointCounters,
   CarouselPrevious,
 } from '@/shared/components/ui-kit/carousel';
-import { useFeedbacks } from '@/shared/hooks/use-feedbacks';
 
 import { useAdvancedCarousel } from '@/shared/hooks/use-advanced-carousel';
 import { SectionProps } from '@/shared/types/page.types';
 import autoHeight from 'embla-carousel-auto-height';
 import { FeedbackCard } from './ui/feedback-card';
 import FeedbackSectionHeader from './ui/feedback-section-header';
+import { useFeedbacks } from './hooks/use-feedbacks';
 
 type FeedbacksSectionProps = SectionProps<'feedbacks'>;
 

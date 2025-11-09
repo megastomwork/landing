@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@ui/*": ["./src/shared/components", "./src/shared/components/ui-kit/"],
+      "@ui/*": ["./src/shared/components/*", "./src/shared/components/ui-kit/*"],
+      "@admin-ui/*": ["./src/shared/components/ui-kit/*"],
       "@payload-config": ["./src/app/(payload)/payload.config.ts"],
       "@types": ["./src/shared/payload/payload-types.ts"]
     }

@@ -370,9 +370,9 @@ export interface Service {
  */
 export interface Feedback {
   id: number;
-  ClientName: string;
-  Stars: number;
-  Content: string;
+  clientName: string;
+  stars: number;
+  content: string;
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -736,9 +736,9 @@ export interface ServicesSelect<T extends boolean = true> {
  * via the `definition` "feedbacks_select".
  */
 export interface FeedbacksSelect<T extends boolean = true> {
-  ClientName?: T;
-  Stars?: T;
-  Content?: T;
+  clientName?: T;
+  stars?: T;
+  content?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;

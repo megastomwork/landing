@@ -19,6 +19,7 @@ import {
 } from '@/features/page/sections'
 import type { Page } from '@/shared/payload/payload-types'
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
+import { ScrollAnimatedContainer } from '@/shared/components/animations/scroll-animated-container'
 
 type PageSection = NonNullable<Page['sections']>[number]
 
@@ -93,7 +94,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen">
-      {page.sections?.map((section, index) => renderSection(section, index))}
+      {page.sections?.map((section, index) => <ScrollAnimatedContainer key={index}>{renderSection(section, index)}</ScrollAnimatedContainer>)}
     </div>
   )
 }
