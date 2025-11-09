@@ -1,14 +1,11 @@
 'use client'
 
 import { usePageArticles } from '@/features/page/hooks/use-page-articles'
+import { SectionProps } from '@/shared/types/page.types'
 import Link from 'next/link'
 import { ArticleCard } from './components/article-card'
 
-interface BlogArticlesSectionProps {
-  title?: string | null
-  articlesCount?: number | null
-  showMoreLink?: boolean | null
-}
+type BlogArticlesSectionProps = SectionProps<'blogArticles'>
 
 export function BlogArticlesSection({
   title,

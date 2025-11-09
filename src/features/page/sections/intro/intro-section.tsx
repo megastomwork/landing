@@ -1,10 +1,8 @@
 import { PayloadImage } from '@/shared/components/ui-kit/directus-image'
 import type { Media } from '@/shared/payload/payload-types'
+import { SectionProps } from '@/shared/types/page.types'
 
-interface IntroSectionProps {
-  image: number | Media
-  alt?: string | null
-}
+type IntroSectionProps = SectionProps<'intro'>
 
 export function IntroSection({ image, alt }: IntroSectionProps) {
   const media = typeof image === 'number' ? null : image

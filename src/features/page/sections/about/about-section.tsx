@@ -2,20 +2,9 @@
 
 import AboutImageBlock from './about-image-block'
 import AboutTextBlock from './about-text-block'
-import type { Media } from '@/shared/payload/payload-types'
+import { SectionProps } from '@/shared/types/page.types'
 
-interface Stat {
-  value: string
-  label: string
-  id?: string | null
-}
-
-interface AboutSectionProps {
-  title: string
-  description: string
-  image: (number | null) | Media
-  stats?: Stat[] | null
-}
+type AboutSectionProps = SectionProps<'about'>
 
 export function AboutSection({ title, description, image, stats }: AboutSectionProps) {
   return (

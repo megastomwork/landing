@@ -8,10 +8,9 @@ import {
   AccordionTrigger,
 } from '@/shared/components/ui-kit/accordion'
 import { useQuestions } from '@/features/page/hooks/use-questions'
+import { SectionProps } from '@/shared/types/page.types'
 
-interface FaqSectionProps {
-  title?: string | null
-}
+type FaqSectionProps = SectionProps<'faq'>
 
 export function FaqSection({ title }: FaqSectionProps) {
   const { data: questions, isLoading } = useQuestions()

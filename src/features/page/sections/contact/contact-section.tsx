@@ -5,15 +5,10 @@ import { useSocials } from '@/shared/hooks/use-socials'
 import { Loader2, PhoneIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Media } from '@/shared/payload/payload-types'
 import { LucideIcon } from '@/shared/components/ui-kit/lucide-icon'
+import { SectionProps } from '@/shared/types/page.types'
 
-interface PageContactSectionProps {
-  title?: string | null
-  description?: string | null
-  image?: (number | Media) | null
-  showImage?: boolean | null
-}
+type PageContactSectionProps = SectionProps<'contact'>
 
 export function PageContactSection({
   title,

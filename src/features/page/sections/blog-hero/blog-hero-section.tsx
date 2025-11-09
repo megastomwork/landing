@@ -1,13 +1,9 @@
 import { Underline } from '@/shared/components/ui-kit/underline'
 import { cn } from '@/shared/lib/css'
 import { PayloadImage } from '@/shared/components/ui-kit/directus-image'
-import type { Media } from '@/shared/payload/payload-types'
+import { SectionProps } from '@/shared/types/page.types'
 
-interface BlogHeroSectionProps {
-  backgroundImage?: (number | null) | Media
-  title?: string | null
-  description?: string | null
-}
+type BlogHeroSectionProps = SectionProps<'blogHero'>
 
 export function BlogHeroSection({
   backgroundImage,

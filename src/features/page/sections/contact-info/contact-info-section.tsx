@@ -3,11 +3,9 @@
 import ContactDetails from './ui/contact-details'
 import ContactMap from './ui/contact-map'
 import ContactSchedule from './ui/contact-schedule'
+import { SectionProps } from '@/shared/types/page.types'
 
-interface ContactInfoSectionProps {
-  title?: string | null
-  showMap?: boolean | null
-}
+type ContactInfoSectionProps = SectionProps<'contactInfo'>
 
 export function ContactInfoSection({
   title,

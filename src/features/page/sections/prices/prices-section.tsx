@@ -10,11 +10,9 @@ import {
 import { Table, TableCell, TableRow } from '@/shared/components/ui-kit/table'
 import { Underline } from '@/shared/components/ui-kit/underline'
 import { usePrices } from '@/features/page/hooks/use-prices'
+import { SectionProps } from '@/shared/types/page.types'
 
-interface PricesSectionProps {
-  title?: string | null
-  description?: string | null
-}
+type PricesSectionProps = SectionProps<'prices'>
 
 export function PricesSection({ title, description }: PricesSectionProps) {
   const { services } = useServices()

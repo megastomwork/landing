@@ -3,12 +3,10 @@
 import { ScrollAnimatedContainer } from '@/shared/components/animations/scroll-animated-container'
 import { FadeLoadingContainer } from '@/shared/components/animations/fade-loading-container'
 import { useDoctors } from '@/features/page/hooks/use-doctors'
+import { SectionProps } from '@/shared/types/page.types'
 import { DoctorItemCard } from './doctor-card'
 
-interface DoctorsSectionProps {
-  title?: string | null
-  description?: string | null
-}
+type DoctorsSectionProps = SectionProps<'doctors'>
 
 export function DoctorsSection({ title, description }: DoctorsSectionProps) {
   const { data: doctors, isLoading } = useDoctors()

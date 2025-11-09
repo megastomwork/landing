@@ -1,7 +1,6 @@
-interface ParagraphSectionProps {
-  title?: string | null
-  content: string
-}
+import { SectionProps } from '@/shared/types/page.types'
+
+type ParagraphSectionProps = SectionProps<'paragraph'>
 
 export function ParagraphSection({ title, content }: ParagraphSectionProps) {
   return (

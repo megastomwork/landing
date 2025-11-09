@@ -1,6 +1,6 @@
-interface DescriptionSectionProps {
-  text: string
-}
+import { SectionProps } from '@/shared/types/page.types'
+
+type DescriptionSectionProps = SectionProps<'description'>
 
 export function DescriptionSection({ text }: DescriptionSectionProps) {
   return (
