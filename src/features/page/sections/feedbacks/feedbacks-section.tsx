@@ -1,13 +1,72 @@
-'use client'
+'use client';
 
-import FeedbacksSection from '@/features/home/feedbacks/feedbacks-section'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPointCounters,
+  CarouselPrevious,
+} from '@/shared/components/ui-kit/carousel';
+import { useFeedbacks } from '@/shared/hooks/use-feedbacks';
+
+import { useAdvancedCarousel } from '@/shared/hooks/use-advanced-carousel';
+import autoHeight from 'embla-carousel-auto-height';
+import { FeedbackCard } from './ui/feedback-card';
+import FeedbackSectionHeader from './ui/feedback-section-header';
 
 interface FeedbacksSectionProps {
-  title?: string | null
+  title?: string | null;
 }
 
 export function PageFeedbacksSection({ title }: FeedbacksSectionProps) {
-  // Use existing FeedbacksSection component
-  // If title customization is needed, the component can be extended
-  return <FeedbacksSection />
+  const { feedbacks, isFeedbacksLoading } = useFeedbacks();
+  const { setApi, activeIndex } = useAdvancedCarousel();
+
+  if (isFeedbacksLoading || !feedbacks?.length) return <p>Завантаження...</p>;
+
+  return (
+    <section
+      id="feedbacks"
+      className="flex w-full flex-col items-center px-4 py-10"
+    >
+      <div className="relative mx-auto w-full max-w-6xl">
+        <FeedbackSectionHeader title={title} />
+
+        <Carousel
+          className="h-auto w-full max-w-6xl ease-in-out"
+          setApi={setApi}
+          plugins={[autoHeight()]}
+          opts={{
+            align: 'start',
+            loop: true,
+          }}
+        >
+          <CarouselPointCounters
+            activeIndex={activeIndex}
+            total={feedbacks.length}
+            className="mb-3"
+          />
+
+          <div className="relative w-full md:px-16">
+            <CarouselContent className="-ml-4 h-auto items-center transition-[height]">
+              {feedbacks.map((f, index) => (
+                <CarouselItem
+                  key={index}
+                  className="flex h-auto w-full flex-col items-center gap-4"
+                >
+                  <FeedbackCard feedbacks={f} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            <div className="absolute left-0 right-0 top-1/2 z-10 hidden h-full -translate-y-1/2 items-center justify-between md:flex">
+              <CarouselPrevious className="border-black" />
+              <CarouselNext className="border-black" />
+            </div>
+          </div>
+        </Carousel>
+      </div>
+    </section>
+  );
 }

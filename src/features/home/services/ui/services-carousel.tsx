@@ -6,16 +6,16 @@ import {
   CarouselPointCounters,
   CarouselPrevious,
 } from '@/shared/components/ui-kit/carousel';
-import { Services } from '@/shared/types/services.types';
 import ServicesCard from './services-card';
 import { useAdvancedCarousel } from '@/shared/hooks/use-advanced-carousel';
+import { Service } from '@/shared/payload/payload-types';
 
 const START_INDEX = 0;
 
 export default function ServicesCarousel({
   services,
 }: {
-  services: Services[];
+  services: Service[];
 }) {
   const { setApi, activeIndex } = useAdvancedCarousel(START_INDEX);
 

@@ -4,7 +4,6 @@ import type { Service } from '@/shared/payload/payload-types'
 import { usePageServices } from '@/features/page/hooks/use-page-services'
 import ServicesCarousel from '@/features/home/services/ui/services-carousel'
 import { Markdown } from '@/shared/components/ui-kit/markdown'
-import { adaptService } from './adapters'
 
 interface ServicesSectionProps {
   title?: string | null
@@ -36,8 +35,6 @@ export function ServicesSection({
     return null
   }
 
-  const adaptedServices = services.map(adaptService)
-
   return (
     <section
       id="services"
@@ -55,7 +52,7 @@ export function ServicesSection({
         )}
       </div>
 
-      <ServicesCarousel services={adaptedServices} />
+      <ServicesCarousel services={services} />
     </section>
   )
 }

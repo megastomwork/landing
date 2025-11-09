@@ -24,6 +24,12 @@ export const servicesBlock: Block = {
       collectionSlug: 'services',
       title: 'Послуги',
       description: 'Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.',
+      showTable: true,
+      pageSize: 5,
+      columns: [
+        { key: "title", label: "Заголовок" },
+        { key: "description", label: "Опис" },
+      ]
     }),
   ],
 }

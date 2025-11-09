@@ -1,9 +1,10 @@
 import { Card } from '@/shared/components/ui-kit/card';
-import { Services } from '@/shared/types/services.types';
+import { PayloadImage } from '@/shared/components/ui-kit/directus-image';
 import { cn } from '@/shared/lib/css';
-import { DirectusImage } from '@/shared/components/ui-kit/directus-image';
+import { getPayloadImageUrl } from '@/shared/lib/payload-image';
+import { Service } from '@/shared/payload/payload-types';
 
-export default function ServicesCard({ service }: { service: Services }) {
+export default function ServicesCard({ service }: { service: Service }) {
   return (
     <Card
       className={cn(
@@ -11,15 +12,15 @@ export default function ServicesCard({ service }: { service: Services }) {
       )}
     >
       <div className="mb-4 rounded-2xl bg-white p-2">
-        <DirectusImage
-          src={service.IconImage}
-          alt={service.Title}
+        <PayloadImage
+          src={getPayloadImageUrl(service.iconImage)}
+          alt={service.title}
           width={65}
           height={65}
         />
       </div>
-      <h3 className="mb-2 text-center text-xl font-bold">{service.Title}</h3>
-      <p className={cn('text-center text-base')}>{service.Description}</p>
+      <h3 className="mb-2 text-center text-xl font-bold">{service.title}</h3>
+      <p className={cn('text-center text-base')}>{service.description}</p>
     </Card>
   );
 }

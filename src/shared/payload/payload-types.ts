@@ -353,13 +353,13 @@ export interface Doctor {
  */
 export interface Service {
   id: number;
-  Title: string;
-  Description: string;
+  title: string;
+  description: string;
   /**
    * Lucide icon name
    */
-  Icon?: string | null;
-  IconImage?: (number | null) | Media;
+  icon?: string | null;
+  iconImage?: (number | null) | Media;
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -723,10 +723,10 @@ export interface DoctorsSelect<T extends boolean = true> {
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
-  Title?: T;
-  Description?: T;
-  Icon?: T;
-  IconImage?: T;
+  title?: T;
+  description?: T;
+  icon?: T;
+  iconImage?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;

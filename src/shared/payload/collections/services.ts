@@ -6,28 +6,28 @@ export const Services: CollectionConfig = {
     read: () => true,
   },
   admin: {
-    useAsTitle: 'Title',
+    useAsTitle: 'title',
   },
   fields: [
     {
-      name: 'Title',
+      name: 'title',
       type: 'text',
       required: true,
     },
     {
-      name: 'Description',
+      name: 'description',
       type: 'textarea',
       required: true,
     },
     {
-      name: 'Icon',
+      name: 'icon',
       type: 'text',
       admin: {
         description: 'Lucide icon name',
       },
     },
     {
-      name: 'IconImage',
+      name: 'iconImage',
       type: 'upload',
       relationTo: 'media',
     },
