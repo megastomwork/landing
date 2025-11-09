@@ -9,7 +9,7 @@ import { ROUTES } from '@/shared/constants/routes.constants';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import styles from './markdown.module.css';
-import { RefreshRouteOnSave } from '@/shared/components/payload/refresh-route-on-save';
+import { RefreshRouteOnSave } from '@ui/refresh-route-on-save';
 
 export function ArticlePage() {
   const params = useParams<{ id: string }>();
