@@ -15,7 +15,6 @@ const ContactInfoSection = dynamic(
 );
 const FeedbacksSection = dynamic(() => import('./feedbacks/feedbacks-section'));
 const IntroSection = dynamic(() => import('./intro/intro-section'));
-const ServicesSection = dynamic(() => import('./services/services-section'));
 
 export function HomePage() {
   const { footerRef, servicesRef } = useTriggerModalOnScroll();
@@ -29,10 +28,6 @@ export function HomePage() {
       </ScrollAnimatedContainer>
       <ScrollAnimatedContainer delay={0.3}>
         <AboutSection />
-      </ScrollAnimatedContainer>
-      <ScrollAnimatedContainer>
-        <div ref={servicesRef}></div>
-        <ServicesSection />
       </ScrollAnimatedContainer>
       <ScrollAnimatedContainer>
         <ContactSection />
