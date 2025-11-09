@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { DataTable } from '@/shared/components/data-table'
 import type { DataTableColumn, DataTableAction } from '@/shared/components/data-table'
-import type { CollectionReferenceFieldColumn } from '@/shared/payload/fields/collection-reference-field'
+import type { CollectionReferenceFieldColumn } from '@/features/payload-admin'
 import { useCollectionData } from '@/shared/hooks/use-collection-data'
 import { Button } from '@/shared/components/ui-kit/button'
 

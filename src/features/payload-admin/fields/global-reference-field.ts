@@ -21,7 +21,7 @@ export const createGlobalReferenceField = ({
     admin: {
       components: {
         Field: {
-          path: '@/shared/payload/components/global-reference-field#GlobalReferenceField',
+          path: '@/features/payload-admin/components/global-reference-field#GlobalReferenceField',
           clientProps: {
             globalSlug,
             title,

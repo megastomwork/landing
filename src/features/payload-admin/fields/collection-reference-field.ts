@@ -1,5 +1,4 @@
 import type { Field } from 'payload'
-import type { DataTableColumn } from '@/shared/components/data-table'
 
 export interface CollectionReferenceFieldColumn {
   key: string
@@ -32,7 +31,7 @@ export const createCollectionReferenceField = ({
     admin: {
       components: {
         Field: {
-          path: '@/shared/payload/components/collection-reference-field#CollectionReferenceField',
+          path: '@/features/payload-admin/components/collection-reference-field#CollectionReferenceField',
           clientProps: {
             collectionSlug,
             title,

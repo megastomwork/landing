@@ -1,5 +1,5 @@
 import type { Block } from 'payload'
-import { createCollectionReferenceField } from '@/shared/payload/fields/collection-reference-field'
+import { createCollectionReferenceField } from '@/features/payload-admin'
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
 export const servicesBlock: Block = {

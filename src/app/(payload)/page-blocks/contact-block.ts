@@ -1,6 +1,5 @@
 import type { Block } from 'payload'
-import { createGlobalReferenceField } from '@/shared/payload/fields/global-reference-field'
-import { createCollectionReferenceField } from '@/shared/payload/fields/collection-reference-field'
+import { createGlobalReferenceField, createCollectionReferenceField } from '@/features/payload-admin'
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
 export const contactBlock: Block = {

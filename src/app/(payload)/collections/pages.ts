@@ -15,7 +15,7 @@ import {
   faqBlock,
   pricesBlock,
   contactInfoBlock,
-} from '@/shared/payload/page-blocks'
+} from '@/app/(payload)/page-blocks'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
