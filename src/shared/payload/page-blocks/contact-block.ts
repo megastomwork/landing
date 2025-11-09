@@ -1,9 +1,10 @@
 import type { Block } from 'payload'
 import { createGlobalReferenceField } from '@/shared/payload/fields/global-reference-field'
 import { createCollectionReferenceField } from '@/shared/payload/fields/collection-reference-field'
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
 export const contactBlock: Block = {
-  slug: 'contact',
+  slug: BLOCK_TYPES.CONTACT,
   labels: {
     singular: 'Секція контактів',
     plural: 'Секції контактів',

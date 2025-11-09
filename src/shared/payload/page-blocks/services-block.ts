@@ -1,8 +1,9 @@
 import type { Block } from 'payload'
 import { createCollectionReferenceField } from '@/shared/payload/fields/collection-reference-field'
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
 export const servicesBlock: Block = {
-  slug: 'services',
+  slug: BLOCK_TYPES.SERVICES,
   labels: {
     singular: 'Секція послуг',
     plural: 'Секції послуг',

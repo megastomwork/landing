@@ -18,6 +18,7 @@ import {
   ContactInfoSection,
 } from '@/features/page/sections'
 import type { Page } from '@/shared/payload/payload-types'
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
 type PageSection = NonNullable<Page['sections']>[number]
 
@@ -59,31 +60,31 @@ export default function Page() {
     const key = section.id || index
 
     switch (section.blockType) {
-      case 'intro':
+      case BLOCK_TYPES.INTRO:
         return <IntroSection key={key} {...section} />
-      case 'about':
+      case BLOCK_TYPES.ABOUT:
         return <AboutSection key={key} {...section} />
-      case 'services':
+      case BLOCK_TYPES.SERVICES:
         return <ServicesSection key={key} {...section} />
-      case 'blogArticles':
+      case BLOCK_TYPES.BLOG_ARTICLES:
         return <BlogArticlesSection key={key} {...section} />
-      case 'feedbacks':
+      case BLOCK_TYPES.FEEDBACKS:
         return <PageFeedbacksSection key={key} {...section} />
-      case 'contact':
+      case BLOCK_TYPES.CONTACT:
         return <PageContactSection key={key} {...section} />
-      case 'description':
+      case BLOCK_TYPES.DESCRIPTION:
         return <DescriptionSection key={key} {...section} />
-      case 'paragraph':
+      case BLOCK_TYPES.PARAGRAPH:
         return <ParagraphSection key={key} {...section} />
-      case 'doctors':
+      case BLOCK_TYPES.DOCTORS:
         return <DoctorsSection key={key} {...section} />
-      case 'blogHero':
+      case BLOCK_TYPES.BLOG_HERO:
         return <BlogHeroSection key={key} {...section} />
-      case 'faq':
+      case BLOCK_TYPES.FAQ:
         return <FaqSection key={key} {...section} />
-      case 'prices':
+      case BLOCK_TYPES.PRICES:
         return <PricesSection key={key} {...section} />
-      case 'contactInfo':
+      case BLOCK_TYPES.CONTACT_INFO:
         return <ContactInfoSection key={key} {...section} />
       default:
         return null

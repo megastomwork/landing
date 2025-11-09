@@ -1,7 +1,8 @@
 import type { Block } from 'payload'
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
 export const introBlock: Block = {
-  slug: 'intro',
+  slug: BLOCK_TYPES.INTRO,
   labels: {
     singular: 'Вступна секція',
     plural: 'Вступні секції',

@@ -1,7 +1,8 @@
 import type { Block } from 'payload'
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
 export const pricesBlock: Block = {
-  slug: 'prices',
+  slug: BLOCK_TYPES.PRICES,
   labels: {
     singular: 'Секція цін',
     plural: 'Секції цін',
