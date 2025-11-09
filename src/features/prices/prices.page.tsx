@@ -1,6 +1,5 @@
 'use client';
 
-import { useServices } from '@/features/home';
 import {
   Accordion,
   AccordionContent,
@@ -14,7 +13,7 @@ import { ContentTextPricesPage } from '@/shared/types/content.types';
 import { usePrices } from './use-prices';
 
 export function PricesPage() {
-  const { services } = useServices();
+  const services = [{ id: '', Title: '' }];
   const prices = usePrices();
   const content = useContent<ContentTextPricesPage>({
     context: 'pricesPage',
