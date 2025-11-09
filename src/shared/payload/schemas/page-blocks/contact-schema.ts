@@ -1,0 +1,62 @@
+import type { Field } from 'payload'
+
+/**
+ * Schema for Contact block base fields
+ * Custom reference fields are added in the block definition
+ */
+export const createContactBlockFields = (): Field[] => [
+  {
+    name: 'title',
+    type: 'text',
+    label: 'Заголовок',
+    defaultValue: 'Зв\'яжіться з нами',
+  },
+  {
+    name: 'description',
+    type: 'textarea',
+    label: 'Опис',
+  },
+  {
+    name: 'image',
+    type: 'upload',
+    relationTo: 'media',
+    label: 'Зображення',
+  },
+  {
+    name: 'showImage',
+    type: 'checkbox',
+    label: 'Показати зображення',
+    defaultValue: true,
+  },
+]
+
+/**
+ * Configuration for contacts global reference
+ */
+export const contactsGlobalReferenceConfig = {
+  globalSlug: 'contacts' as const,
+  title: 'Контактна інформація',
+  fields: ['phone', 'email', 'address'] as const,
+  fieldLabels: {
+    phone: 'Телефон',
+    email: 'Email',
+    address: 'Адреса',
+  },
+}
+
+/**
+ * Configuration for socials collection reference
+ */
+export const socialsReferenceConfig = {
+  collectionSlug: 'socials' as const,
+  title: 'Соціальні мережі',
+  description: 'Для редагування соціальних мереж перейдіть до колекції Socials',
+  showTable: true,
+  columns: [
+    { key: 'title', label: 'Назва' },
+    { key: 'username', label: 'Username' },
+    { key: 'link', label: 'Посилання' },
+    { key: 'icon', label: 'Іконка' },
+  ],
+  pageSize: 10,
+}

@@ -3,7 +3,7 @@ import type { Field } from 'payload'
 interface GlobalReferenceFieldOptions {
   globalSlug: string
   title: string
-  fields: string[]
+  fields: readonly string[] | string[]
   fieldLabels?: Record<string, string>
   name?: string
 }

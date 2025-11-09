@@ -2,7 +2,7 @@
 
 import type { Service } from '@/shared/payload/payload-types'
 import { usePageServices } from '@/features/page/hooks/use-page-services'
-import ServicesCarousel from '@/features/home/services/ui/services-carousel'
+import ServicesCarousel from './ui/services-carousel'
 import { Markdown } from '@/shared/components/ui-kit/markdown'
 
 interface ServicesSectionProps {
