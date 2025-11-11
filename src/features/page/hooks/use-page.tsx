@@ -21,6 +21,10 @@ export const usePage = (path: string) => {
     },
   })
 
+  console.log('CONFIG:', CONFIG);
+  console.log('isLivePreview:', isLivePreview);
+  console.log('data:', data);
+
   const { data: live } = useLivePreview<Page>({
     initialData: data ?? {} as Page,
     serverURL: CONFIG.SERVER_URL,
