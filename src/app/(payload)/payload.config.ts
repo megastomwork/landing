@@ -46,6 +46,22 @@ const _ = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
 export default buildConfig({
   admin: {
     user: Users.slug,
+    livePreview: {
+      breakpoints: [
+        {
+          label: 'Mobile',
+          name: 'mobile',
+          width: 375,
+          height: 667,
+        },
+        {
+          label: 'Desktop',
+          name: 'desktop',
+          width: 1440,
+          height: 900,
+        },
+      ],
+    },
   },
   collections: [
     Users,

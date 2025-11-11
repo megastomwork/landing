@@ -24,18 +24,26 @@ export const usePage = (path: string) => {
   console.log('CONFIG:', CONFIG);
   console.log('isLivePreview:', isLivePreview);
   console.log('data:', data);
+  console.log('window.parent:', window.parent !== window ? 'Has parent (in iframe)' : 'No parent (not in iframe)');
 
-  const { data: live } = useLivePreview<Page>({
+  const { data: live, isLoading: isLiveLoading } = useLivePreview<Page>({
     initialData: data ?? {} as Page,
     serverURL: CONFIG.SERVER_URL,
     depth: 2,
   })
 
   console.log('live:', live)
-  console.log('result:', isLivePreview && live ? live : data)
+  console.log('isLiveLoading:', isLiveLoading)
+
+  // Use live data only if it has actual content (id field exists)
+  const hasLiveData = live && 'id' in live && live.id
+  const resultData = isLivePreview && hasLiveData ? live : data
+
+  console.log('hasLiveData:', hasLiveData)
+  console.log('result:', resultData)
 
   return {
-    data: isLivePreview && live ? live : data,
+    data: resultData,
     ...rest
   };
 }
