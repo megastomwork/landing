@@ -11,9 +11,9 @@ export const usePage = (path: string) => {
   const { data, ...rest } = useQuery({
     queryKey: ['page', path],
     queryFn: async () => {
-      const pages = await payloadAPI.getCollection<Page>('pages', { 
+      const pages = await payloadAPI.getCollection<Page>('pages', {
         "where[path][equals]": path,
-        "where[status][equals]": "published",
+        ...(isLivePreview ? {} : { "where[status][equals]": "published" }),
         limit: 1,
       })
 
@@ -21,14 +21,19 @@ export const usePage = (path: string) => {
     },
   })
 
+  console.log('CONFIG:', CONFIG);
+  console.log('isLivePreview:', isLivePreview);
+  console.log('data:', data);
+
+  // Only use live preview when explicitly in preview mode AND we have data
   const { data: live } = useLivePreview<Page>({
-    initialData: (data || {}) as Page,
-    serverURL: CONFIG.SERVER_URL,
+    initialData: data ?? {} as Page,
+    serverURL: isLivePreview ? CONFIG.SERVER_URL : '',
     depth: 2,
   })
 
   return {
-    data: isLivePreview ? live : data,
+    data: isLivePreview && live ? live : data,
     ...rest
   };
 }
