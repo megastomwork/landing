@@ -31,6 +31,9 @@ export const usePage = (path: string) => {
     depth: 2,
   })
 
+  console.log('live:', live)
+  console.log('result:', isLivePreview && live ? live : data)
+
   return {
     data: isLivePreview && live ? live : data,
     ...rest
