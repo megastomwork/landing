@@ -1,39 +1,33 @@
-import { PageContent } from '@/features/page/components/page-content'
+import { ArticlePage } from "@/features/article";
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
-import { notFound } from 'next/navigation'
 
 type PageProps = {
   params: Promise<{
-    segments?: string[]
+    id: string
   }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
-  const { segments } = await params
+  const { id } = await params
   const resolvedSearchParams = await searchParams
 
-  const path = segments ? `/${segments.join('/')}` : '/'
   const isPreviewMode = LIVE_PREVIEW_FLAG in resolvedSearchParams
 
   const payload = await getPayload({ config })
-
-  const pages = await payload.find({
-    collection: 'pages',
+  const articles = await payload.find({
+    collection: 'articles',
     where: {
-      path: { equals: path }
+      id: { equals: id }
     },
     limit: 1,
     draft: isPreviewMode,
     trash: isPreviewMode,
   })
-  const page = pages.docs?.[0];
 
-  if (!page) {
-    return notFound();
-  }
+  const article = articles.docs?.[0]
 
-  return <PageContent page={page} />
+  return <ArticlePage article={article} />
 }

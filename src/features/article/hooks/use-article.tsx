@@ -10,7 +10,6 @@ type UseArticleOptions = {
 };
 
 export const useArticle = ({ id }: UseArticleOptions) => {
-  const isLivePreview = isLivePreviewMode();
 
   const { data, isLoading } = useQuery({
     queryKey: ['article', id],
@@ -18,14 +17,8 @@ export const useArticle = ({ id }: UseArticleOptions) => {
     enabled: !!id,
   });
 
-  const { data: live } = useLivePreview<Article>({
-    initialData: (data || {}) as Article,
-    serverURL: CONFIG.SERVER_URL,
-    depth: 2,
-  })
-
   return {
-    article: isLivePreview ? live : data,
+    article: data,
     isArticleLoading: isLoading,
   };
 }

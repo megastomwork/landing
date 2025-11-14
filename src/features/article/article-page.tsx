@@ -1,21 +1,20 @@
 'use client';
 
-import { useArticle } from '@/features/article';
 import { ErrorPage } from '@/features/error-pages';
-import { FadeLoadingContainer } from '@/shared/components/animations/fade-loading-container';
 import { LexicalContent } from '@/shared/components/ui-kit/lexical-content';
 import { getPayloadImageUrl } from '@/shared/lib/payload-image';
 import { ROUTES } from '@/shared/constants/routes.constants';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
 import styles from './markdown.module.css';
 import { RefreshRouteOnSave } from '@ui/refresh-route-on-save';
+import type { Article } from '@types';
 
-export function ArticlePage() {
-  const params = useParams<{ id: string }>();
-  const { article, isArticleLoading } = useArticle({ id: params.id });
+type ArticlePageProps = {
+  article?: Article | null
+}
 
-  if (!isArticleLoading && article == null) {
+export function ArticlePage({ article }: ArticlePageProps) {
+  if (article == null) {
     return (
       <ErrorPage
         statusCode={404}
@@ -27,7 +26,7 @@ export function ArticlePage() {
   }
 
   return (
-    <FadeLoadingContainer isLoading={isArticleLoading}>
+    <>
       <RefreshRouteOnSave />
       <div className="mx-auto mt-[20px] max-w-container animate-fade-in max-lg:px-container">
         <Image
@@ -44,6 +43,6 @@ export function ArticlePage() {
         {/* TODO: add recommended articles */}
         {/* <ArticleSimilarArticles articles={article.recommendedArticles} /> */}
       </div>
-    </FadeLoadingContainer>
+    </>
   );
 }

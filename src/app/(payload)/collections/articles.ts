@@ -11,7 +11,7 @@ export const Articles: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     livePreview: {
-      url: ({ data }) => `${CONFIG.BACKEND_URL}/blog/${data.id}?${LIVE_PREVIEW_FLAG}=true`,
+      url: ({ data }) => `/blog/${data.id}?${LIVE_PREVIEW_FLAG}=true`,
     },
   },
   fields: [
