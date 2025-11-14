@@ -19,6 +19,9 @@ import {
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  versions: {
+    drafts: true,
+  },
   admin: {
     useAsTitle: 'title',
     livePreview: {
@@ -38,7 +41,6 @@ export const Pages: CollectionConfig = {
     {
       type: 'tabs',
       tabs: [
-        // Content Tab
         {
           label: 'Контент',
           fields: [
@@ -64,7 +66,6 @@ export const Pages: CollectionConfig = {
             },
           ],
         },
-        // Settings Tab
         {
           label: 'Налаштування',
           fields: [
