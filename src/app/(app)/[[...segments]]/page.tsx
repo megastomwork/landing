@@ -20,6 +20,7 @@ import {
 import type { Page } from '@/shared/payload/payload-types'
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 import { ScrollAnimatedContainer } from '@/shared/components/animations/scroll-animated-container'
+import { RefreshRouteOnSave } from '@/shared/components/ui-kit/refresh-route-on-save'
 
 type PageSection = NonNullable<Page['sections']>[number]
 
@@ -94,6 +95,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen">
+      <RefreshRouteOnSave />
       {page.sections?.map((section, index) => <ScrollAnimatedContainer key={index}>{renderSection(section, index)}</ScrollAnimatedContainer>)}
     </div>
   )
