@@ -8,11 +8,13 @@ export const RefreshRouteOnSave: React.FC = () => {
   const router = useRouter()
 
   console.log(CONFIG.SERVER_URL);
-  
+  console.log('w:', window?.location?.origin);
+
   return (
     <PayloadLivePreview
       refresh={() => {
         console.log('test', CONFIG.SERVER_URL);
+        console.log('w2:', window?.location?.origin);
         router.refresh();
       }}
       serverURL={CONFIG.SERVER_URL}
