@@ -1,38 +1,28 @@
+'use client'
+
 import { PageContent } from '@/features/page/components/page-content'
-import { getPayload } from 'payload'
-import config from '@payload-config'
-import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
+import { usePage } from '@/features/page/hooks/use-page'
 import { notFound } from 'next/navigation'
+import { use } from 'react'
 
 type PageProps = {
   params: Promise<{
     segments?: string[]
   }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export default async function Page({ params, searchParams }: PageProps) {
-  const { segments } = await params
-  const resolvedSearchParams = await searchParams
-
+export default function Page({ params }: PageProps) {
+  const { segments } = use(params)
   const path = segments ? `/${segments.join('/')}` : '/'
-  const isPreviewMode = LIVE_PREVIEW_FLAG in resolvedSearchParams
 
-  const payload = await getPayload({ config })
+  const { data: page, isLoading } = usePage(path)
 
-  const pages = await payload.find({
-    collection: 'pages',
-    where: {
-      path: { equals: path }
-    },
-    limit: 1,
-    draft: isPreviewMode,
-    trash: isPreviewMode,
-  })
-  const page = pages.docs?.[0];
+  if (isLoading) {
+    return null
+  }
 
   if (!page) {
-    return notFound();
+    return notFound()
   }
 
   return <PageContent page={page} />

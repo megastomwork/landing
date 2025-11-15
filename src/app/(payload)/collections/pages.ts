@@ -19,12 +19,13 @@ import {
 export const Pages: CollectionConfig = {
   slug: 'pages',
   versions: {
-    drafts: {
-      autosave: {
-        interval: 100,
-        showSaveDraftButton: false,
-      },
-    },
+    drafts: true,
+    // drafts: {
+    //   autosave: {
+    //     interval: 100,
+    //     showSaveDraftButton: false,
+    //   },
+    // },
   },
   admin: {
     useAsTitle: 'title',
