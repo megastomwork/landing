@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { CONFIG } from '@/shared/constants/client-config.constants'
 import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
 import {
   introBlock,
@@ -20,7 +19,12 @@ import {
 export const Pages: CollectionConfig = {
   slug: 'pages',
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: {
+        interval: 100,
+        showSaveDraftButton: false,
+      },
+    },
   },
   admin: {
     useAsTitle: 'title',
