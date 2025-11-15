@@ -7,10 +7,12 @@ import React from 'react'
 export const RefreshRouteOnSave: React.FC = () => {
   const router = useRouter()
 
+  console.log(CONFIG.SERVER_URL);
+  
   return (
     <PayloadLivePreview
       refresh={() => {
-        console.log('test');
+        console.log('test', CONFIG.SERVER_URL);
         router.refresh();
       }}
       serverURL={CONFIG.SERVER_URL}
