@@ -36,6 +36,7 @@ import { WorkingHours } from '@/shared/payload/globals/working-hours'
 
 // Config
 import { SERVER_CONFIG } from '@/shared/constants/server-config.constants'
+import { CONFIG } from '@/shared/constants/client-config.constants'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,6 +45,7 @@ const dirname = path.dirname(filename)
 const _ = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
 
 export default buildConfig({
+  serverURL: CONFIG.SERVER_URL,
   admin: {
     user: Users.slug,
     livePreview: {
