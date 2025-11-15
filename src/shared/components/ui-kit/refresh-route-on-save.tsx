@@ -9,7 +9,10 @@ export const RefreshRouteOnSave: React.FC = () => {
 
   return (
     <PayloadLivePreview
-      refresh={() => router.refresh()}
+      refresh={() => {
+        console.log('test');
+        router.refresh();
+      }}
       serverURL={CONFIG.SERVER_URL}
     />
   )
