@@ -10,6 +10,12 @@ export const descriptionBlock: Block = {
   imageURL: '/blocks/description.png',
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      label: 'Заголовок',
+      required: false,
+    },
+    {
       name: 'text',
       type: 'textarea',
       label: 'Текст',

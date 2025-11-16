@@ -228,6 +228,7 @@ export interface Page {
             blockType: 'contact';
           }
         | {
+            title?: string | null;
             text: string;
             id?: string | null;
             blockName?: string | null;
@@ -635,6 +636,7 @@ export interface PagesSelect<T extends boolean = true> {
         description?:
           | T
           | {
+              title?: T;
               text?: T;
               id?: T;
               blockName?: T;
