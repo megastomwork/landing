@@ -63,7 +63,10 @@
   --radius-sm: calc(var(--radius) - 4px);
 
   /* Font Family */
-  --font-family-sans: var(--font-family);
+  --font-family-sans: var(--font-montserrat), sans-serif;
+  
+  /* Tailwind v4 font-sans utility */
+  --font-sans: var(--font-montserrat), sans-serif;
 }
 
 :root {
