@@ -30,7 +30,8 @@ import { Media } from '@/app/(payload)/collections/media'
 import { Pages } from '@/app/(payload)/collections/pages'
 
 // Globals
-import { Contacts } from '@/shared/payload/globals/contacts'
+import { siteSettings } from '@/shared/payload/globals/site-settings'
+import { contacts } from '@/shared/payload/globals/contacts'
 import { Content } from '@/shared/payload/globals/content'
 import { WorkingHours } from '@/shared/payload/globals/working-hours'
 
@@ -78,7 +79,7 @@ export default buildConfig({
     ServicePrices,
     Media,
   ],
-  globals: [Contacts, Content, WorkingHours],
+  globals: [siteSettings, contacts, Content, WorkingHours],
   editor: lexicalEditor({
     features: () => [
       FixedToolbarFeature(),

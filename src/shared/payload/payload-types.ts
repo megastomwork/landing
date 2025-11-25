@@ -105,11 +105,13 @@ export interface Config {
     defaultIDType: number;
   };
   globals: {
+    siteSettings: SiteSetting;
     contacts: Contact;
     content: Content;
     workingHours: WorkingHour;
   };
   globalsSelect: {
+    siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
     content: ContentSelect<false> | ContentSelect<true>;
     workingHours: WorkingHoursSelect<false> | WorkingHoursSelect<true>;
@@ -268,12 +270,6 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'doctors';
-          }
-        | {
-            title?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'working-hours';
           }
         | {
             backgroundImage?: (number | null) | Media;
@@ -899,24 +895,65 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Глобальні налаштування хедера, футера та навігації
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings".
+ */
+export interface SiteSetting {
+  id: number;
+  /**
+   * SVG або PNG (рекомендовано SVG для чіткості)
+   */
+  logo: number | Media;
+  /**
+   * Використовується в хедері та футері
+   */
+  menuItems?:
+    | {
+        label: string;
+        path: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Відображається в хедері та мобільному меню
+   */
+  contactButtonText: string;
+  showInHeader?: boolean | null;
+  /**
+   * Додатково до соц. мереж
+   */
+  showInMobileMenu?: boolean | null;
+  /**
+   * Текст над пунктами меню у футері
+   */
+  footerMenuTitle?: string | null;
+  /**
+   * Адреса та телефон з Global "Contacts"
+   */
+  showContactsInFooter?: boolean | null;
+  /**
+   * Дані з Global "Working Hours"
+   */
+  showWorkingHours?: boolean | null;
+  workingHoursTitle?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Clinic contact information
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contacts".
  */
 export interface Contact {
   id: number;
-  phone: string;
-  email: string;
   address: string;
-  googleAddress: string;
-  addressOnMap?: {
-    type?: string | null;
-    coordinates?:
-      | {
-          coordinate?: number | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
+  addressMapLink: string;
+  phone: string;
+  addressLabel?: string | null;
+  phoneLabel?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -990,24 +1027,38 @@ export interface WorkingHour {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  logo?: T;
+  menuItems?:
+    | T
+    | {
+        label?: T;
+        path?: T;
+        id?: T;
+      };
+  contactButtonText?: T;
+  showInHeader?: T;
+  showInMobileMenu?: T;
+  footerMenuTitle?: T;
+  showContactsInFooter?: T;
+  showWorkingHours?: T;
+  workingHoursTitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contacts_select".
  */
 export interface ContactsSelect<T extends boolean = true> {
-  phone?: T;
-  email?: T;
   address?: T;
-  googleAddress?: T;
-  addressOnMap?:
-    | T
-    | {
-        type?: T;
-        coordinates?:
-          | T
-          | {
-              coordinate?: T;
-              id?: T;
-            };
-      };
+  addressMapLink?: T;
+  phone?: T;
+  addressLabel?: T;
+  phoneLabel?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

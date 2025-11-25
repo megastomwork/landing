@@ -1,53 +1,24 @@
-import { ROUTES } from '@/shared/constants/routes.constants';
-import { useContent } from '@/shared/hooks/use-content';
-import { ContentTextNavigationMenu } from '@/shared/types/content.types';
-import { usePathname } from 'next/navigation';
-import { useMemo } from 'react';
+'use client'
 
-type MenuItem = {
-  title: string;
-  link: string;
-  isSelected?: boolean;
-  setActiveSelected?: (link: string) => void;
-};
+import { useSiteSettings } from '@/shared/hooks/use-site-settings'
+import type { MenuItemWithState } from '@/shared/types/layout.types'
+import { usePathname } from 'next/navigation'
+import { useMemo } from 'react'
 
-export const useMainMenu = (): MenuItem[] => {
-  const pathname = usePathname();
-  const texts = useContent<ContentTextNavigationMenu>({
-    context: 'navigationMenu',
-  });
+export const useMainMenu = (): MenuItemWithState[] => {
+  const pathname = usePathname()
+  const { data: settings, isLoading } = useSiteSettings()
 
-  return useMemo(
-    () => [
-      {
-        title: texts.data?.home ?? 'Головна',
-        link: ROUTES.HOME,
-        isSelected: pathname === ROUTES.HOME,
-      },
-      {
-        title: texts.data?.doctors ?? 'Лікарі',
-        link: ROUTES.DOCTORS,
-        isSelected: pathname === ROUTES.DOCTORS,
-      },
-      {
-        title: texts.data?.services ?? 'Послуги',
-        link: ROUTES.SERVICES,
-      },
-      {
-        title: texts.data?.feedbacks ?? 'Відгуки',
-        link: ROUTES.FEEDBACKS,
-      },
-      {
-        title: texts.data?.blog ?? 'Блог',
-        link: ROUTES.ARTICLES,
-        isSelected: pathname === ROUTES.ARTICLES,
-      },
-      {
-        title: texts.data?.prices ?? 'Ціни',
-        link: ROUTES.PRICES,
-        isSelected: pathname === ROUTES.PRICES,
-      },
-    ],
-    [pathname, texts.data],
-  );
-};
+  return useMemo(() => {
+    if (!settings?.menuItems) return []
+
+    return settings.menuItems
+      .sort((a, b) => (a.order || 0) - (b.order || 0))
+      .map(item => ({
+        label: item.label,
+        path: item.path,
+        order: item.order || 0,
+        isSelected: pathname === item.path,
+      }))
+  }, [pathname, settings])
+}
