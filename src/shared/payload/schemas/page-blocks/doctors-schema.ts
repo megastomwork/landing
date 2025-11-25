@@ -5,7 +5,6 @@ import type { Field } from 'payload'
  * No custom fields needed - only displays collection reference UI
  */
 export const createDoctorsBlockFields = (): Field[] => []
-
 /**
  * Configuration for doctors collection reference field
  * Used by createCollectionReferenceField in the block definition

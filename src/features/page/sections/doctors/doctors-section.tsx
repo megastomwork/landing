@@ -9,23 +9,11 @@ import { Markdown } from '@/shared/components/ui-kit/markdown'
 
 type DoctorsSectionProps = SectionProps<'doctors'>
 
-export function DoctorsSection({ title, description }: DoctorsSectionProps) {
+export function DoctorsSection({}: DoctorsSectionProps) {
   const { data: doctors, isLoading } = useDoctors()
 
   return (
     <section className="mt-6 max-sm:px-6">
-      {title && (
-        <ScrollAnimatedContainer delay={0}>
-          <h2 className="mb-4 text-center">{title}</h2>
-        </ScrollAnimatedContainer>
-      )}
-      {description && (
-        <ScrollAnimatedContainer delay={0.05}>
-          <div className="mx-auto mb-12 max-w-[840px] text-center text-[14px] leading-[24px] sm:text-base lg:text-xl">
-            <Markdown markdown={description} />
-          </div>
-        </ScrollAnimatedContainer>
-      )}
       <FadeLoadingContainer isLoading={isLoading}>
         <div className="mb-12 space-y-6">
           {doctors?.map((doctor, index) => (
