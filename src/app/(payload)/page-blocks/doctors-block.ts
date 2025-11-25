@@ -1,5 +1,10 @@
 import type { Block } from 'payload'
+import { createCollectionReferenceField } from '@/features/payload-admin'
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
+import {
+  createDoctorsBlockFields,
+  doctorsReferenceConfig,
+} from '@/shared/payload/schemas/page-blocks/doctors-schema'
 
 export const doctorsBlock: Block = {
   slug: BLOCK_TYPES.DOCTORS,
@@ -9,16 +14,7 @@ export const doctorsBlock: Block = {
   },
   imageURL: '/blocks/doctors.png',
   fields: [
-    {
-      name: 'title',
-      type: 'text',
-      label: 'Заголовок',
-      defaultValue: 'Наші лікарі',
-    },
-    {
-      name: 'description',
-      type: 'textarea',
-      label: 'Опис',
-    },
+    ...createDoctorsBlockFields(),
+    createCollectionReferenceField(doctorsReferenceConfig),
   ],
 }

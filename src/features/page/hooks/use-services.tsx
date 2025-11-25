@@ -1,12 +1,12 @@
 import payloadAPI from '@/shared/lib/payload-rest';
-import { Services } from '@/shared/types/services.types';
+import { Service } from '@/shared/payload/payload-types';
 import { useQuery } from '@tanstack/react-query';
 
 export const useServices = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['services'],
     queryFn: () =>
-      payloadAPI.getCollection<Services>('services', {
+      payloadAPI.getCollection<Service>('services', {
         where: {
           status: {
             equals: 'published',

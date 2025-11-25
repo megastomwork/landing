@@ -1,10 +1,10 @@
 import type { Field } from 'payload'
 
 /**
- * Schema for Intro block
- * Defines the data structure as a contract
+ * Schema for Intro 1 block
+ * Intro with image
  */
-export const createIntroBlockFields = (): Field[] => [
+export const createIntro1BlockFields = (): Field[] => [
   {
     name: 'image',
     type: 'upload',

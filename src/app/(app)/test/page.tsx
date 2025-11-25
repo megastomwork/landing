@@ -1,10 +1,10 @@
 'use client'
 
-import { IntroSection } from '@/features/page/sections/intro'
+import { Intro1Section } from '@/features/page/sections/intro-1'
 import { AboutSection } from '@/features/page/sections/about/about-section'
 import { DescriptionSection } from '@/features/page/sections/description/description-section'
 import { ServicesSection } from '@/features/page/sections/services'
-import { BlogArticlesSection } from '@/features/page/sections/blog-articles'
+import { BlogGridSection } from '@/features/page/sections/blog-grid'
 import { PageFeedbacksSection } from '@/features/page/sections/feedbacks'
 import { PageContactSection } from '@/features/page/sections/contact'
 import { ContactInfoSection } from '@/features/page/sections/contact-info/contact-info-section'
@@ -16,10 +16,16 @@ export default function TestPage() {
   // Mock data for testing sections
   const mockIntroData = {
     image: {
+      id: 1,
       url: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200',
       alt: 'Dental clinic interior',
       width: 1200,
       height: 800,
+      updatedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      filename: 'intro.jpg',
+      mimeType: 'image/jpeg',
+      filesize: 0,
     },
     alt: 'Dental clinic interior',
   }
@@ -29,10 +35,16 @@ export default function TestPage() {
     description:
       'Клініка Megastom – це сучасний медичний заклад, який об\'єднує команду досвідчених лікарів та передове обладнання. Ми пропонуємо комплексний підхід до лікування, орієнтуючись на потреби кожного відвідувача.',
     image: {
+      id: 2,
       url: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800',
       alt: 'Our team',
       width: 800,
       height: 600,
+      updatedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      filename: 'about.jpg',
+      mimeType: 'image/jpeg',
+      filesize: 0,
     },
     stats: [
       { value: '6', label: 'Кваліфікованих лікарів' },
@@ -68,10 +80,16 @@ export default function TestPage() {
     title: 'Дозволь собі здорову посмішку і ми зробимо її',
     description: 'Написати нам у соц. мережах:',
     image: {
+      id: 3,
       url: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600',
       alt: 'Contact us',
       width: 600,
       height: 700,
+      updatedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      filename: 'contact.jpg',
+      mimeType: 'image/jpeg',
+      filesize: 0,
     },
     showImage: true,
   }
@@ -81,10 +99,7 @@ export default function TestPage() {
     showMap: true,
   }
 
-  const mockDoctorsData = {
-    title: 'Наші лікарі',
-    description: 'Команда професіоналів з багаторічним досвідом',
-  }
+  const mockDoctorsData = {}
 
   const mockFaqData = {
     title: 'Часті питання',
@@ -108,7 +123,7 @@ export default function TestPage() {
         <div className="bg-gray-800 p-2 text-center text-sm text-white">
           INTRO SECTION
         </div>
-        <IntroSection {...mockIntroData} />
+        <Intro1Section {...mockIntroData} />
       </div>
 
       {/* About Section */}
@@ -140,7 +155,7 @@ export default function TestPage() {
         <div className="bg-gray-800 p-2 text-center text-sm text-white">
           BLOG ARTICLES SECTION
         </div>
-        <BlogArticlesSection {...mockBlogArticlesData} />
+        <BlogGridSection {...mockBlogArticlesData} />
       </div>
 
       {/* Feedbacks Section */}

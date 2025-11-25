@@ -35,7 +35,7 @@ export function PricesSection({ title, description }: PricesSectionProps) {
         <Accordion
           type="multiple"
           className="mx-auto w-2/3 max-w-6xl px-2 py-10"
-          defaultValue={[services[0].id]}
+          defaultValue={[String(services[0].id)]}
         >
           {services?.map((service) => {
             if (prices.data?.[service.id] == undefined) {
@@ -45,11 +45,11 @@ export function PricesSection({ title, description }: PricesSectionProps) {
             return (
               <AccordionItem
                 key={service.id}
-                value={service.id}
+                value={String(service.id)}
                 className="pl-0"
               >
                 <AccordionTrigger className="">
-                  {service.Title}
+                  {service.title}
                 </AccordionTrigger>
                 <AccordionContent className="py-5">
                   <Table>

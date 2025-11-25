@@ -1,10 +1,12 @@
 import type { CollectionConfig } from 'payload'
 import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
 import {
-  introBlock,
+  intro1Block,
+  intro2Block,
   aboutBlock,
   servicesBlock,
-  blogArticlesBlock,
+  blogGridBlock,
+  blogRowBlock,
   feedbacksBlock,
   contactBlock,
   descriptionBlock,
@@ -20,13 +22,7 @@ export const Pages: CollectionConfig = {
   slug: 'pages',
   versions: {
     drafts: true,
-    // drafts: {
-    //   autosave: {
-    //     interval: 100,
-    //     showSaveDraftButton: false,
-    //   },
-    // },
-  },
+ },
   admin: {
     useAsTitle: 'title',
     livePreview: {
@@ -54,10 +50,12 @@ export const Pages: CollectionConfig = {
               type: 'blocks',
               label: 'Секції',
               blocks: [
-                introBlock,
+                intro1Block,
+                intro2Block,
                 aboutBlock,
                 servicesBlock,
-                blogArticlesBlock,
+                blogGridBlock,
+                blogRowBlock,
                 feedbacksBlock,
                 contactBlock,
                 descriptionBlock,

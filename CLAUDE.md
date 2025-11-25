@@ -342,7 +342,7 @@ Migration steps:
 4. Add linting rules to prevent cross-imports
 ```
 
-## Best Practices
+### Related Documentation# Best Practices
 
 ### Feature Design
 - **One feature = one specific business feature** (NOT domain!)
@@ -374,7 +374,7 @@ features/auth/
     └── validate-password.test.ts
 ```
 
-## Related Documentation
+
 
 - [Frontend Architecture](./frontend-architecture.md) - Technical stack, GraphQL, React Query, state management, testing
 - [NestJS Architecture](./nestjs-architecture.md) - Backend architecture (coming soon)

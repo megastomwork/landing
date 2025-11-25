@@ -12,11 +12,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         header:
-          'bg-accent-60 text-base font-sans font-bold text-center text-black  shadow-sm hover:bg-[#80E1FF] rounded-[20px]',
+          'bg-accent-60 text-base font-sans font-bold text-center text-black shadow-sm hover:bg-[#80E1FF] rounded-[20px]',
         default:
-          'bg-accent-60 text-base font-sans font-bold text-center text-black  shadow-sm hover:bg-accent-80 rounded-[20px] active:bg-accent-100',
+          'bg-accent-60 text-base font-sans font-bold text-center text-black shadow-sm hover:bg-accent-80 rounded-[20px] active:bg-accent-100',
         secondary:
-          'bg-[#99ECFF] text-base font-sans font-bold text-center text-black  shadow-sm hover:bg-[#80E1FF] rounded-[20px] ',
+          'bg-[#99ECFF] text-base font-sans font-bold text-center text-black shadow-sm hover:bg-[#80E1FF] rounded-[20px] ',
         tertiary:
           'bg-[#00D9FF] text-base font-sans font-bold text-center text-black shadow-sm hover:bg-[#00C8F2] rounded-[20px]',
         disabled:

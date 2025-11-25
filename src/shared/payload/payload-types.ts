@@ -180,7 +180,14 @@ export interface Page {
             alt?: string | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'intro';
+            blockType: 'intro-1';
+          }
+        | {
+            title: string;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'intro-2';
           }
         | {
             title: string;
@@ -208,9 +215,22 @@ export interface Page {
             title?: string | null;
             articlesCount?: number | null;
             showMoreLink?: boolean | null;
+            buttonText?: string | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'blogArticles';
+            blockType: 'blog-grid';
+          }
+        | {
+            title?: string | null;
+            /**
+             * Виберіть статті для відображення
+             */
+            articles: (number | Article)[];
+            showMoreLink?: boolean | null;
+            buttonText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blog-row';
           }
         | {
             title?: string | null;
@@ -254,7 +274,7 @@ export interface Page {
             description?: string | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'blogHero';
+            blockType: 'blog-hero';
           }
         | {
             title?: string | null;
@@ -274,7 +294,7 @@ export interface Page {
             showMap?: boolean | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'contactInfo';
+            blockType: 'contact-info';
           }
       )[]
     | null;
@@ -575,11 +595,19 @@ export interface PagesSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        intro?:
+        'intro-1'?:
           | T
           | {
               image?: T;
               alt?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'intro-2'?:
+          | T
+          | {
+              title?: T;
+              description?: T;
               id?: T;
               blockName?: T;
             };
@@ -607,12 +635,23 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        blogArticles?:
+        'blog-grid'?:
           | T
           | {
               title?: T;
               articlesCount?: T;
               showMoreLink?: T;
+              buttonText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'blog-row'?:
+          | T
+          | {
+              title?: T;
+              articles?: T;
+              showMoreLink?: T;
+              buttonText?: T;
               id?: T;
               blockName?: T;
             };
@@ -652,12 +691,10 @@ export interface PagesSelect<T extends boolean = true> {
         doctors?:
           | T
           | {
-              title?: T;
-              description?: T;
               id?: T;
               blockName?: T;
             };
-        blogHero?:
+        'blog-hero'?:
           | T
           | {
               backgroundImage?: T;
@@ -681,7 +718,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        contactInfo?:
+        'contact-info'?:
           | T
           | {
               title?: T;

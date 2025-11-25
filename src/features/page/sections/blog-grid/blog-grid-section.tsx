@@ -6,14 +6,14 @@ import { ROUTES } from '@/shared/constants/routes.constants'
 import { SectionProps } from '@/shared/types/page.types'
 import Link from 'next/link'
 
-type BlogArticlesSectionProps = SectionProps<'blogArticles'>
+type BlogGridSectionProps = SectionProps<'blog-grid'>
 
-export function BlogArticlesSection({
+export function BlogGridSection({
   title,
   articlesCount = 3,
   showMoreLink = true,
   buttonText = 'Більше статей',
-}: BlogArticlesSectionProps) {
+}: BlogGridSectionProps) {
   const { data: articles, isLoading } = usePageArticles({ articlesCount })
 
   if (isLoading || !articles || articles.length === 0) {

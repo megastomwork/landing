@@ -1,8 +1,10 @@
 // Simple sections
-export { IntroSection } from './intro'
+export { Intro1Section } from './intro-1'
+export { Intro2Section } from './intro-2'
 export { AboutSection } from './about/about-section'
 export { ServicesSection } from './services'
-export { BlogArticlesSection } from './blog-articles'
+export { BlogGridSection } from './blog-grid'
+export { BlogRowSection } from './blog-row'
 export { PageFeedbacksSection } from './feedbacks'
 export { PageContactSection } from './contact'
 

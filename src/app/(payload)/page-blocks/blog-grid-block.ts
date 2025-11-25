@@ -1,13 +1,13 @@
 import type { Block } from 'payload'
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
 
-export const blogArticlesBlock: Block = {
-  slug: BLOCK_TYPES.BLOG_ARTICLES,
+export const blogGridBlock: Block = {
+  slug: BLOCK_TYPES.BLOG_GRID,
   labels: {
-    singular: 'Секція статей блогу',
-    plural: 'Секції статей блогу',
+    singular: 'Секція статей блогу (Grid)',
+    plural: 'Секції статей блогу (Grid)',
   },
-  imageURL: '/blocks/blog-articles.png',
+  imageURL: '/blocks/blog-grid.png',
   fields: [
     {
       name: 'title',
@@ -28,6 +28,12 @@ export const blogArticlesBlock: Block = {
       type: 'checkbox',
       label: 'Показати посилання "Більше"',
       defaultValue: true,
+    },
+    {
+      name: 'buttonText',
+      type: 'text',
+      label: 'Текст кнопки',
+      defaultValue: 'Більше статей',
     },
   ],
 }

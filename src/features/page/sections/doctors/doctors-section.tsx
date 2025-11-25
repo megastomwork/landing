@@ -5,6 +5,7 @@ import { FadeLoadingContainer } from '@/shared/components/animations/fade-loadin
 import { useDoctors } from '@/features/page/hooks/use-doctors'
 import { SectionProps } from '@/shared/types/page.types'
 import { DoctorItemCard } from './doctor-card'
+import { Markdown } from '@/shared/components/ui-kit/markdown'
 
 type DoctorsSectionProps = SectionProps<'doctors'>
 
@@ -18,15 +19,13 @@ export function DoctorsSection({ title, description }: DoctorsSectionProps) {
           <h2 className="mb-4 text-center">{title}</h2>
         </ScrollAnimatedContainer>
       )}
-
       {description && (
         <ScrollAnimatedContainer delay={0.05}>
           <div className="mx-auto mb-12 max-w-[840px] text-center text-[14px] leading-[24px] sm:text-base lg:text-xl">
-            <p>{description}</p>
+            <Markdown markdown={description} />
           </div>
         </ScrollAnimatedContainer>
       )}
-
       <FadeLoadingContainer isLoading={isLoading}>
         <div className="mb-12 space-y-6">
           {doctors?.map((doctor, index) => (

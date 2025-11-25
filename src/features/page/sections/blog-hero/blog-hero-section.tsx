@@ -3,7 +3,7 @@ import { cn } from '@/shared/lib/css'
 import { PayloadImage } from '@/shared/components/ui-kit/directus-image'
 import { SectionProps } from '@/shared/types/page.types'
 
-type BlogHeroSectionProps = SectionProps<'blogHero'>
+type BlogHeroSectionProps = SectionProps<'blog-hero'>
 
 export function BlogHeroSection({
   backgroundImage,
