@@ -27,16 +27,20 @@ export const blogRowBlock: Block = {
       },
     },
     {
-      name: 'showMoreLink',
-      type: 'checkbox',
-      label: 'Показати посилання "Більше"',
-      defaultValue: true,
-    },
-    {
       name: 'buttonText',
       type: 'text',
       label: 'Текст кнопки',
       defaultValue: 'Більше статей',
+    },
+    {
+      name: 'buttonLink',
+      type: 'text',
+      label: 'Посилання кнопки',
+      defaultValue: '/blog',
+      required: false,
+      admin: {
+        description: 'Введіть посилання на сторінку блогу. Якщо посилання не введено, кнопка не відображатиметься.',
+      },
     },
   ],
 }

@@ -226,8 +226,11 @@ export interface Page {
              * Виберіть статті для відображення
              */
             articles: (number | Article)[];
-            showMoreLink?: boolean | null;
             buttonText?: string | null;
+            /**
+             * Введіть посилання на сторінку блогу. Якщо посилання не введено, кнопка не відображатиметься.
+             */
+            buttonLink?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'blog-row';
@@ -262,16 +265,24 @@ export interface Page {
             blockType: 'paragraph';
           }
         | {
-            title?: string | null;
-            description?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'doctors';
           }
         | {
+            title?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'working-hours';
+          }
+        | {
             backgroundImage?: (number | null) | Media;
             title?: string | null;
             description?: string | null;
+            /**
+             * Вмикає напівпрозорий білий фон поверх зображення для кращої читабельності тексту
+             */
+            showOverlay?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'blog-hero';
@@ -650,8 +661,8 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               articles?: T;
-              showMoreLink?: T;
               buttonText?: T;
+              buttonLink?: T;
               id?: T;
               blockName?: T;
             };
@@ -700,6 +711,7 @@ export interface PagesSelect<T extends boolean = true> {
               backgroundImage?: T;
               title?: T;
               description?: T;
+              showOverlay?: T;
               id?: T;
               blockName?: T;
             };

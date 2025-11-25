@@ -26,5 +26,14 @@ export const blogHeroBlock: Block = {
       type: 'textarea',
       label: 'Опис',
     },
+    {
+      name: 'showOverlay',
+      type: 'checkbox',
+      label: 'Показати світлий оверлей',
+      defaultValue: false,
+      admin: {
+        description: 'Вмикає напівпрозорий білий фон поверх зображення для кращої читабельності тексту',
+      },
+    },
   ],
 }

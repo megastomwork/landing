@@ -14,8 +14,8 @@ type BlogRowSectionProps = SectionProps<'blog-row'>
 export function BlogRowSection({
   title,
   articles,
-  showMoreLink = true,
   buttonText = 'Більше статей',
+  buttonLink,
 }: BlogRowSectionProps) {
   if (!articles || articles.length === 0) {
     return null
@@ -38,17 +38,17 @@ export function BlogRowSection({
         </h2>
       )}
 
-      <div className="flex flex-col gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {articlesList.map((article) => (
           <ArticleItem key={article.id} article={article} />
         ))}
       </div>
 
-      {showMoreLink && (
+      {buttonLink && (
         <div className='w-full flex justify-center mt-8'>
           <Button asChild>
             <Link
-              href={ROUTES.ARTICLES}
+              href={buttonLink}
             >
               {buttonText}
             </Link>
