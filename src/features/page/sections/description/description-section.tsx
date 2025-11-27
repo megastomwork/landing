@@ -1,6 +1,6 @@
-import { SectionProps } from '@/shared/types/page.types'
+import { SectionProps } from '@/shared/types/page.types';
 
-type DescriptionSectionProps = SectionProps<'description'>
+type DescriptionSectionProps = SectionProps<'description'>;
 
 export function DescriptionSection({ text, title }: DescriptionSectionProps) {
   return (
@@ -14,5 +14,5 @@ export function DescriptionSection({ text, title }: DescriptionSectionProps) {
         {text}
       </div>
     </section>
-  )
+  );
 }

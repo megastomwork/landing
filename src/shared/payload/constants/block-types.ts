@@ -11,22 +11,22 @@
  * Examples: blog-grid, hero-intro, contact-form
  */
 export const BLOCK_TYPES = {
-  INTRO_1: "intro-1",
-  INTRO_2: "intro-2",
-  ABOUT: "about",
-  SERVICES: "services",
-  BLOG_GRID: "blog-grid",
-  BLOG_ROW: "blog-row",
-  FEEDBACKS: "feedbacks",
-  CONTACT: "contact",
-  DESCRIPTION: "description",
-  PARAGRAPH: "paragraph",
-  DOCTORS: "doctors",
-  BLOG_HERO: "blog-hero",
-  FAQ: "faq",
-  PRICES: "prices",
-  CONTACT_INFO: "contact-info",
-  WORKING_HOURS: "working-hours",
+  INTRO_1: 'intro-1',
+  INTRO_2: 'intro-2',
+  ABOUT: 'about',
+  SERVICES: 'services',
+  BLOG_GRID: 'blog-grid',
+  BLOG_ROW: 'blog-row',
+  FEEDBACKS: 'feedbacks',
+  CONTACT: 'contact',
+  DESCRIPTION: 'description',
+  PARAGRAPH: 'paragraph',
+  DOCTORS: 'doctors',
+  BLOG_HERO: 'blog-hero',
+  FAQ: 'faq',
+  PRICES: 'prices',
+  CONTACT_INFO: 'contact-info',
+  WORKING_HOURS: 'working-hours',
 } as const;
 
 export type BlockType = (typeof BLOCK_TYPES)[keyof typeof BLOCK_TYPES];

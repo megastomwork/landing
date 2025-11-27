@@ -1,6 +1,6 @@
-import { SectionProps } from '@/shared/types/page.types'
+import { SectionProps } from '@/shared/types/page.types';
 
-type ParagraphSectionProps = SectionProps<'paragraph'>
+type ParagraphSectionProps = SectionProps<'paragraph'>;
 
 export function ParagraphSection({ title, content }: ParagraphSectionProps) {
   return (
@@ -11,10 +11,8 @@ export function ParagraphSection({ title, content }: ParagraphSectionProps) {
             {title}
           </h2>
         )}
-        <p className="leading-relaxed text-gray-800 text-sm sm:text-xl">
-          {content}
-        </p>
+        <p className="text-sm text-gray-800 sm:text-xl">{content}</p>
       </div>
     </section>
-  )
+  );
 }

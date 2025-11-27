@@ -1,6 +1,10 @@
+import { Media } from '@/shared/payload/payload-types';
+
 export type Social = {
-  icon: string;
-  link: string;
+  id: number;
   title: string;
-  username: string;
+  link: string;
+  icon: number | Media;
+  updatedAt: string;
+  createdAt: string;
 };

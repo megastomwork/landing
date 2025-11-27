@@ -1,14 +1,13 @@
-'use client'
+'use client';
 
-import { useContacts } from '@/shared/hooks/use-contacts'
-import { useSocials } from '@/shared/hooks/use-socials'
-import { Loader2, PhoneIcon } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { LucideIcon } from '@/shared/components/ui-kit/lucide-icon'
-import { SectionProps } from '@/shared/types/page.types'
+import { useContacts } from '@/shared/hooks/use-contacts';
+import { useSocials } from '@/shared/hooks/use-socials';
+import { Loader2, PhoneIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { SectionProps } from '@/shared/types/page.types';
 
-type PageContactSectionProps = SectionProps<'contact'>
+type PageContactSectionProps = SectionProps<'contact'>;
 
 export function PageContactSection({
   title,
@@ -16,8 +15,8 @@ export function PageContactSection({
   image,
   showImage = true,
 }: PageContactSectionProps) {
-  const contacts = useContacts()
-  const socials = useSocials()
+  const contacts = useContacts();
+  const socials = useSocials();
 
   if (contacts.isLoading || socials.isLoading) {
     return (
@@ -26,10 +25,10 @@ export function PageContactSection({
           <Loader2 className="animate-spin" />
         </div>
       </section>
-    )
+    );
   }
 
-  const imageData = typeof image === 'object' ? image : null
+  const imageData = typeof image === 'object' ? image : null;
 
   return (
     <section className="bg-white px-4 py-4">
@@ -47,7 +46,7 @@ export function PageContactSection({
         )}
         <div className="w-full text-center">
           {title && (
-            <h2 className="mb-3 text-3xl font-extrabold leading-snug text-black md:text-5xl">
+            <h2 className="mb-3 text-3xl leading-snug font-extrabold text-black md:text-5xl">
               {title}
             </h2>
           )}
@@ -79,20 +78,30 @@ export function PageContactSection({
               </p>
               <div className="flex justify-center">
                 <div className="flex flex-col gap-4 text-xl font-bold text-black md:text-2xl">
-                  {socials.data.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.link}
-                      className="flex items-center gap-3 transition hover:text-cyan-600"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.icon && (
-                        <LucideIcon name={item.icon} className="h-8 w-8" />
-                      )}
-                      <span>{item.title}</span>
-                    </Link>
-                  ))}
+                  {socials.data.map(item => {
+                    const media =
+                      typeof item.icon === 'object' ? item.icon : null;
+                    if (!media?.url) return null;
+
+                    return (
+                      <Link
+                        key={item.id}
+                        href={item.link}
+                        className="flex items-center gap-3 transition hover:text-cyan-600"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src={media.url}
+                          width={32}
+                          height={32}
+                          alt={item.title}
+                          className="h-8 w-8 object-contain"
+                        />
+                        <span>{item.title}</span>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </>
@@ -100,5 +109,5 @@ export function PageContactSection({
         </div>
       </div>
     </section>
-  )
+  );
 }

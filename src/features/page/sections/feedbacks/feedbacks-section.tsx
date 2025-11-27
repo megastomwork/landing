@@ -22,7 +22,7 @@ export function PageFeedbacksSection({ title }: FeedbacksSectionProps) {
   const { feedbacks, isFeedbacksLoading } = useFeedbacks();
   const { setApi, activeIndex } = useAdvancedCarousel();
 
-  if (isFeedbacksLoading || !feedbacks?.length) return <p>Завантаження...</p>;
+  if (isFeedbacksLoading || !feedbacks?.length) return null;
 
   return (
     <section
@@ -59,7 +59,7 @@ export function PageFeedbacksSection({ title }: FeedbacksSectionProps) {
               ))}
             </CarouselContent>
 
-            <div className="absolute left-0 right-0 top-1/2 z-10 hidden h-full -translate-y-1/2 items-center justify-between md:flex">
+            <div className="absolute top-1/2 right-0 left-0 z-10 hidden h-full -translate-y-1/2 items-center justify-between md:flex">
               <CarouselPrevious className="border-black" />
               <CarouselNext className="border-black" />
             </div>

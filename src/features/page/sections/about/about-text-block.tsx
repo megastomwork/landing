@@ -1,21 +1,25 @@
-import { Button } from '@/shared/components/ui-kit/button'
-import AboutStats from './about-stats'
-import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-contact-modal'
+import { Button } from '@/shared/components/ui-kit/button';
+import AboutStats from './about-stats';
+import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-contact-modal';
 
 interface Stat {
-  value: string
-  label: string
-  id?: string | null
+  value: string;
+  label: string;
+  id?: string | null;
 }
 
 interface AboutTextBlockProps {
-  title: string
-  description: string
-  stats?: Stat[] | null
+  title: string;
+  description: string;
+  stats?: Stat[] | null;
 }
 
-export default function AboutTextBlock({ title, description, stats }: AboutTextBlockProps) {
-  const openModal = useOpenContactModal()
+export default function AboutTextBlock({
+  title,
+  description,
+  stats,
+}: AboutTextBlockProps) {
+  const openModal = useOpenContactModal();
 
   return (
     <section className="bg-white px-4 py-4 md:py-12">
@@ -26,9 +30,7 @@ export default function AboutTextBlock({ title, description, stats }: AboutTextB
           </h2>
         </div>
 
-        <p className="mb-8 text-base leading-relaxed text-gray-700 sm:text-xl">
-          {description}
-        </p>
+        <p className="mb-8 text-base text-gray-700 sm:text-xl">{description}</p>
 
         <AboutStats stats={stats} />
 
@@ -39,5 +41,5 @@ export default function AboutTextBlock({ title, description, stats }: AboutTextB
         </div>
       </div>
     </section>
-  )
+  );
 }

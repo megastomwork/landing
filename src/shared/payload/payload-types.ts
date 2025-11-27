@@ -413,12 +413,8 @@ export interface Feedback {
 export interface Social {
   id: number;
   title: string;
-  username: string;
   link: string;
-  /**
-   * Lucide icon name
-   */
-  icon: string;
+  icon: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -798,7 +794,6 @@ export interface FeedbacksSelect<T extends boolean = true> {
  */
 export interface SocialsSelect<T extends boolean = true> {
   title?: T;
-  username?: T;
   link?: T;
   icon?: T;
   updatedAt?: T;

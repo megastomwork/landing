@@ -15,7 +15,7 @@ type HeaderMenuProps = {
 };
 
 export function HeaderMenu({ className, onClose }: HeaderMenuProps) {
-  const menu = useMainMenu();
+  const { data: menu, isLoading } = useMainMenu();
 
   return (
     <Menubar className={cn('flex', className)}>
@@ -26,7 +26,7 @@ export function HeaderMenu({ className, onClose }: HeaderMenuProps) {
             className="w-full px-4 py-2 text-center font-sans text-base text-black sm:w-auto"
           >
             <Link href={item.link} onClick={onClose}>
-              {item.title}
+              {item.label}
             </Link>
           </MenubarTrigger>
         </MenubarMenu>

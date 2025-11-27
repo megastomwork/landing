@@ -1,8 +1,9 @@
 'use client';
 
-import { DirectusImage } from '@/shared/components/ui-kit/directus-image';
 import { useSocials } from '@/shared/hooks/use-socials';
+import { Media } from '@/shared/payload/payload-types';
 import { PhoneIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const HeaderSocials = () => {
@@ -18,21 +19,26 @@ export const HeaderSocials = () => {
         +38(098)-101-61-61
       </a>
       <div className="mx-auto flex w-max gap-3 sm:flex-col">
-        {socials.data?.map((item, index) => (
-          <Link
-            key={index}
-            href={item.link}
-            className="flex items-center gap-5 duration-150 hover:opacity-50"
-          >
-            <DirectusImage
-              src={item.icon}
-              width={32}
-              height={32}
-              alt="title"
-              className="h-8 w-8 object-contain"
-            />
-          </Link>
-        ))}
+        {socials.data?.map(item => {
+          const media = typeof item.icon === 'object' ? item.icon : null;
+          if (!media?.url) return null;
+
+          return (
+            <Link
+              key={item.id}
+              href={item.link}
+              className="flex items-center gap-5 duration-150 hover:opacity-50"
+            >
+              <Image
+                src={media.url}
+                width={32}
+                height={32}
+                alt={item.title}
+                className="h-8 w-8 object-contain"
+              />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

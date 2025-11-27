@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useMainMenu } from '../hooks/use-menu';
 
 export const FooterMenu = () => {
-  const menu = useMainMenu();
+  const { data: menu, isLoading } = useMainMenu();
 
   return (
     <div>
@@ -16,7 +16,7 @@ export const FooterMenu = () => {
             href={item.link}
             className="text-base leading-5 hover:underline"
           >
-            {item.title}
+            {item.label}
           </Link>
         ))}
       </div>

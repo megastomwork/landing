@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
 
 export const Socials: CollectionConfig = {
   slug: 'socials',
@@ -15,22 +15,15 @@ export const Socials: CollectionConfig = {
       required: true,
     },
     {
-      name: 'username',
-      type: 'text',
-      required: true,
-    },
-    {
       name: 'link',
       type: 'text',
       required: true,
     },
     {
       name: 'icon',
-      type: 'text',
+      type: 'upload',
+      relationTo: 'media',
       required: true,
-      admin: {
-        description: 'Lucide icon name',
-      },
     },
   ],
-}
+};

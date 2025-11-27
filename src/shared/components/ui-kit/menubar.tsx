@@ -38,7 +38,7 @@ const MenubarTrigger = React.forwardRef<
     className={cn(
       'cursor-pointer outline-none',
       'hover:bg-transparent',
-      'sm:data-[active=true]:border-b-2 sm:data-[active=true]:border-b-[#34E6F6;]',
+      'sm:data-[active=true]:border-b-2 sm:data-[active=true]:border-b-[#34E6F6]',
       className,
     )}
     {...props}
