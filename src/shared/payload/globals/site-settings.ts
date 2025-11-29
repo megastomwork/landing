@@ -1,8 +1,15 @@
+// Layout tabs include:
+// Header
+// Footer
+// Menu
+
+import { DescriptionSection } from '@/features/page'
+import { createCollectionReferenceField, createGlobalReferenceField } from '@/features/payload-admin'
 import type { GlobalConfig, Validate } from 'payload'
 
 export const siteSettings: GlobalConfig = {
   slug: 'siteSettings',
-  label: 'Налаштування сайту',
+  label: 'Layout',
 
   admin: {
     description: 'Глобальні налаштування хедера, футера та навігації',
@@ -13,12 +20,10 @@ export const siteSettings: GlobalConfig = {
     {
       type: 'tabs',
       tabs: [
-        // Tab 1: Navigation
         {
-          label: 'Навігація',
+          label: 'Хедер',
           description: 'Логотип та меню сайту',
           fields: [
-            // Logo fields
             {
               type: 'row',
               fields: [
@@ -35,52 +40,45 @@ export const siteSettings: GlobalConfig = {
               ],
             },
 
-            // Menu items array
             {
               type: 'collapsible',
-              label: 'Навігаційне меню',
               admin: {
                 initCollapsed: false,
               },
+              label: "Кнопка зв'язку",
+              description: 'Налаштування кнопки контакту',
               fields: [
                 {
-                  name: 'menuItems',
-                  type: 'array',
-                  label: 'Пункти меню',
-                  minRows: 1,
-                  maxRows: 10,
+                  name: 'contactButtonText',
+                  type: 'text',
+                  label: 'Текст кнопки',
+                  defaultValue: "Зв'язатись з нами",
+                  required: true,
                   admin: {
-                    description: 'Використовується в хедері та футері',
+                    description: 'Відображається в хедері та мобільному меню',
                   },
+                },
+                {
+                  type: 'row',
                   fields: [
                     {
-                      type: 'row',
-                      fields: [
-                        {
-                          name: 'label',
-                          type: 'text',
-                          label: 'Назва',
-                          required: true,
-                          admin: {
-                            placeholder: 'Головна',
-                          },
-                        },
-                        {
-                          name: 'path',
-                          type: 'text',
-                          label: 'Шлях',
-                          required: true,
-                          admin: {
-                            placeholder: '/',
-                          },
-                          validate: (value: any) => {
-                            if (typeof value === 'string' && !value.startsWith('/')) {
-                              return 'Шлях має починатися з /'
-                            }
-                            return true
-                          },
-                        },
-                      ],
+                      name: 'showInHeader',
+                      type: 'checkbox',
+                      label: 'Показувати в хедері (desktop)',
+                      defaultValue: true,
+                      admin: {
+                        width: '50%',
+                      },
+                    },
+                    {
+                      name: 'showInMobileMenu',
+                      type: 'checkbox',
+                      label: 'Показувати в мобільному меню',
+                      defaultValue: false,
+                      admin: {
+                        width: '50%',
+                        description: 'Додатково до соц. мереж',
+                      },
                     },
                   ],
                 },
@@ -89,42 +87,49 @@ export const siteSettings: GlobalConfig = {
           ],
         },
 
-        // Tab 2: Contact button
+        // Tab 2: Main menu
         {
-          label: "Кнопка зв'язку",
-          description: 'Налаштування кнопки контакту',
+          label: 'Навігаційне меню',
+          description: 'Меню відображається в хедері та футері',
           fields: [
             {
-              name: 'contactButtonText',
-              type: 'text',
-              label: 'Текст кнопки',
-              defaultValue: "Зв'язатись з нами",
-              required: true,
+              name: 'menuItems',
+              type: 'array',
+              label: 'Пункти меню',
+              minRows: 1,
+              maxRows: 10,
               admin: {
-                description: 'Відображається в хедері та мобільному меню',
+                description: 'Використовується в хедері та футері',
               },
-            },
-            {
-              type: 'row',
               fields: [
                 {
-                  name: 'showInHeader',
-                  type: 'checkbox',
-                  label: 'Показувати в хедері (desktop)',
-                  defaultValue: true,
-                  admin: {
-                    width: '50%',
-                  },
-                },
-                {
-                  name: 'showInMobileMenu',
-                  type: 'checkbox',
-                  label: 'Показувати в мобільному меню',
-                  defaultValue: false,
-                  admin: {
-                    width: '50%',
-                    description: 'Додатково до соц. мереж',
-                  },
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'label',
+                      type: 'text',
+                      label: 'Назва',
+                      required: true,
+                      admin: {
+                        placeholder: 'Головна',
+                      },
+                    },
+                    {
+                      name: 'path',
+                      type: 'text',
+                      label: 'Шлях',
+                      required: true,
+                      admin: {
+                        placeholder: '/',
+                      },
+                      validate: (value: any) => {
+                        if (typeof value === 'string' && !value.startsWith('/')) {
+                          return 'Шлях має починатися з /'
+                        }
+                        return true
+                      },
+                    },
+                  ],
                 },
               ],
             },
@@ -145,51 +150,26 @@ export const siteSettings: GlobalConfig = {
                 description: 'Текст над пунктами меню у футері',
               },
             },
-            {
-              type: 'collapsible',
-              label: 'Блок контактів',
-              admin: {
-                initCollapsed: false,
-              },
-              fields: [
+            ...createGlobalReferenceField({
+              globalSlug: 'contacts',
+              title: 'Години роботи',
+              fields: ['address', 'phone']
+            }),
+            ...createCollectionReferenceField({
+              collectionSlug: 'working-hours',
+              columns: [
                 {
-                  name: 'showContactsInFooter',
-                  type: 'checkbox',
-                  label: 'Показувати блок контактів',
-                  defaultValue: true,
-                  admin: {
-                    description: 'Адреса та телефон з Global "Contacts"',
-                  },
+                  key: 'days',
+                  label: 'День неділі'
                 },
+                {
+                  key: 'days',
+                  label: 'День неділі'
+                }
               ],
-            },
-            {
-              type: 'collapsible',
-              label: 'Години роботи',
-              admin: {
-                initCollapsed: false,
-              },
-              fields: [
-                {
-                  name: 'showWorkingHours',
-                  type: 'checkbox',
-                  label: 'Показувати години роботи',
-                  defaultValue: true,
-                  admin: {
-                    description: 'Дані з Global "Working Hours"',
-                  },
-                },
-                {
-                  name: 'workingHoursTitle',
-                  type: 'text',
-                  label: 'Заголовок',
-                  defaultValue: 'Часи роботи',
-                  admin: {
-                    condition: (data, siblingData) => siblingData?.showWorkingHours === true,
-                  },
-                },
-              ],
-            },
+              title: 'Години роботи',
+              pageSize: 10
+            })
           ],
         },
       ],
