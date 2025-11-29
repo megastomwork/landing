@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
 import {
   intro1Block,
   intro2Block,
@@ -25,6 +26,7 @@ export const Pages: CollectionConfig = {
  },
   admin: {
     useAsTitle: 'title',
+    group: GROUPS_LABELS.PAGES,
     livePreview: {
       url: ({ data }) => `${data.path === '/' ? '' : data.path}?${LIVE_PREVIEW_FLAG}=true`,
     }

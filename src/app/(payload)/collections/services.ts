@@ -1,3 +1,4 @@
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
 import type { CollectionConfig } from 'payload'
 
 export const Services: CollectionConfig = {
@@ -7,40 +8,59 @@ export const Services: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
+    group: GROUPS_LABELS.CLINIC,
   },
   fields: [
     {
       name: 'title',
       type: 'text',
+      label: 'Назва послуги',
       required: true,
+      admin: {
+        description: 'Коротка назва послуги, яка відображатиметься на сайті',
+        placeholder: 'Наприклад: Відбілювання зубів, Імплантація',
+      },
     },
     {
       name: 'description',
       type: 'textarea',
+      label: 'Опис',
       required: true,
-    },
-    {
-      name: 'icon',
-      type: 'text',
       admin: {
-        description: 'Lucide icon name',
+        description: 'Детальний опис послуги для відвідувачів',
+        placeholder: 'Опишіть що включає ця послуга, її переваги...',
+        rows: 4,
+      },
+      validate: (value: string) => {
+        if (typeof value === 'string' && value.length < 10) {
+          return 'Опис повинен містити щонайменше 10 символів'
+        }
+        return true
       },
     },
     {
-      name: 'iconImage',
+      name: 'icon',
       type: 'upload',
       relationTo: 'media',
+      label: 'Іконка',
+      required: true,
+      admin: {
+        description: 'Завантажте іконку для послуги (рекомендовано SVG або PNG)',
+      },
     },
     {
       name: 'status',
       type: 'select',
+      label: 'Статус',
       options: [
-        { label: 'Draft', value: 'draft' },
-        { label: 'Published', value: 'published' },
+        { label: 'Чернетка', value: 'draft' },
+        { label: 'Опубліковано', value: 'published' },
       ],
       defaultValue: 'draft',
+      required: true,
       admin: {
         position: 'sidebar',
+        description: 'Тільки опубліковані послуги відображаються на сайті',
       },
     },
   ],
