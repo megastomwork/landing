@@ -1,5 +1,5 @@
 export const GROUPS_LABELS = {
-  PAGES: 'Сторінки',
+  PAGES: 'Сторінки та модальні вікна',
   CLINIC: 'Клініка',
   REPUTATION: 'Репутація',
   CALL: 'Звʼязок та графік',

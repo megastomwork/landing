@@ -1,60 +1,60 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useOpenContactModal } from './use-open-contact-modal';
+import { useScrollModalSettings } from './use-scroll-modal-settings';
+
+const SESSION_STORAGE_KEY = 'scrollModalShown';
 
 export const useTriggerModalOnScroll = () => {
-  const footerRef = useRef<HTMLDivElement>(null);
-  const servicesRef = useRef<HTMLDivElement>(null);
-  const [isScrolledToFooter, setIsScrolledToFooter] = useState(false);
-  const [modalOpenedForServices, setModalOpenedForServices] = useState(false);
+  const [hasScrolledDown, setHasScrolledDown] = useState(false);
+  const [hasShownModal, setHasShownModal] = useState(false);
   const openModal = useOpenContactModal();
+  const { data: settings, isLoading } = useScrollModalSettings();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const footerElement = footerRef.current;
-      const servicesElement = servicesRef.current;
-
-      if (
-        !footerElement ||
-        !servicesElement ||
-        typeof footerElement.offsetTop !== 'number' ||
-        typeof servicesElement.offsetTop !== 'number'
-      ) {
-        return;
+    if (typeof window !== 'undefined') {
+      const wasShown = sessionStorage.getItem(SESSION_STORAGE_KEY);
+      if (wasShown) {
+        setHasShownModal(true);
       }
+    }
+  }, []);
 
-      const footerOffset = footerElement.offsetTop;
-      const servicesOffset = servicesElement.offsetTop;
-      const currentScrollY = window.scrollY;
+  useEffect(() => {
+    // Don't attach scroll listener if:
+    // - Settings are loading
+    // - Modal is disabled
+    // - Modal was already shown
+    if (isLoading || !settings?.isEnabled || hasShownModal) {
+      return;
+    }
 
-      if (!isScrolledToFooter) {
-        if (currentScrollY + window.innerHeight >= footerOffset) {
-          console.log(
-            `Detected scroll to footer area. ${currentScrollY + window.innerHeight} >= ${footerOffset}`,
-          );
-          setIsScrolledToFooter(true);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+
+      if (!hasScrolledDown) {
+        if (scrollPercent >= settings.scrollDownTrigger) {
+          setHasScrolledDown(true);
         }
-      } else if (!modalOpenedForServices) {
-        if (currentScrollY <= servicesOffset) {
-          console.log(
-            'User scrolled up to services section after reaching footer. Opening modal.',
-          );
+      }
+      else if (!hasShownModal) {
+        if (scrollPercent <= settings.scrollUpTrigger) {
           openModal();
-          setModalOpenedForServices(true);
+          setHasShownModal(true);
+          if (typeof window !== 'undefined') {
+            sessionStorage.setItem(SESSION_STORAGE_KEY, 'true');
+          }
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isScrolledToFooter, modalOpenedForServices, openModal]);
-
-  return {
-    footerRef,
-    servicesRef,
-  };
+  }, [hasScrolledDown, hasShownModal, openModal, settings, isLoading]);
 };

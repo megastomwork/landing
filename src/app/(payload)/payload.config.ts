@@ -34,6 +34,7 @@ import { siteSettings } from '@/shared/payload/globals/site-settings'
 import { contacts } from '@/shared/payload/globals/contacts'
 import { Content } from '@/shared/payload/globals/content'
 import { WorkingHours } from '@/shared/payload/globals/working-hours'
+import { scrollModal } from '@/shared/payload/globals/scroll-modal'
 
 // Config
 import { SERVER_CONFIG } from '@/shared/constants/server-config.constants'
@@ -79,7 +80,7 @@ export default buildConfig({
     ServicePrices,
     Media,
   ],
-  globals: [siteSettings, contacts, Content, WorkingHours],
+  globals: [siteSettings, contacts, Content, WorkingHours, scrollModal],
   editor: lexicalEditor({
     features: () => [
       FixedToolbarFeature(),

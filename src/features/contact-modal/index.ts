@@ -4,3 +4,4 @@ export * from './ui/modal-contact-block';
 export * from './ui/modal-header';
 export * from './ui/modal-image';
 export * from './hooks/use-trigger-modal-on-scroll';
+export * from './hooks/use-scroll-modal-settings';

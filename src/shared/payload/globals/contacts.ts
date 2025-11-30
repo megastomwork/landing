@@ -32,7 +32,7 @@ export const contacts: GlobalConfig = {
 
   admin: {
     description: 'Clinic contact information',
-    group: GROUPS_LABELS.SETTINGS,
+    group: GROUPS_LABELS.CALL,
   },
 
   fields: [
