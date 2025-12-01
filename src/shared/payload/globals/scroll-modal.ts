@@ -1,6 +1,9 @@
-import type { GlobalConfig, Validate } from 'payload'
-import { GROUPS_LABELS } from '../constants/groups'
-import { createCollectionReferenceField, createGlobalReferenceField } from '@/features/payload-admin'
+import type { GlobalConfig, Validate } from 'payload';
+import { GROUPS_LABELS } from '../constants/groups';
+import {
+  createCollectionReferenceField,
+  createGlobalReferenceField,
+} from '@/features/payload-admin';
 
 /**
  * Scroll-Triggered Modal Global Configuration
@@ -44,7 +47,7 @@ export const scrollModal: GlobalConfig = {
   label: 'Scroll Modal',
 
   admin: {
-    description: 'Налаштування модального вікна, що з\'являється при скролі',
+    description: "Налаштування модального вікна, що з'являється при скролі",
     group: GROUPS_LABELS.PAGES,
   },
 
@@ -63,7 +66,8 @@ export const scrollModal: GlobalConfig = {
               relationTo: 'media',
               label: 'Зображення',
               admin: {
-                description: 'Зображення для модального вікна (рекомендовано 400x400px)',
+                description:
+                  'Зображення для модального вікна (рекомендовано 400x400px)',
               },
             },
             {
@@ -82,10 +86,10 @@ export const scrollModal: GlobalConfig = {
               type: 'textarea',
               label: 'Опис',
               required: true,
-              defaultValue: 'Зв\'яжіться з нами зручним для вас способом',
+              defaultValue: "Зв'яжіться з нами зручним для вас способом",
               admin: {
                 rows: 3,
-                placeholder: 'Зв\'яжіться з нами зручним для вас способом',
+                placeholder: "Зв'яжіться з нами зручним для вас способом",
                 description: 'Опис під заголовком',
               },
             },
@@ -94,10 +98,11 @@ export const scrollModal: GlobalConfig = {
               label: 'Контактна інформація (посилання)',
               admin: {
                 initCollapsed: true,
-                description: 'Контакти та соціальні мережі відображаються з глобальних налаштувань',
+                description:
+                  'Контакти та соціальні мережі відображаються з глобальних налаштувань',
               },
               fields: [
-                ...createGlobalReferenceField({
+                createGlobalReferenceField({
                   globalSlug: 'contacts',
                   title: 'Контакти',
                   fields: ['address', 'phone'],
@@ -106,7 +111,7 @@ export const scrollModal: GlobalConfig = {
                     phone: 'Телефон',
                   },
                 }),
-                ...createCollectionReferenceField({
+                createCollectionReferenceField({
                   collectionSlug: 'socials',
                   title: 'Соціальні мережі',
                   description: 'Відображаються в модальному вікні',
@@ -162,7 +167,8 @@ export const scrollModal: GlobalConfig = {
                       min: 0,
                       max: 100,
                       admin: {
-                        description: 'Відсоток прокрутки від верху сторінки (0-100%). Користувач спочатку повинен проскролити до цього значення.',
+                        description:
+                          'Відсоток прокрутки від верху сторінки (0-100%). Користувач спочатку повинен проскролити до цього значення.',
                         placeholder: '90',
                         width: '50%',
                       },
@@ -176,7 +182,8 @@ export const scrollModal: GlobalConfig = {
                       min: 0,
                       max: 100,
                       admin: {
-                        description: 'Відсоток прокрутки від верху сторінки (0-100%). Після досягнення першого тригера, користувач повинен проскролити до цього значення.',
+                        description:
+                          'Відсоток прокрутки від верху сторінки (0-100%). Після досягнення першого тригера, користувач повинен проскролити до цього значення.',
                         placeholder: '10',
                         width: '50%',
                       },
@@ -188,28 +195,8 @@ export const scrollModal: GlobalConfig = {
                   name: 'scrollTriggersHelp',
                   admin: {
                     components: {
-                      Field: () => {
-                        return (
-                          <div style={{
-                            padding: '12px 16px',
-                            backgroundColor: '#f0f9ff',
-                            border: '1px solid #bae6fd',
-                            borderRadius: '6px',
-                            fontSize: '14px',
-                            lineHeight: '1.5',
-                            color: '#0c4a6e'
-                          }}>
-                            <strong>Як працюють тригери:</strong>
-                            <ol style={{ margin: '8px 0 0 0', paddingLeft: '20px' }}>
-                              <li>Користувач скролить вниз до <strong>{'{scrollDownTrigger}'}%</strong> від верху сторінки</li>
-                              <li>Потім скролить назад вгору до <strong>{'{scrollUpTrigger}'}%</strong> від верху</li>
-                              <li>Модальне вікно з'являється</li>
-                            </ol>
-                            <p style={{ margin: '8px 0 0 0' }}>
-                              <em>Приклад:</em> 90% (вниз) → 10% (вгору) = користувач майже доскролив до кінця, потім повернувся до верху
-                            </p>
-                          </div>
-                        );
+                      Field: {
+                        path: '@/features/payload-admin/components/scroll-triggers-help#ScrollTriggersHelp',
                       },
                     },
                   },
@@ -228,24 +215,8 @@ export const scrollModal: GlobalConfig = {
                   name: 'additionalInfo',
                   admin: {
                     components: {
-                      Field: () => {
-                        return (
-                          <div style={{
-                            padding: '12px 16px',
-                            fontSize: '14px',
-                            lineHeight: '1.6',
-                            color: '#64748b'
-                          }}>
-                            <p style={{ margin: '0 0 12px 0' }}>
-                              <strong>Поведінка:</strong>
-                            </p>
-                            <ul style={{ margin: '0', paddingLeft: '20px' }}>
-                              <li>Модальне вікно показується <strong>один раз за сесію</strong></li>
-                              <li>Якщо користувач закриє вікно, воно не з'явиться знову до нового візиту</li>
-                              <li>Контактна інформація (телефон, соціальні мережі) береться з глобальних налаштувань</li>
-                            </ul>
-                          </div>
-                        );
+                      Field: {
+                        path: '@/features/payload-admin/components/scroll-modal-info#ScrollModalInfo',
                       },
                     },
                   },
@@ -257,4 +228,4 @@ export const scrollModal: GlobalConfig = {
       ],
     },
   ],
-}
+};

@@ -1,7 +1,10 @@
-import { DescriptionSection } from '@/features/page'
-import { createCollectionReferenceField, createGlobalReferenceField } from '@/features/payload-admin'
-import type { GlobalConfig, Validate } from 'payload'
-import { GROUPS_LABELS } from '../constants/groups'
+import { DescriptionSection } from '@/features/page';
+import {
+  createCollectionReferenceField,
+  createGlobalReferenceField,
+} from '@/features/payload-admin';
+import type { GlobalConfig, Validate } from 'payload';
+import { GROUPS_LABELS } from '../constants/groups';
 
 /**
  * Site Settings Global Configuration
@@ -83,10 +86,13 @@ export const siteSettings: GlobalConfig = {
                         placeholder: '/',
                       },
                       validate: ((value: unknown) => {
-                        if (typeof value === 'string' && !value.startsWith('/')) {
-                          return 'Шлях має починатися з /'
+                        if (
+                          typeof value === 'string' &&
+                          !value.startsWith('/')
+                        ) {
+                          return 'Шлях має починатися з /';
                         }
-                        return true
+                        return true;
                       }) as Validate,
                     },
                   ],
@@ -178,29 +184,31 @@ export const siteSettings: GlobalConfig = {
                 description: 'Текст над пунктами меню у футері',
               },
             },
-            ...createGlobalReferenceField({
+            createGlobalReferenceField({
               globalSlug: 'contacts',
-              title: 'Години роботи',
-              fields: ['address', 'phone']
+              title: 'Контакти',
+              fields: ['address', 'phone'],
             }),
-            ...createCollectionReferenceField({
-              collectionSlug: 'working-hours',
+            createCollectionReferenceField({
+              collectionSlug: 'schedule',
+              title: 'Години роботи',
+              description: 'Графік роботи клініки',
+              showTable: true,
               columns: [
                 {
                   key: 'days',
-                  label: 'День неділі'
+                  label: 'Дні',
                 },
                 {
-                  key: 'days',
-                  label: 'День неділі'
-                }
+                  key: 'hours',
+                  label: 'Години',
+                },
               ],
-              title: 'Години роботи',
-              pageSize: 10
-            })
+              pageSize: 10,
+            }),
           ],
         },
       ],
     },
   ],
-}
+};

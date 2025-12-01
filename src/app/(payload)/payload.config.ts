@@ -1,6 +1,6 @@
-import { buildConfig } from 'payload'
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { s3Storage } from '@payloadcms/storage-s3'
+import { buildConfig } from 'payload';
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { s3Storage } from '@payloadcms/storage-s3';
 import {
   lexicalEditor,
   HeadingFeature,
@@ -12,39 +12,37 @@ import {
   OrderedListFeature,
   BlockquoteFeature,
   FixedToolbarFeature,
-} from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { fileURLToPath } from 'url'
+} from '@payloadcms/richtext-lexical';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Collections
-import { Articles } from '@/app/(payload)/collections/articles'
-import { Doctors } from '@/app/(payload)/collections/doctors'
-import { Services } from '@/app/(payload)/collections/services'
-import { Feedbacks } from '@/app/(payload)/collections/feedbacks'
-import { Socials } from '@/app/(payload)/collections/socials'
-import { Questions } from '@/app/(payload)/collections/questions'
-import { Schedule } from '@/app/(payload)/collections/schedule'
-import { ServicePrices } from '@/app/(payload)/collections/service-prices'
-import { Users } from '@/app/(payload)/collections/users'
-import { Media } from '@/app/(payload)/collections/media'
-import { Pages } from '@/app/(payload)/collections/pages'
+import { Articles } from '@/app/(payload)/collections/articles';
+import { Doctors } from '@/app/(payload)/collections/doctors';
+import { Services } from '@/app/(payload)/collections/services';
+import { Feedbacks } from '@/app/(payload)/collections/feedbacks';
+import { Socials } from '@/app/(payload)/collections/socials';
+import { Questions } from '@/app/(payload)/collections/questions';
+import { Schedule } from '@/app/(payload)/collections/schedule';
+import { ServicePrices } from '@/app/(payload)/collections/service-prices';
+import { Users } from '@/app/(payload)/collections/users';
+import { Media } from '@/app/(payload)/collections/media';
+import { Pages } from '@/app/(payload)/collections/pages';
 
 // Globals
-import { siteSettings } from '@/shared/payload/globals/site-settings'
-import { contacts } from '@/shared/payload/globals/contacts'
-import { Content } from '@/shared/payload/globals/content'
-import { WorkingHours } from '@/shared/payload/globals/working-hours'
-import { scrollModal } from '@/shared/payload/globals/scroll-modal'
+import { siteSettings } from '@/shared/payload/globals/site-settings';
+import { contacts } from '@/shared/payload/globals/contacts';
+import { scrollModal } from '@/shared/payload/globals/scroll-modal';
 
 // Config
-import { SERVER_CONFIG } from '@/shared/constants/server-config.constants'
-import { CONFIG } from '@/shared/constants/client-config.constants'
+import { SERVER_CONFIG } from '@/shared/constants/server-config.constants';
+import { CONFIG } from '@/shared/constants/client-config.constants';
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 // Determine if we're in production (Vercel) or development
-const _ = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
+const _ = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production';
 
 export default buildConfig({
   serverURL: CONFIG.SERVER_URL,
@@ -80,11 +78,13 @@ export default buildConfig({
     ServicePrices,
     Media,
   ],
-  globals: [siteSettings, contacts, Content, WorkingHours, scrollModal],
+  globals: [siteSettings, contacts, scrollModal],
   editor: lexicalEditor({
     features: () => [
       FixedToolbarFeature(),
-      HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }),
+      HeadingFeature({
+        enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      }),
       ParagraphFeature(),
       BoldFeature(),
       ItalicFeature(),
@@ -108,7 +108,7 @@ export default buildConfig({
       allowExitOnIdle: true, // Allow pool to shutdown when idle
     },
   }),
-  cors: "*",
+  cors: '*',
   plugins: [
     s3Storage({
       collections: {
@@ -128,4 +128,4 @@ export default buildConfig({
       },
     }),
   ],
-})
+});

@@ -107,14 +107,12 @@ export interface Config {
   globals: {
     siteSettings: SiteSetting;
     contacts: Contact;
-    content: Content;
-    workingHours: WorkingHour;
+    scrollModal: ScrollModal;
   };
   globalsSelect: {
     siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
-    content: ContentSelect<false> | ContentSelect<true>;
-    workingHours: WorkingHoursSelect<false> | WorkingHoursSelect<true>;
+    scrollModal: ScrollModalSelect<false> | ScrollModalSelect<true>;
   };
   locale: null;
   user: User & {
@@ -144,11 +142,16 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Користувачі адмін-панелі
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
   id: number;
+  /**
+   * Ім'я користувача (опціонально)
+   */
   name?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -315,11 +318,16 @@ export interface Page {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Бібліотека зображень та файлів
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: number;
+  /**
+   * Опис зображення для доступності та SEO (рекомендовано для всіх зображень)
+   */
   alt?: string | null;
   prefix?: string | null;
   updatedAt: string;
@@ -335,14 +343,28 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Статті та публікації блогу
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles".
  */
 export interface Article {
   id: number;
+  /**
+   * Заголовок статті, який відображається на сторінці та в списку статей
+   */
   title: string;
+  /**
+   * Головне зображення статті (рекомендовано 1200x630px)
+   */
   image: number | Media;
+  /**
+   * Тільки опубліковані статті відображаються на сайті
+   */
   status: 'draft' | 'published';
+  /**
+   * Основний текст статті з можливістю форматування
+   */
   content: {
     root: {
       type: string;
@@ -363,16 +385,33 @@ export interface Article {
   deletedAt?: string | null;
 }
 /**
+ * Профілі лікарів та персоналу клініки
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "doctors".
  */
 export interface Doctor {
   id: number;
+  /**
+   * Повне ім'я лікаря або співробітника
+   */
   name: string;
+  /**
+   * Професійне фото лікаря (рекомендовано квадратний формат, мінімум 400x400px)
+   */
   photo: number | Media;
+  /**
+   * Спеціалізація або посада в клініці
+   */
   position: string;
+  /**
+   * Скільки років працює лікар
+   */
   experience: string;
-  status?: ('draft' | 'published') | null;
+  /**
+   * Тільки опубліковані профілі відображаються на сайті
+   */
+  status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
 }
@@ -382,38 +421,71 @@ export interface Doctor {
  */
 export interface Service {
   id: number;
+  /**
+   * Коротка назва послуги, яка відображатиметься на сайті
+   */
   title: string;
+  /**
+   * Детальний опис послуги для відвідувачів
+   */
   description: string;
   /**
-   * Lucide icon name
+   * Завантажте іконку для послуги (рекомендовано SVG або PNG)
    */
-  icon?: string | null;
-  iconImage?: (number | null) | Media;
-  status?: ('draft' | 'published') | null;
+  icon: number | Media;
+  /**
+   * Тільки опубліковані послуги відображаються на сайті
+   */
+  status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Відгуки та testimonials пацієнтів
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "feedbacks".
  */
 export interface Feedback {
   id: number;
+  /**
+   * Повне ім'я або ініціали пацієнта
+   */
   clientName: string;
+  /**
+   * Оберіть кількість зірок від 1 до 5
+   */
   stars: number;
+  /**
+   * Текст відгуку пацієнта про лікування
+   */
   content: string;
-  status?: ('draft' | 'published') | null;
+  /**
+   * Тільки опубліковані відгуки відображаються на сайті
+   */
+  status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Посилання на соціальні мережі клініки
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "socials".
  */
 export interface Social {
   id: number;
+  /**
+   * Назва соціальної мережі або месенджера
+   */
   title: string;
+  /**
+   * Повне посилання на профіль у соціальній мережі
+   */
   link: string;
+  /**
+   * Іконка соціальної мережі (рекомендовано SVG, 24x24px або більше)
+   */
   icon: number | Media;
   updatedAt: string;
   createdAt: string;
@@ -424,30 +496,55 @@ export interface Social {
  */
 export interface Question {
   id: number;
+  /**
+   * Часте питання від пацієнтів
+   */
   question: string;
+  /**
+   * Детальна відповідь на питання
+   */
   answer: string;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Графік роботи клініки
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "schedule".
  */
 export interface Schedule {
   id: number;
+  /**
+   * День тижня або період (наприклад, Понеділок-П'ятниця, Субота)
+   */
   days: string;
+  /**
+   * Години роботи для вказаних днів
+   */
   hours: string;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Детальний прайс-лист послуг
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "service-prices".
  */
 export interface ServicePrice {
   id: number;
+  /**
+   * Конкретна процедура або вид послуги
+   */
   title: string;
+  /**
+   * Вартість процедури (можна вказати діапазон або текст)
+   */
   price: string;
+  /**
+   * Оберіть послугу, до якої відноситься ця ціна
+   */
   serviceId: number | Service;
   updatedAt: string;
   createdAt: string;
@@ -771,7 +868,6 @@ export interface ServicesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   icon?: T;
-  iconImage?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -898,10 +994,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteSetting {
   id: number;
   /**
-   * SVG або PNG (рекомендовано SVG для чіткості)
-   */
-  logo: number | Media;
-  /**
    * Використовується в хедері та футері
    */
   menuItems?:
@@ -911,6 +1003,10 @@ export interface SiteSetting {
         id?: string | null;
       }[]
     | null;
+  /**
+   * SVG або PNG (рекомендовано SVG для чіткості)
+   */
+  logo: number | Media;
   /**
    * Відображається в хедері та мобільному меню
    */
@@ -924,15 +1020,6 @@ export interface SiteSetting {
    * Текст над пунктами меню у футері
    */
   footerMenuTitle?: string | null;
-  /**
-   * Адреса та телефон з Global "Contacts"
-   */
-  showContactsInFooter?: boolean | null;
-  /**
-   * Дані з Global "Working Hours"
-   */
-  showWorkingHours?: boolean | null;
-  workingHoursTitle?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -953,70 +1040,37 @@ export interface Contact {
   createdAt?: string | null;
 }
 /**
+ * Налаштування модального вікна, що з'являється при скролі
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "content".
+ * via the `definition` "scrollModal".
  */
-export interface Content {
+export interface ScrollModal {
   id: number;
-  navigationMenu: {
-    home: string;
-    doctors: string;
-    services: string;
-    feedbacks: string;
-    blog: string;
-    prices: string;
-  };
-  homePage: {
-    welcomeImage?: (number | null) | Media;
-    welcomeDescription: string;
-    aboutImage?: (number | null) | Media;
-    aboutTitle: string;
-    aboutDescription: string;
-    missionTitle: string;
-    missionDescription: string;
-    servicesTitle: string;
-    servicesDescription: string;
-    ctaTitle: string;
-    ctaDescription: string;
-    feedbacksTitle: string;
-    blogTitle: string;
-    blogButton: string;
-    contactTitle: string;
-  };
-  doctorsPage: {
-    pageTitle: string;
-    pageDescription: string;
-  };
-  blogPage: {
-    backgroundImage?: (number | null) | Media;
-    pageTitle: string;
-    pageDescription: string;
-    articlesTitle: string;
-    faqTitle: string;
-  };
-  callToActionSection: {
-    image?: (number | null) | Media;
-    title: string;
-    description: string;
-  };
-  pricesPage: {
-    pageTitle: string;
-    pageDescription: string;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "workingHours".
- */
-export interface WorkingHour {
-  id: number;
-  schedule: {
-    days: string;
-    hours: string;
-    id?: string | null;
-  }[];
+  /**
+   * Зображення для модального вікна (рекомендовано 400x400px)
+   */
+  image?: (number | null) | Media;
+  /**
+   * Основний заголовок модального вікна
+   */
+  title: string;
+  /**
+   * Опис під заголовком
+   */
+  description: string;
+  /**
+   * Чи показувати модальне вікно на сайті
+   */
+  isEnabled?: boolean | null;
+  /**
+   * Відсоток прокрутки від верху сторінки (0-100%). Користувач спочатку повинен проскролити до цього значення.
+   */
+  scrollDownTrigger: number;
+  /**
+   * Відсоток прокрутки від верху сторінки (0-100%). Після досягнення першого тригера, користувач повинен проскролити до цього значення.
+   */
+  scrollUpTrigger: number;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1025,7 +1079,6 @@ export interface WorkingHour {
  * via the `definition` "siteSettings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
-  logo?: T;
   menuItems?:
     | T
     | {
@@ -1033,13 +1086,11 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         path?: T;
         id?: T;
       };
+  logo?: T;
   contactButtonText?: T;
   showInHeader?: T;
   showInMobileMenu?: T;
   footerMenuTitle?: T;
-  showContactsInFooter?: T;
-  showWorkingHours?: T;
-  workingHoursTitle?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1060,82 +1111,15 @@ export interface ContactsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "content_select".
+ * via the `definition` "scrollModal_select".
  */
-export interface ContentSelect<T extends boolean = true> {
-  navigationMenu?:
-    | T
-    | {
-        home?: T;
-        doctors?: T;
-        services?: T;
-        feedbacks?: T;
-        blog?: T;
-        prices?: T;
-      };
-  homePage?:
-    | T
-    | {
-        welcomeImage?: T;
-        welcomeDescription?: T;
-        aboutImage?: T;
-        aboutTitle?: T;
-        aboutDescription?: T;
-        missionTitle?: T;
-        missionDescription?: T;
-        servicesTitle?: T;
-        servicesDescription?: T;
-        ctaTitle?: T;
-        ctaDescription?: T;
-        feedbacksTitle?: T;
-        blogTitle?: T;
-        blogButton?: T;
-        contactTitle?: T;
-      };
-  doctorsPage?:
-    | T
-    | {
-        pageTitle?: T;
-        pageDescription?: T;
-      };
-  blogPage?:
-    | T
-    | {
-        backgroundImage?: T;
-        pageTitle?: T;
-        pageDescription?: T;
-        articlesTitle?: T;
-        faqTitle?: T;
-      };
-  callToActionSection?:
-    | T
-    | {
-        image?: T;
-        title?: T;
-        description?: T;
-      };
-  pricesPage?:
-    | T
-    | {
-        pageTitle?: T;
-        pageDescription?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "workingHours_select".
- */
-export interface WorkingHoursSelect<T extends boolean = true> {
-  schedule?:
-    | T
-    | {
-        days?: T;
-        hours?: T;
-        id?: T;
-      };
+export interface ScrollModalSelect<T extends boolean = true> {
+  image?: T;
+  title?: T;
+  description?: T;
+  isEnabled?: T;
+  scrollDownTrigger?: T;
+  scrollUpTrigger?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
