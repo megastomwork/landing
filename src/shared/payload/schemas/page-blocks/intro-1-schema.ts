@@ -1,4 +1,4 @@
-import type { Field } from 'payload'
+import type { Field } from 'payload';
 
 /**
  * Schema for Intro 1 block
@@ -12,10 +12,4 @@ export const createIntro1BlockFields = (): Field[] => [
     label: 'Зображення',
     required: true,
   },
-  {
-    name: 'alt',
-    type: 'text',
-    label: 'Alt текст',
-    defaultValue: 'Зображення',
-  },
-]
+];

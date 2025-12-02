@@ -1,5 +1,5 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -31,11 +31,11 @@ export const Services: CollectionConfig = {
         placeholder: 'Опишіть що включає ця послуга, її переваги...',
         rows: 4,
       },
-      validate: (value: string) => {
+      validate: (value: string | undefined | null) => {
         if (typeof value === 'string' && value.length < 10) {
-          return 'Опис повинен містити щонайменше 10 символів'
+          return 'Опис повинен містити щонайменше 10 символів';
         }
-        return true
+        return true;
       },
     },
     {
@@ -45,7 +45,8 @@ export const Services: CollectionConfig = {
       label: 'Іконка',
       required: true,
       admin: {
-        description: 'Завантажте іконку для послуги (рекомендовано SVG або PNG)',
+        description:
+          'Завантажте іконку для послуги (рекомендовано SVG або PNG)',
       },
     },
     {
@@ -64,4 +65,4 @@ export const Services: CollectionConfig = {
       },
     },
   ],
-}
+};

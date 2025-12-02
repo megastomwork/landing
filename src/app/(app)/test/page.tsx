@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { Intro1Section } from '@/features/page/sections/intro-1'
-import { AboutSection } from '@/features/page/sections/about/about-section'
-import { DescriptionSection } from '@/features/page/sections/description/description-section'
-import { ServicesSection } from '@/features/page/sections/services'
-import { BlogGridSection } from '@/features/page/sections/blog-grid'
-import { PageFeedbacksSection } from '@/features/page/sections/feedbacks'
-import { PageContactSection } from '@/features/page/sections/contact'
-import { ContactInfoSection } from '@/features/page/sections/contact-info/contact-info-section'
-import { DoctorsSection } from '@/features/page/sections/doctors/doctors-section'
-import { FaqSection } from '@/features/page/sections/faq/faq-section'
-import { PricesSection } from '@/features/page/sections/prices/prices-section'
+import { Intro1Section } from '@/features/page/sections/intro-1';
+import { AboutSection } from '@/features/page/sections/about/about-section';
+import { DescriptionSection } from '@/features/page/sections/description/description-section';
+import { ServicesSection } from '@/features/page/sections/services';
+import { BlogGridSection } from '@/features/page/sections/blog-grid';
+import { PageFeedbacksSection } from '@/features/page/sections/feedbacks';
+import { PageContactSection } from '@/features/page/sections/contact';
+import { ContactInfoSection } from '@/features/page/sections/contact-info/contact-info-section';
+import { DoctorsSection } from '@/features/page/sections/doctors/doctors-section';
+import { FaqSection } from '@/features/page/sections/faq/faq-section';
+import { PricesSection } from '@/features/page/sections/prices/prices-section';
 
 export default function TestPage() {
   // Mock data for testing sections
@@ -28,12 +28,12 @@ export default function TestPage() {
       filesize: 0,
     },
     alt: 'Dental clinic interior',
-  }
+  };
 
   const mockAboutData = {
     title: 'Про Нас',
     description:
-      'Клініка Megastom – це сучасний медичний заклад, який об\'єднує команду досвідчених лікарів та передове обладнання. Ми пропонуємо комплексний підхід до лікування, орієнтуючись на потреби кожного відвідувача.',
+      "Клініка Megastom – це сучасний медичний заклад, який об'єднує команду досвідчених лікарів та передове обладнання. Ми пропонуємо комплексний підхід до лікування, орієнтуючись на потреби кожного відвідувача.",
     image: {
       id: 2,
       url: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800',
@@ -52,29 +52,29 @@ export default function TestPage() {
       { value: '22', label: 'Роки досвіду' },
       { value: '10 000+', label: 'Задоволених пацієнтів' },
     ],
-  }
+  };
 
   const mockDescriptionData = {
     title: 'Наша місія:',
     text: 'Забезпечення високоякісної медичної допомоги для всієї родини, створення довіри та комфортних умов для наших пацієнтів. Ми прагнемо, щоб кожен відвідувач почувався впевнено і отримав професійне обслуговування.',
-  }
+  };
 
   const mockServicesData = {
     title: 'Наші послуги',
     description:
       'У клініці Megastom ми пропонуємо широкий спектр послуг для всієї родини.',
-  }
+  };
 
   const mockBlogArticlesData = {
     title: 'Останні статті',
     articlesCount: 3,
     showMoreLink: true,
     buttonText: 'Більше статей',
-  }
+  };
 
   const mockFeedbacksData = {
     title: 'Відгуки наших клієнтів',
-  }
+  };
 
   const mockContactData = {
     title: 'Дозволь собі здорову посмішку і ми зробимо її',
@@ -91,24 +91,23 @@ export default function TestPage() {
       mimeType: 'image/jpeg',
       filesize: 0,
     },
-    showImage: true,
-  }
+  };
 
   const mockContactInfoData = {
     title: 'Контакти',
     showMap: true,
-  }
+  };
 
-  const mockDoctorsData = {}
+  const mockDoctorsData = {};
 
   const mockFaqData = {
     title: 'Часті питання',
-  }
+  };
 
   const mockPricesData = {
     title: 'Наші ціни',
     description: 'Прозорі та доступні ціни на всі послуги',
-  }
+  };
 
   return (
     <div className="bg-gray-50">
@@ -210,5 +209,5 @@ export default function TestPage() {
         <h2 className="text-xl font-bold">End of Test Page</h2>
       </div>
     </div>
-  )
+  );
 }

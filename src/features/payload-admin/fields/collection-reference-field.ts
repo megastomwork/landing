@@ -1,19 +1,20 @@
-import type { Field } from 'payload'
+import type { Field } from 'payload';
+import type { ReactNode } from 'react';
 
 export interface CollectionReferenceFieldColumn {
-  key: string
-  label: string
-  render?: (value: unknown) => string
+  key: string;
+  label: string;
+  render?: (value: unknown, row: Record<string, unknown>) => ReactNode;
 }
 
-interface CollectionReferenceFieldOptions {
-  collectionSlug: string
-  title: string
-  description?: string
-  name?: string
-  showTable?: boolean
-  columns?: CollectionReferenceFieldColumn[]
-  pageSize?: number
+export interface CollectionReferenceFieldOptions {
+  collectionSlug: string;
+  title: string;
+  description?: string;
+  name?: string;
+  showTable?: boolean;
+  columns?: CollectionReferenceFieldColumn[];
+  pageSize?: number;
 }
 
 export const createCollectionReferenceField = ({
@@ -43,5 +44,5 @@ export const createCollectionReferenceField = ({
         },
       },
     },
-  }
-}
+  };
+};

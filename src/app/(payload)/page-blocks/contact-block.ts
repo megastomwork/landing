@@ -1,11 +1,14 @@
-import type { Block } from 'payload'
-import { createGlobalReferenceField, createCollectionReferenceField } from '@/features/payload-admin'
-import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
+import type { Block } from 'payload';
+import {
+  createGlobalReferenceField,
+  createCollectionReferenceField,
+} from '@/features/payload-admin';
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 import {
   createContactBlockFields,
   contactsGlobalReferenceConfig,
-  socialsReferenceConfig
-} from '@/shared/payload/schemas/page-blocks/contact-schema'
+  socialsReferenceConfig,
+} from '@/shared/payload/schemas/page-blocks';
 
 export const contactBlock: Block = {
   slug: BLOCK_TYPES.CONTACT,
@@ -19,4 +22,4 @@ export const contactBlock: Block = {
     createGlobalReferenceField(contactsGlobalReferenceConfig),
     createCollectionReferenceField(socialsReferenceConfig),
   ],
-}
+};

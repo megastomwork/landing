@@ -13,7 +13,6 @@ export function PageContactSection({
   title,
   description,
   image,
-  showImage = true,
 }: PageContactSectionProps) {
   const contacts = useContacts();
   const socials = useSocials();
@@ -33,7 +32,7 @@ export function PageContactSection({
   return (
     <section className="bg-white px-4 py-4">
       <div className="mx-auto grid max-w-6xl items-center gap-4 md:grid-cols-2">
-        {showImage && imageData?.url && (
+        {imageData?.url && (
           <div className="overflow-hidden rounded-xl shadow-lg">
             <Image
               src={imageData.url}
