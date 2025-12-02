@@ -1,5 +1,5 @@
-import type { Block } from 'payload'
-import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
+import type { Block } from 'payload';
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 
 export const contactInfoBlock: Block = {
   slug: BLOCK_TYPES.CONTACT_INFO,
@@ -22,4 +22,4 @@ export const contactInfoBlock: Block = {
       defaultValue: true,
     },
   ],
-}
+};

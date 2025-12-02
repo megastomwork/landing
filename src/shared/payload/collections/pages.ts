@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload'
-import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
+import type { CollectionConfig } from 'payload';
+import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants';
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
 import {
   intro1Block,
   intro2Block,
@@ -17,19 +17,20 @@ import {
   faqBlock,
   pricesBlock,
   contactInfoBlock,
-} from '@/app/(payload)/page-blocks'
+} from '@/shared/payload/blocks';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
   versions: {
     drafts: true,
- },
+  },
   admin: {
     useAsTitle: 'title',
     group: GROUPS_LABELS.PAGES,
     livePreview: {
-      url: ({ data }) => `${data.path === '/' ? '' : data.path}?${LIVE_PREVIEW_FLAG}=true`,
-    }
+      url: ({ data }) =>
+        `${data.path === '/' ? '' : data.path}?${LIVE_PREVIEW_FLAG}=true`,
+    },
   },
   access: {
     read: () => true,
@@ -81,17 +82,18 @@ export const Pages: CollectionConfig = {
               required: true,
               unique: true,
               admin: {
-                description: 'Наприклад: /blog або /about. Обов\'язково починається з /',
+                description:
+                  "Наприклад: /blog або /about. Обов'язково починається з /",
               },
               validate: (value: string | null | undefined) => {
-                if (!value) return true
+                if (!value) return true;
                 if (!value.startsWith('/')) {
-                  return 'Шлях повинен починатись з /'
+                  return 'Шлях повинен починатись з /';
                 }
                 if (value.includes(' ')) {
-                  return 'Шлях не може містити пробіли'
+                  return 'Шлях не може містити пробіли';
                 }
-                return true
+                return true;
               },
             },
             {
@@ -110,4 +112,4 @@ export const Pages: CollectionConfig = {
       ],
     },
   ],
-}
+};

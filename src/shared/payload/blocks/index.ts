@@ -1,0 +1,15 @@
+export { intro1Block } from './intro-1-block';
+export { intro2Block } from './intro-2-block';
+export { aboutBlock } from './about-block';
+export { servicesBlock } from './services-block';
+export { feedbacksBlock } from './feedbacks-block';
+export { doctorsBlock } from './doctors-block';
+export { contactBlock } from './contact-block';
+export { faqBlock } from './faq-block';
+export { pricesBlock } from './prices-block';
+export { paragraphBlock } from './paragraph-block';
+export { descriptionBlock } from './description-block';
+export { blogGridBlock } from './blog-grid-block';
+export { blogHeroBlock } from './blog-hero-block';
+export { blogRowBlock } from './blog-row-block';
+export { contactInfoBlock } from './contact-info-block';

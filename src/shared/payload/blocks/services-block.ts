@@ -1,4 +1,6 @@
-import type { Field } from 'payload'
+import type { Block, Field } from 'payload';
+import { createCollectionReferenceField } from '@/features/payload-admin';
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 
 /**
  * Schema for Services block base fields
@@ -16,7 +18,7 @@ export const createServicesBlockFields = (): Field[] => [
     type: 'textarea',
     label: 'Опис',
   },
-]
+];
 
 /**
  * Configuration for services reference field
@@ -32,4 +34,17 @@ export const servicesReferenceConfig = {
     { key: 'title', label: 'Заголовок' },
     { key: 'description', label: 'Опис' },
   ],
-}
+};
+
+export const servicesBlock: Block = {
+  slug: BLOCK_TYPES.SERVICES,
+  labels: {
+    singular: 'Секція послуг',
+    plural: 'Секції послуг',
+  },
+  imageURL: '/blocks/services.png',
+  fields: [
+    ...createServicesBlockFields(),
+    createCollectionReferenceField(servicesReferenceConfig),
+  ],
+};

@@ -1,4 +1,5 @@
-import type { Field } from 'payload'
+import type { Block, Field } from 'payload';
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 
 /**
  * Schema for About block
@@ -46,4 +47,14 @@ export const createAboutBlockFields = (): Field[] => [
       },
     ],
   },
-]
+];
+
+export const aboutBlock: Block = {
+  slug: BLOCK_TYPES.ABOUT,
+  labels: {
+    singular: 'Секція "Про нас"',
+    plural: 'Секції "Про нас"',
+  },
+  imageURL: '/blocks/about-us.png',
+  fields: createAboutBlockFields(),
+};

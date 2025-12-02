@@ -1,4 +1,6 @@
-import type { Field } from 'payload'
+import type { Block, Field } from 'payload';
+import { createCollectionReferenceField } from '@/features/payload-admin';
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 
 /**
  * Schema for Feedbacks block base fields
@@ -11,7 +13,7 @@ export const createFeedbacksBlockFields = (): Field[] => [
     label: 'Заголовок',
     defaultValue: 'Відгуки наших клієнтів',
   },
-]
+];
 
 /**
  * Configuration for feedbacks reference field
@@ -27,4 +29,17 @@ export const feedbacksReferenceConfig = {
     { key: 'content', label: 'Відгук' },
     { key: 'status', label: 'Статус' },
   ],
-}
+};
+
+export const feedbacksBlock: Block = {
+  slug: BLOCK_TYPES.FEEDBACKS,
+  labels: {
+    singular: 'Секція відгуків',
+    plural: 'Секції відгуків',
+  },
+  imageURL: '/blocks/feedbacks.png',
+  fields: [
+    ...createFeedbacksBlockFields(),
+    createCollectionReferenceField(feedbacksReferenceConfig),
+  ],
+};

@@ -1,5 +1,5 @@
-import type { Block } from 'payload'
-import { BLOCK_TYPES } from '@/shared/payload/constants/block-types'
+import type { Block } from 'payload';
+import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 
 export const descriptionBlock: Block = {
   slug: BLOCK_TYPES.DESCRIPTION,
@@ -22,4 +22,4 @@ export const descriptionBlock: Block = {
       required: true,
     },
   ],
-}
+};
