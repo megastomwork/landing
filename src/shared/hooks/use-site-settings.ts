@@ -26,8 +26,6 @@ export const useContactButton = () => {
   const { data } = useSiteSettings()
   return {
     text: data?.contactButtonText || "Зв'язатись",
-    showInHeader: data?.showInHeader ?? true,
-    showInMobileMenu: data?.showInMobileMenu ?? false,
   }
 }
 

@@ -182,7 +182,6 @@ export interface Page {
     | (
         | {
             image: number | Media;
-            alt?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'intro-1';
@@ -699,7 +698,6 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               image?: T;
-              alt?: T;
               id?: T;
               blockName?: T;
             };
@@ -1011,11 +1009,6 @@ export interface SiteSetting {
    * Відображається в хедері та мобільному меню
    */
   contactButtonText: string;
-  showInHeader?: boolean | null;
-  /**
-   * Додатково до соц. мереж
-   */
-  showInMobileMenu?: boolean | null;
   /**
    * Текст над пунктами меню у футері
    */
@@ -1088,8 +1081,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
       };
   logo?: T;
   contactButtonText?: T;
-  showInHeader?: T;
-  showInMobileMenu?: T;
   footerMenuTitle?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -23,9 +23,9 @@ import { GROUPS_LABELS } from '../constants/groups';
  * - Validation for menu paths (must start with /)
  *
  * @tabs
- * 1. Меню - Navigation menu items (used in header and footer)
- * 2. Хедер - Header configuration (logo, contact button, visibility)
- * 3. Футер - Footer configuration (menu title, contacts, schedule)
+ * 1. Menu - Navigation menu items (used in header and footer)
+ * 2. Header - Header configuration (logo, contact button, visibility)
+ * 3. Footer - Footer configuration (menu title, contacts, schedule)
  *
  * @validation
  * - Menu paths must start with /
@@ -127,9 +127,9 @@ export const siteSettings: GlobalConfig = {
               type: 'collapsible',
               admin: {
                 initCollapsed: false,
+                description: 'Налаштування кнопки контакту',
               },
               label: "Кнопка зв'язку",
-              description: 'Налаштування кнопки контакту',
               fields: [
                 {
                   name: 'contactButtonText',
@@ -141,32 +141,33 @@ export const siteSettings: GlobalConfig = {
                     description: 'Відображається в хедері та мобільному меню',
                   },
                 },
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'showInHeader',
-                      type: 'checkbox',
-                      label: 'Показувати в хедері (desktop)',
-                      defaultValue: true,
-                      admin: {
-                        width: '50%',
-                      },
-                    },
-                    {
-                      name: 'showInMobileMenu',
-                      type: 'checkbox',
-                      label: 'Показувати в мобільному меню',
-                      defaultValue: false,
-                      admin: {
-                        width: '50%',
-                        description: 'Додатково до соц. мереж',
-                      },
-                    },
-                  ],
-                },
               ],
             },
+
+            createGlobalReferenceField({
+              // TODO: add description about display place (mobile header)
+              globalSlug: 'contacts',
+              title: 'Контакти',
+              fields: ['address', 'phone'],
+            }),
+
+            createCollectionReferenceField({
+              collectionSlug: 'socials',
+              title: 'Соціальні мережі',
+              description: 'Відображаються в мобільній версії херера',
+              showTable: true,
+              columns: [
+                {
+                  key: 'title',
+                  label: 'Назва',
+                },
+                {
+                  key: 'link',
+                  label: 'Посилання',
+                },
+              ],
+              pageSize: 10,
+            }),
           ],
         },
 

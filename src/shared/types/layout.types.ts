@@ -22,8 +22,6 @@ export interface SiteSettingsData {
   menuItems: MenuItemWithState[];
   contactButton: {
     text: string;
-    showInHeader: boolean;
-    showInMobileMenu: boolean;
   };
   footer: {
     menuTitle: string;

@@ -1,5 +1,5 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig, Validate } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig, Validate } from 'payload';
 
 /**
  * Socials Collection
@@ -28,7 +28,9 @@ import type { CollectionConfig, Validate } from 'payload'
  */
 export const Socials: CollectionConfig = {
   slug: 'socials',
-  label: 'Соціальні мережі',
+  labels: {
+    singular: 'Соціальні мережі',
+  },
   access: {
     read: () => true,
   },
@@ -58,10 +60,14 @@ export const Socials: CollectionConfig = {
         placeholder: 'Наприклад: https://instagram.com/your_clinic',
       },
       validate: ((value: unknown) => {
-        if (typeof value === 'string' && !value.startsWith('http://') && !value.startsWith('https://')) {
-          return 'Посилання повинно починатися з http:// або https://'
+        if (
+          typeof value === 'string' &&
+          !value.startsWith('http://') &&
+          !value.startsWith('https://')
+        ) {
+          return 'Посилання повинно починатися з http:// або https://';
         }
-        return true
+        return true;
       }) as Validate,
     },
     {
@@ -71,8 +77,9 @@ export const Socials: CollectionConfig = {
       label: 'Іконка',
       required: true,
       admin: {
-        description: 'Іконка соціальної мережі (рекомендовано SVG, 24x24px або більше)',
+        description:
+          'Іконка соціальної мережі (рекомендовано SVG, 24x24px або більше)',
       },
     },
   ],
-}
+};

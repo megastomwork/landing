@@ -3,6 +3,9 @@ import type { CollectionConfig } from 'payload';
 
 export const Services: CollectionConfig = {
   slug: 'services',
+  labels: {
+    singular: 'Послуги',
+  },
   access: {
     read: () => true,
   },
