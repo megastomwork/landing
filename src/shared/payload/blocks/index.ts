@@ -13,3 +13,4 @@ export { blogGridBlock } from './blog-grid-block';
 export { blogHeroBlock } from './blog-hero-block';
 export { blogRowBlock } from './blog-row-block';
 export { contactInfoBlock } from './contact-info-block';
+export { blogGridWithFaqBlock } from './blog-grid-with-faq-block';

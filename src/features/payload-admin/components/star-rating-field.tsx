@@ -1,21 +1,22 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { NumberFieldClientComponent } from 'payload'
+import React from 'react';
+import { useField } from '@payloadcms/ui';
+import type { NumberFieldClientComponent } from 'payload';
 
-export const StarRatingField: NumberFieldClientComponent = (props) => {
-  const { value, onChange, path } = props
+export const StarRatingField: NumberFieldClientComponent = ({ path }) => {
+  const { value, setValue } = useField<number>({ path });
 
-  const currentValue = typeof value === 'number' ? value : 0
+  const currentValue = typeof value === 'number' ? value : 0;
 
   const handleStarClick = (rating: number) => {
-    onChange(rating)
-  }
+    setValue(rating);
+  };
 
   return (
     <div className="star-rating-field">
       <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
+        {[1, 2, 3, 4, 5].map(star => (
           <button
             key={star}
             type="button"
@@ -32,14 +33,20 @@ export const StarRatingField: NumberFieldClientComponent = (props) => {
               strokeWidth="1.5"
               className="transition-colors"
             >
+              <title>star icon</title>
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </button>
         ))}
       </div>
-      <div className="mt-2 text-sm text-field-text-muted">
-        Обрано: {currentValue} {currentValue === 1 ? 'зірка' : currentValue >= 2 && currentValue <= 4 ? 'зірки' : 'зірок'}
+      <div className="text-field-text-muted mt-2 text-sm">
+        Обрано: {currentValue}{' '}
+        {currentValue === 1
+          ? 'зірка'
+          : currentValue >= 2 && currentValue <= 4
+            ? 'зірки'
+            : 'зірок'}
       </div>
     </div>
-  )
-}
+  );
+};

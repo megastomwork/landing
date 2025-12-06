@@ -1,6 +1,6 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import { StarRatingField } from '@/features/payload-admin'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import { StarRatingField } from '@/features/payload-admin';
+import type { CollectionConfig } from 'payload';
 
 /**
  * Feedbacks Collection
@@ -43,7 +43,7 @@ export const Feedbacks: CollectionConfig = {
       required: true,
       admin: {
         description: "Повне ім'я або ініціали пацієнта",
-        placeholder: "Наприклад: Іван Петренко або І.П.",
+        placeholder: 'Наприклад: Іван Петренко або І.П.',
       },
     },
     {
@@ -57,14 +57,16 @@ export const Feedbacks: CollectionConfig = {
       admin: {
         description: 'Оберіть кількість зірок від 1 до 5',
         components: {
-          Field: StarRatingField,
+          Field: {
+            path: '@/features/payload-admin/components/star-rating-field#StarRatingField',
+          },
         },
       },
       validate: (value: number) => {
         if (typeof value === 'number' && (value < 1 || value > 5)) {
-          return 'Оцінка має бути від 1 до 5 зірок'
+          return 'Оцінка має бути від 1 до 5 зірок';
         }
-        return true
+        return true;
       },
     },
     {
@@ -79,9 +81,9 @@ export const Feedbacks: CollectionConfig = {
       },
       validate: (value: string) => {
         if (typeof value === 'string' && value.length < 10) {
-          return 'Відгук повинен містити щонайменше 10 символів'
+          return 'Відгук повинен містити щонайменше 10 символів';
         }
-        return true
+        return true;
       },
     },
     {
@@ -100,4 +102,4 @@ export const Feedbacks: CollectionConfig = {
       },
     },
   ],
-}
+};

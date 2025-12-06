@@ -17,6 +17,7 @@ import {
   faqBlock,
   pricesBlock,
   contactInfoBlock,
+  blogGridWithFaqBlock,
 } from '@/shared/payload/blocks';
 
 export const Pages: CollectionConfig = {
@@ -68,6 +69,7 @@ export const Pages: CollectionConfig = {
                 faqBlock,
                 pricesBlock,
                 contactInfoBlock,
+                blogGridWithFaqBlock,
               ],
             },
           ],

@@ -27,6 +27,7 @@ export const BLOCK_TYPES = {
   PRICES: 'prices',
   CONTACT_INFO: 'contact-info',
   WORKING_HOURS: 'working-hours',
+  BLOG_GRID_WITH_FAQ: 'blog-grid-with-faq',
 } as const;
 
 export type BlockType = (typeof BLOCK_TYPES)[keyof typeof BLOCK_TYPES];
