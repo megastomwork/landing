@@ -1,5 +1,5 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 /**
  * Doctors Collection
@@ -20,7 +20,10 @@ import type { CollectionConfig } from 'payload'
  */
 export const Doctors: CollectionConfig = {
   slug: 'doctors',
-  label: 'Лікарі',
+  labels: {
+    singular: 'Лікар',
+    plural: 'Лікарі',
+  },
   access: {
     read: () => true,
   },
@@ -47,7 +50,8 @@ export const Doctors: CollectionConfig = {
       relationTo: 'media',
       required: true,
       admin: {
-        description: 'Професійне фото лікаря (рекомендовано квадратний формат, мінімум 400x400px)',
+        description:
+          'Професійне фото лікаря (рекомендовано квадратний формат, мінімум 400x400px)',
       },
     },
     {
@@ -86,4 +90,4 @@ export const Doctors: CollectionConfig = {
       },
     },
   ],
-}
+};

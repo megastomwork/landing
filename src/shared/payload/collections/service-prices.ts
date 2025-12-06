@@ -1,5 +1,5 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 /**
  * Service Prices Collection
@@ -25,7 +25,10 @@ import type { CollectionConfig } from 'payload'
  */
 export const ServicePrices: CollectionConfig = {
   slug: 'service-prices',
-  label: 'Ціни на послуги',
+  labels: {
+    singular: 'Ціна',
+    plural: 'Ціни на послуги',
+  },
   access: {
     read: () => true,
   },
@@ -66,4 +69,4 @@ export const ServicePrices: CollectionConfig = {
       },
     },
   ],
-}
+};

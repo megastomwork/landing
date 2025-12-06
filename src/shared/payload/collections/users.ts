@@ -1,5 +1,5 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 /**
  * Users Collection
@@ -26,6 +26,10 @@ import type { CollectionConfig } from 'payload'
  */
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: 'Користувач',
+    plural: 'Користувачі',
+  },
   admin: {
     useAsTitle: 'email',
     group: GROUPS_LABELS.SETTINGS,
@@ -43,4 +47,4 @@ export const Users: CollectionConfig = {
       },
     },
   ],
-}
+};

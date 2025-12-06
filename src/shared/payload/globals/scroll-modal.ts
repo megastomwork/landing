@@ -44,7 +44,7 @@ import {
  */
 export const scrollModal: GlobalConfig = {
   slug: 'scrollModal',
-  label: 'Scroll Modal',
+  label: 'Модальне вікно',
 
   admin: {
     description: "Налаштування модального вікна, що з'являється при скролі",

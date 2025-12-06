@@ -22,12 +22,17 @@ import {
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  labels: {
+    singular: 'Сторінка',
+    plural: 'Сторінки',
+  },
   versions: {
     drafts: true,
   },
   admin: {
     useAsTitle: 'title',
     group: GROUPS_LABELS.PAGES,
+    description: 'Сторінки сайту з динамічними секціями',
     livePreview: {
       url: ({ data }) =>
         `${data.path === '/' ? '' : data.path}?${LIVE_PREVIEW_FLAG}=true`,

@@ -29,7 +29,8 @@ import type { CollectionConfig, Validate } from 'payload';
 export const Socials: CollectionConfig = {
   slug: 'socials',
   labels: {
-    singular: 'Соціальні мережі',
+    singular: 'Соціальна мережа',
+    plural: 'Соціальні мережі',
   },
   access: {
     read: () => true,

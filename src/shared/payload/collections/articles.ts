@@ -1,7 +1,7 @@
-import { CONFIG } from '@/shared/constants/client-config.constants'
-import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants'
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { CONFIG } from '@/shared/constants/client-config.constants';
+import { LIVE_PREVIEW_FLAG } from '@/shared/constants/payload.constants';
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 /**
  * Articles Collection
@@ -23,7 +23,10 @@ import type { CollectionConfig } from 'payload'
  */
 export const Articles: CollectionConfig = {
   slug: 'articles',
-  label: 'Статті',
+  labels: {
+    singular: 'Стаття',
+    plural: 'Статті',
+  },
   trash: true,
   access: {
     read: () => true,
@@ -43,7 +46,8 @@ export const Articles: CollectionConfig = {
       label: 'Заголовок',
       required: true,
       admin: {
-        description: 'Заголовок статті, який відображається на сторінці та в списку статей',
+        description:
+          'Заголовок статті, який відображається на сторінці та в списку статей',
         placeholder: 'Наприклад: Як правильно доглядати за зубами',
       },
     },
@@ -82,4 +86,4 @@ export const Articles: CollectionConfig = {
       },
     },
   ],
-}
+};

@@ -39,7 +39,7 @@ import { GROUPS_LABELS } from '../constants/groups';
  */
 export const siteSettings: GlobalConfig = {
   slug: 'siteSettings',
-  label: 'Layout',
+  label: 'Налаштування сайту',
 
   admin: {
     description: 'Глобальні налаштування хедера, футера та навігації',

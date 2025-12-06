@@ -1,5 +1,5 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 /**
  * Media Collection
@@ -24,7 +24,10 @@ import type { CollectionConfig } from 'payload'
  */
 export const Media: CollectionConfig = {
   slug: 'media',
-  label: 'Медіа',
+  labels: {
+    singular: 'Файл',
+    plural: 'Медіа',
+  },
   admin: {
     group: GROUPS_LABELS.SETTINGS,
     description: 'Бібліотека зображень та файлів',
@@ -38,10 +41,11 @@ export const Media: CollectionConfig = {
       type: 'text',
       label: 'Alt текст',
       admin: {
-        description: 'Опис зображення для доступності та SEO (рекомендовано для всіх зображень)',
+        description:
+          'Опис зображення для доступності та SEO (рекомендовано для всіх зображень)',
         placeholder: 'Наприклад: Фото стоматологічного кабінету',
       },
     },
   ],
   upload: true,
-}
+};

@@ -26,7 +26,10 @@ import type { CollectionConfig } from 'payload';
  */
 export const Feedbacks: CollectionConfig = {
   slug: 'feedbacks',
-  label: 'Відгуки',
+  labels: {
+    singular: 'Відгук',
+    plural: 'Відгуки',
+  },
   access: {
     read: () => true,
   },

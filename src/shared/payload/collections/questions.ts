@@ -1,14 +1,19 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 export const Questions: CollectionConfig = {
   slug: 'questions',
+  labels: {
+    singular: 'Питання',
+    plural: 'Питання',
+  },
   access: {
     read: () => true,
   },
   admin: {
     useAsTitle: 'question',
     group: GROUPS_LABELS.REPUTATION,
+    description: 'Часті питання та відповіді',
   },
   fields: [
     {
@@ -22,9 +27,9 @@ export const Questions: CollectionConfig = {
       },
       validate: (value: string) => {
         if (typeof value === 'string' && value.length < 5) {
-          return 'Питання повинно містити щонайменше 5 символів'
+          return 'Питання повинно містити щонайменше 5 символів';
         }
-        return true
+        return true;
       },
     },
     {
@@ -39,10 +44,10 @@ export const Questions: CollectionConfig = {
       },
       validate: (value: string) => {
         if (typeof value === 'string' && value.length < 10) {
-          return 'Відповідь повинна містити щонайменше 10 символів'
+          return 'Відповідь повинна містити щонайменше 10 символів';
         }
-        return true
+        return true;
       },
     },
   ],
-}
+};

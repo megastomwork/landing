@@ -1,5 +1,5 @@
-import { GROUPS_LABELS } from '@/shared/payload/constants/groups'
-import type { CollectionConfig } from 'payload'
+import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import type { CollectionConfig } from 'payload';
 
 /**
  * Schedule Collection
@@ -25,7 +25,10 @@ import type { CollectionConfig } from 'payload'
  */
 export const Schedule: CollectionConfig = {
   slug: 'schedule',
-  label: 'Години роботи',
+  labels: {
+    singular: 'Графік',
+    plural: 'Графік роботи',
+  },
   access: {
     read: () => true,
   },
@@ -41,8 +44,9 @@ export const Schedule: CollectionConfig = {
       label: 'Дні',
       required: true,
       admin: {
-        description: 'День тижня або період (наприклад, Понеділок-П\'ятниця, Субота)',
-        placeholder: 'Наприклад: Понеділок - П\'ятниця',
+        description:
+          "День тижня або період (наприклад, Понеділок-П'ятниця, Субота)",
+        placeholder: "Наприклад: Понеділок - П'ятниця",
       },
     },
     {
@@ -56,4 +60,4 @@ export const Schedule: CollectionConfig = {
       },
     },
   ],
-}
+};
