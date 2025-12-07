@@ -1,5 +1,5 @@
 import payloadAPI from '@/shared/lib/payload-rest';
-import { Question } from '@/shared/types/question.types';
+import { Question } from '@/shared/payload/payload-types';
 import { useQuery } from '@tanstack/react-query';
 
 export const useQuestions = () => {

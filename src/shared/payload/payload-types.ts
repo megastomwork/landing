@@ -97,9 +97,15 @@ export interface Config {
     'service-prices': ServicePricesSelect<false> | ServicePricesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    'payload-locked-documents':
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences':
+      | PayloadPreferencesSelect<false>
+      | PayloadPreferencesSelect<true>;
+    'payload-migrations':
+      | PayloadMigrationsSelect<false>
+      | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: number;
@@ -304,6 +310,14 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'contact-info';
+          }
+        | {
+            blogTitle?: string | null;
+            buttonText?: string | null;
+            faqTitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blog-grid-with-faq';
           }
       )[]
     | null;
@@ -1122,7 +1136,6 @@ export interface ScrollModalSelect<T extends boolean = true> {
 export interface Auth {
   [k: string]: unknown;
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

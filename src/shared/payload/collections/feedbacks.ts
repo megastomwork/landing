@@ -65,7 +65,7 @@ export const Feedbacks: CollectionConfig = {
           },
         },
       },
-      validate: (value: number) => {
+      validate: (value: unknown) => {
         if (typeof value === 'number' && (value < 1 || value > 5)) {
           return 'Оцінка має бути від 1 до 5 зірок';
         }
@@ -82,7 +82,7 @@ export const Feedbacks: CollectionConfig = {
         placeholder: 'Введіть відгук пацієнта...',
         rows: 5,
       },
-      validate: (value: string) => {
+      validate: (value: unknown) => {
         if (typeof value === 'string' && value.length < 10) {
           return 'Відгук повинен містити щонайменше 10 символів';
         }

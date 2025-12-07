@@ -20,8 +20,6 @@ export const contactInfoBlock: Block = {
     createGlobalReferenceField({
       globalSlug: 'contacts',
       title: 'Контакти',
-      description:
-        'Контактна інформація відображається з глобальних налаштувань',
       fields: ['address', 'phone', 'addressMapLink'],
       fieldLabels: {
         address: 'Адреса',

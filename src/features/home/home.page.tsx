@@ -16,7 +16,7 @@ const ContactInfoSection = dynamic(
 const IntroSection = dynamic(() => import('./intro/intro-section'));
 
 export function HomePage() {
-  const { footerRef, servicesRef } = useTriggerModalOnScroll();
+  useTriggerModalOnScroll();
   return (
     <>
       <ScrollAnimatedContainer>
@@ -37,7 +37,6 @@ export function HomePage() {
       <ScrollAnimatedContainer>
         <ContactInfoSection />
       </ScrollAnimatedContainer>
-      <div ref={footerRef}></div>
     </>
   );
 }

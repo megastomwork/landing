@@ -25,7 +25,7 @@ export const Questions: CollectionConfig = {
         description: 'Часте питання від пацієнтів',
         placeholder: 'Наприклад: Чи болюче видаляти зуб?',
       },
-      validate: (value: string) => {
+      validate: (value: unknown) => {
         if (typeof value === 'string' && value.length < 5) {
           return 'Питання повинно містити щонайменше 5 символів';
         }
@@ -42,7 +42,7 @@ export const Questions: CollectionConfig = {
         placeholder: 'Введіть відповідь...',
         rows: 4,
       },
-      validate: (value: string) => {
+      validate: (value: unknown) => {
         if (typeof value === 'string' && value.length < 10) {
           return 'Відповідь повинна містити щонайменше 10 символів';
         }

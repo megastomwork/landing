@@ -22,30 +22,25 @@ type BlogGridWithFaqSectionProps = SectionProps<'blog-grid-with-faq'>;
 
 export function BlogGridWithFaqSection({
   blogTitle,
-  articlesCount = 4,
-  showMoreLink = true,
-  buttonText = 'Показати більше',
+  buttonText,
   faqTitle,
-  selectedQuestions,
 }: BlogGridWithFaqSectionProps) {
   const [isShowingAll, setIsShowingAll] = useState(false);
+  const articlesCount = 4;
+  const finalButtonText = buttonText || 'Показати більше';
 
   const { data: articles, isLoading: articlesLoading } = usePageArticles({
     articlesCount: isShowingAll ? 100 : articlesCount,
   });
 
-  const { data: allQuestions, isLoading: questionsLoading } = useQuestions();
+  const { data: questions, isLoading: questionsLoading } = useQuestions();
 
   const toggleShowAll = useCallback(() => {
     setIsShowingAll(state => !state);
   }, []);
 
-  // Filter questions if specific ones are selected
-  const questions = selectedQuestions?.length
-    ? allQuestions?.filter(q => selectedQuestions.includes(q.id))
-    : allQuestions;
-
   const totalArticles = articles?.length ?? 0;
+  const showMoreLink = true;
 
   return (
     <div className="mx-auto mt-[1.25rem] max-w-[1040px]">
@@ -67,7 +62,7 @@ export function BlogGridWithFaqSection({
                 toggleShowAll={toggleShowAll}
                 totalArticles={totalArticles}
                 showMoreLink={showMoreLink}
-                buttonText={buttonText}
+                buttonText={finalButtonText}
               />
             </FadeLoadingContainer>
           </div>
