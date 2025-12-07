@@ -15,6 +15,16 @@ export interface CollectionReferenceFieldOptions {
   showTable?: boolean;
   columns?: CollectionReferenceFieldColumn[];
   pageSize?: number;
+  /**
+   * Filters to apply to the collection query
+   * Use $id, $field_name to reference current document fields
+   *
+   * @example
+   * filters: { serviceId: '$id' } // Filter by current document ID
+   * filters: { status: 'published' } // Filter by static value
+   * filters: { authorId: '$createdBy', status: 'published' } // Multiple filters
+   */
+  filters?: Record<string, string>;
 }
 
 export const createCollectionReferenceField = ({
@@ -25,6 +35,7 @@ export const createCollectionReferenceField = ({
   showTable = false,
   columns = [],
   pageSize = 10,
+  filters,
 }: CollectionReferenceFieldOptions): Field => {
   return {
     name,
@@ -40,6 +51,7 @@ export const createCollectionReferenceField = ({
             showTable,
             columns,
             pageSize,
+            filters,
           },
         },
       },

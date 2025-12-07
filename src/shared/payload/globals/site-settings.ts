@@ -41,6 +41,10 @@ export const siteSettings: GlobalConfig = {
   slug: 'siteSettings',
   label: 'Налаштування сайту',
 
+  access: {
+    read: () => true,
+  },
+
   admin: {
     description: 'Глобальні налаштування хедера, футера та навігації',
     group: GROUPS_LABELS.SETTINGS,

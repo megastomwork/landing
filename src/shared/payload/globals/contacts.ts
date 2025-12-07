@@ -1,5 +1,5 @@
-import type { GlobalConfig, Validate } from 'payload'
-import { GROUPS_LABELS } from '../constants/groups'
+import type { GlobalConfig, Validate } from 'payload';
+import { GROUPS_LABELS } from '../constants/groups';
 
 /**
  * Contacts Global Configuration
@@ -29,6 +29,10 @@ import { GROUPS_LABELS } from '../constants/groups'
 export const contacts: GlobalConfig = {
   slug: 'contacts',
   label: 'Контакти',
+
+  access: {
+    read: () => true,
+  },
 
   admin: {
     description: 'Clinic contact information',
@@ -63,9 +67,9 @@ export const contacts: GlobalConfig = {
           },
           validate: ((value, { siblingData }) => {
             if (typeof value === 'string' && !value.startsWith('http')) {
-              return 'Must be a full URL (starts with http)'
+              return 'Must be a full URL (starts with http)';
             }
-            return true
+            return true;
           }) as Validate,
         },
         {
@@ -98,4 +102,4 @@ export const contacts: GlobalConfig = {
       ],
     },
   ],
-}
+};

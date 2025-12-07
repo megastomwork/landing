@@ -46,6 +46,10 @@ export const scrollModal: GlobalConfig = {
   slug: 'scrollModal',
   label: 'Модальне вікно',
 
+  access: {
+    read: () => true,
+  },
+
   admin: {
     description: "Налаштування модального вікна, що з'являється при скролі",
     group: GROUPS_LABELS.PAGES,

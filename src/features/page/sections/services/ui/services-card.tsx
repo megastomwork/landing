@@ -13,7 +13,7 @@ export default function ServicesCard({ service }: { service: Service }) {
     >
       <div className="mb-4 rounded-2xl bg-white p-2">
         <PayloadImage
-          src={getPayloadImageUrl(service.iconImage)}
+          src={getPayloadImageUrl(service.icon)}
           alt={service.title}
           width={65}
           height={65}

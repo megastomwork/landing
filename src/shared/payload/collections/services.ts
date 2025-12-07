@@ -1,4 +1,5 @@
 import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import { createCollectionReferenceField } from '@/features/payload-admin/fields/collection-reference-field';
 import type { CollectionConfig } from 'payload';
 
 export const Services: CollectionConfig = {
@@ -68,5 +69,19 @@ export const Services: CollectionConfig = {
         description: 'Тільки опубліковані послуги відображаються на сайті',
       },
     },
+    createCollectionReferenceField({
+      collectionSlug: 'service-prices',
+      title: 'Ціни на цю послугу',
+      description: 'Для редагування цін перейдіть до колекції Service Prices',
+      showTable: true,
+      columns: [
+        { key: 'title', label: 'Назва процедури' },
+        { key: 'price', label: 'Ціна' },
+      ],
+      pageSize: 10,
+      filters: {
+        serviceId: '$id', // Filter by current service ID
+      },
+    }),
   ],
 };
