@@ -1,20 +1,17 @@
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { cn } from '@/shared/lib/css';
 
-type UnderlineProps = {
+type UnderlineProps = PropsWithChildren<{
   underlineClassName?: string;
-};
+}>;
 
-export const Underline = ({
-  children,
-  underlineClassName = 'bg-accent-100',
-}: PropsWithChildren<UnderlineProps>) => {
+export const Underline = ({ children, underlineClassName }: UnderlineProps) => {
   return (
     <span className="relative">
       {children}
       <span
         className={cn(
-          'absolute bottom-0 left-0 h-[4px] w-full bg-accent-100',
+          'bg-accent-100 absolute bottom-0 left-0 h-1 w-full max-w-full',
           underlineClassName,
         )}
       />
