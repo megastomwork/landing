@@ -1,7 +1,7 @@
 'use client';
 
 import { PageContent } from '@/features/page/components/page-content';
-import { usePage } from '@/features/page/hooks/use-page';
+import { usePage, useTriggerModalOnScroll } from '@/features/page';
 import { notFound } from 'next/navigation';
 import { use, useEffect, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -22,6 +22,9 @@ export default function Page({ params }: PageProps) {
   const path = segments ? `/${segments.join('/')}` : '/';
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const queryClient = useQueryClient();
+
+  // Initialize scroll modal functionality
+  useTriggerModalOnScroll();
 
   // Prefetch all data in parallel
   useEffect(() => {

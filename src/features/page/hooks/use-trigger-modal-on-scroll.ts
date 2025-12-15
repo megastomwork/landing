@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useOpenContactModal } from './use-open-contact-modal';
-import { useScrollModalSettings } from './use-scroll-modal-settings';
+import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-contact-modal';
+import { useScrollModalSettings } from '@/features/contact-modal/hooks/use-scroll-modal-settings';
 
 const SESSION_STORAGE_KEY = 'scrollModalShown';
 
@@ -32,15 +32,15 @@ export const useTriggerModalOnScroll = () => {
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = (scrollTop / docHeight) * 100;
 
       if (!hasScrolledDown) {
         if (scrollPercent >= settings.scrollDownTrigger) {
           setHasScrolledDown(true);
         }
-      }
-      else if (!hasShownModal) {
+      } else if (!hasShownModal) {
         if (scrollPercent <= settings.scrollUpTrigger) {
           openModal();
           setHasShownModal(true);
