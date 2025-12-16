@@ -1,5 +1,5 @@
-import type { NextConfig } from 'next'
-import { withPayload } from '@payloadcms/next/withPayload'
+import type { NextConfig } from 'next';
+import { withPayload } from '@payloadcms/next/withPayload';
 
 const nextConfig: NextConfig = {
   images: {
@@ -14,14 +14,19 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'megastom-frontend-git-payload-migration-ginetiks-projects.vercel.app'
-      }
+        hostname:
+          'megastom-frontend-git-payload-migration-ginetiks-projects.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'landing-chi-seven-29.vercel.app',
+      },
     ],
     formats: ['image/webp', 'image/avif'],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-}
+};
 
-export default withPayload(nextConfig)
+export default withPayload(nextConfig);
