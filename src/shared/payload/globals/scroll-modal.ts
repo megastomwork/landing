@@ -11,6 +11,7 @@ import {
  * @description
  * Global singleton for configuring scroll-triggered contact modal.
  * Modal appears after user scrolls down and then back up.
+ * **IMPORTANT: Modal works ONLY on the homepage (path: "/")**
  *
  * @translation Глобальні налаштування модального вікна зі скролом
  *
@@ -19,7 +20,7 @@ import {
  * - Scroll trigger configuration (down + up sequence)
  * - Enable/disable toggle
  * - Tab-based organization (Content + Settings)
- * - Session-based display (shows once per session)
+ * - Displays once per page load (resets on page refresh)
  *
  * @tabs
  * 1. Контент - Modal content (title, description, image)
@@ -38,7 +39,8 @@ import {
  *
  * @usage
  * - Integrated in contact-modal feature
- * - Uses session storage to prevent repeated displays
+ * - Works ONLY on homepage ("/")
+ * - Shows once per page load
  *
  * @access Global settings accessible throughout the site
  */
@@ -51,7 +53,8 @@ export const scrollModal: GlobalConfig = {
   },
 
   admin: {
-    description: "Налаштування модального вікна, що з'являється при скролі",
+    description:
+      'Налаштування модального вікна, що з\'являється при скролі. УВАГА: Модалка працює лише на головній сторінці (шлях "/")',
     group: GROUPS_LABELS.PAGES,
   },
 
@@ -148,7 +151,8 @@ export const scrollModal: GlobalConfig = {
               label: 'Увімкнути модальне вікно',
               defaultValue: false,
               admin: {
-                description: 'Чи показувати модальне вікно на сайті',
+                description:
+                  'Чи показувати модальне вікно на головній сторінці ("/"). Модалка показується один раз за завантаження сторінки.',
               },
             },
             {

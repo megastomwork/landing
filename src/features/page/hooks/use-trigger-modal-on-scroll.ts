@@ -1,32 +1,35 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-contact-modal';
 import { useScrollModalSettings } from '@/features/contact-modal/hooks/use-scroll-modal-settings';
-
-const SESSION_STORAGE_KEY = 'scrollModalShown';
 
 export const useTriggerModalOnScroll = () => {
   const [hasScrolledDown, setHasScrolledDown] = useState(false);
   const [hasShownModal, setHasShownModal] = useState(false);
   const openModal = useOpenContactModal();
   const { data: settings, isLoading } = useScrollModalSettings();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const wasShown = sessionStorage.getItem(SESSION_STORAGE_KEY);
-      if (wasShown) {
-        setHasShownModal(true);
-      }
+    // Only work on homepage
+    if (pathname !== '/') {
+      return;
     }
-  }, []);
 
-  useEffect(() => {
     // Don't attach scroll listener if:
     // - Settings are loading
     // - Modal is disabled
     // - Modal was already shown
-    if (isLoading || !settings?.isEnabled || hasShownModal) {
+    // - Required trigger values are missing
+    if (
+      isLoading ||
+      !settings?.isEnabled ||
+      hasShownModal ||
+      typeof settings.scrollDownTrigger !== 'number' ||
+      typeof settings.scrollUpTrigger !== 'number'
+    ) {
       return;
     }
 
@@ -34,6 +37,12 @@ export const useTriggerModalOnScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight =
         document.documentElement.scrollHeight - window.innerHeight;
+
+      // Prevent division by zero for short pages
+      if (docHeight <= 0) {
+        return;
+      }
+
       const scrollPercent = (scrollTop / docHeight) * 100;
 
       if (!hasScrolledDown) {
@@ -44,9 +53,6 @@ export const useTriggerModalOnScroll = () => {
         if (scrollPercent <= settings.scrollUpTrigger) {
           openModal();
           setHasShownModal(true);
-          if (typeof window !== 'undefined') {
-            sessionStorage.setItem(SESSION_STORAGE_KEY, 'true');
-          }
         }
       }
     };
@@ -56,5 +62,14 @@ export const useTriggerModalOnScroll = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [hasScrolledDown, hasShownModal, openModal, settings, isLoading]);
+  }, [
+    pathname,
+    hasScrolledDown,
+    hasShownModal,
+    openModal,
+    settings?.isEnabled,
+    settings?.scrollDownTrigger,
+    settings?.scrollUpTrigger,
+    isLoading,
+  ]);
 };
