@@ -1,4 +1,3 @@
-import { DescriptionSection } from '@/features/page';
 import {
   createCollectionReferenceField,
   createGlobalReferenceField,

@@ -58,21 +58,6 @@ export const contacts: GlobalConfig = {
           },
         },
         {
-          name: 'addressMapLink',
-          type: 'text',
-          label: 'Посилання на Google Maps',
-          required: true,
-          admin: {
-            placeholder: 'https://maps.app.goo.gl/...',
-          },
-          validate: ((value, { siblingData }) => {
-            if (typeof value === 'string' && !value.startsWith('http')) {
-              return 'Must be a full URL (starts with http)';
-            }
-            return true;
-          }) as Validate,
-        },
-        {
           name: 'phone',
           type: 'text',
           label: 'Телефон',

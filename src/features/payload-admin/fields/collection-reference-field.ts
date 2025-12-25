@@ -1,10 +1,9 @@
 import type { Field } from 'payload';
-import type { ReactNode } from 'react';
 
 export interface CollectionReferenceFieldColumn {
   key: string;
   label: string;
-  render?: (value: unknown, row: Record<string, unknown>) => ReactNode;
+  render?: (value: unknown, row: Record<string, unknown>) => unknown;
 }
 
 export interface CollectionReferenceFieldOptions {

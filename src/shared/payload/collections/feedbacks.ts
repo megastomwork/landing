@@ -1,5 +1,4 @@
 import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
-import { StarRatingField } from '@/features/payload-admin';
 import type { CollectionConfig } from 'payload';
 
 /**

@@ -12,7 +12,7 @@ export default function ContactMap() {
     );
   }
 
-  if (!contacts.data?.address && !contacts.data?.addressOnMap?.coordinates) {
+  if (!contacts.data?.address) {
     return (
       <div className="flex h-[350px] w-full items-center justify-center rounded-xl bg-gray-100 text-gray-500">
         Карта недоступна
@@ -20,12 +20,10 @@ export default function ContactMap() {
     );
   }
 
-  const address = contacts.data.googleAddress;
+  const address = contacts.data.address;
+  const encodedAddress = encodeURIComponent(address);
 
-  const searchQuery = `Megastom, ${address}`;
-  const encodedSearchQuery = encodeURIComponent(searchQuery);
-
-  const mapSrc = `https://www.google.com/maps?q=${encodedSearchQuery}&hl=uk&z=17&output=embed`;
+  const mapSrc = `https://www.google.com/maps?q=${encodedAddress}&hl=uk&z=17&output=embed`;
 
   return (
     <div className="grow overflow-hidden rounded-xl shadow-md">

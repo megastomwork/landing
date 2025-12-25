@@ -97,15 +97,9 @@ export interface Config {
     'service-prices': ServicePricesSelect<false> | ServicePricesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
-    'payload-locked-documents':
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences':
-      | PayloadPreferencesSelect<false>
-      | PayloadPreferencesSelect<true>;
-    'payload-migrations':
-      | PayloadMigrationsSelect<false>
-      | PayloadMigrationsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: number;
@@ -178,6 +172,8 @@ export interface User {
   password?: string | null;
 }
 /**
+ * Сторінки сайту з динамічними секціями
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
@@ -306,7 +302,6 @@ export interface Page {
           }
         | {
             title?: string | null;
-            showMap?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'contact-info';
@@ -504,6 +499,8 @@ export interface Social {
   createdAt: string;
 }
 /**
+ * Часті питання та відповіді
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "questions".
  */
@@ -835,7 +832,15 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
-              showMap?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'blog-grid-with-faq'?:
+          | T
+          | {
+              blogTitle?: T;
+              buttonText?: T;
+              faqTitle?: T;
               id?: T;
               blockName?: T;
             };
@@ -1039,7 +1044,6 @@ export interface SiteSetting {
 export interface Contact {
   id: number;
   address: string;
-  addressMapLink: string;
   phone: string;
   addressLabel?: string | null;
   phoneLabel?: string | null;
@@ -1047,7 +1051,7 @@ export interface Contact {
   createdAt?: string | null;
 }
 /**
- * Налаштування модального вікна, що з'являється при скролі
+ * Налаштування модального вікна, що з'являється при скролі. УВАГА: Модалка працює лише на головній сторінці (шлях "/")
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "scrollModal".
@@ -1067,7 +1071,7 @@ export interface ScrollModal {
    */
   description: string;
   /**
-   * Чи показувати модальне вікно на сайті
+   * Чи показувати модальне вікно на головній сторінці ("/"). Модалка показується один раз за завантаження сторінки.
    */
   isEnabled?: boolean | null;
   /**
@@ -1106,7 +1110,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  */
 export interface ContactsSelect<T extends boolean = true> {
   address?: T;
-  addressMapLink?: T;
   phone?: T;
   addressLabel?: T;
   phoneLabel?: T;
@@ -1136,6 +1139,7 @@ export interface ScrollModalSelect<T extends boolean = true> {
 export interface Auth {
   [k: string]: unknown;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
