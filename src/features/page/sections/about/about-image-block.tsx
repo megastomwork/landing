@@ -1,15 +1,15 @@
-import { PayloadImage } from '@/shared/components/ui-kit/directus-image'
-import type { Media } from '@/shared/payload/payload-types'
+import { PayloadImage } from '@/shared/components/ui-kit/payload-image';
+import type { Media } from '@/shared/payload/payload-types';
 
 interface AboutImageBlockProps {
-  image: (number | null) | Media
+  image: (number | null) | Media;
 }
 
 export default function AboutImageBlock({ image }: AboutImageBlockProps) {
-  const media = typeof image === 'number' ? null : image
+  const media = typeof image === 'number' ? null : image;
 
   if (!media) {
-    return null
+    return null;
   }
 
   return (
@@ -22,5 +22,5 @@ export default function AboutImageBlock({ image }: AboutImageBlockProps) {
         className="h-auto w-full object-cover"
       />
     </div>
-  )
+  );
 }

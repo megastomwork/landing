@@ -1,13 +1,14 @@
-import Link from 'next/link'
-import { PayloadImage } from '@/shared/components/ui-kit/directus-image'
-import type { Article, Media } from '@/shared/payload/payload-types'
+import Link from 'next/link';
+import { PayloadImage } from '@/shared/components/ui-kit/payload-image';
+import type { Article, Media } from '@/shared/payload/payload-types';
 
 interface ArticleCardProps {
-  article: Article
+  article: Article;
 }
 
 export function ArticleCard({ article }: ArticleCardProps) {
-  const image = typeof article.image === 'number' ? null : (article.image as Media | null)
+  const image =
+    typeof article.image === 'number' ? null : (article.image as Media | null);
 
   return (
     <Link
@@ -30,5 +31,5 @@ export function ArticleCard({ article }: ArticleCardProps) {
         <h3 className="text-xl font-semibold">{article.title}</h3>
       </div>
     </Link>
-  )
+  );
 }

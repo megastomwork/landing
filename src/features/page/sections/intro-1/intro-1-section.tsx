@@ -1,4 +1,4 @@
-import { PayloadImage } from '@/shared/components/ui-kit/directus-image';
+import { PayloadImage } from '@/shared/components/ui-kit/payload-image';
 import type { Media } from '@/shared/payload/payload-types';
 import { SectionProps } from '@/shared/types/page.types';
 

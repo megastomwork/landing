@@ -1,9 +1,9 @@
-import { Underline } from '@/shared/components/ui-kit/underline'
-import { cn } from '@/shared/lib/css'
-import { PayloadImage } from '@/shared/components/ui-kit/directus-image'
-import { SectionProps } from '@/shared/types/page.types'
+import { Underline } from '@/shared/components/ui-kit/underline';
+import { cn } from '@/shared/lib/css';
+import { PayloadImage } from '@/shared/components/ui-kit/payload-image';
+import { SectionProps } from '@/shared/types/page.types';
 
-type BlogHeroSectionProps = SectionProps<'blog-hero'>
+type BlogHeroSectionProps = SectionProps<'blog-hero'>;
 
 export function BlogHeroSection({
   backgroundImage,
@@ -11,7 +11,7 @@ export function BlogHeroSection({
   description,
   showOverlay,
 }: BlogHeroSectionProps) {
-  const media = typeof backgroundImage === 'number' ? null : backgroundImage
+  const media = typeof backgroundImage === 'number' ? null : backgroundImage;
 
   return (
     <section className="w-full max-lg:px-7">
@@ -34,8 +34,10 @@ export function BlogHeroSection({
         )}
 
         <div className="relative z-10 flex flex-col items-center">
-          <h1 className="mb-2 text-[24px] font-semibold leading-[120%] sm:text-[64px] lg:mb-6">
-            <Underline underlineClassName="w-[40%]">{title || 'Blog'}</Underline>
+          <h1 className="mb-2 text-[24px] leading-[120%] font-semibold sm:text-[64px] lg:mb-6">
+            <Underline underlineClassName="w-[40%]">
+              {title || 'Blog'}
+            </Underline>
           </h1>
 
           {description && (
@@ -46,6 +48,5 @@ export function BlogHeroSection({
         </div>
       </div>
     </section>
-  )
+  );
 }
-

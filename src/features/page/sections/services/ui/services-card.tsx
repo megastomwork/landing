@@ -1,7 +1,6 @@
 import { Card } from '@/shared/components/ui-kit/card';
-import { PayloadImage } from '@/shared/components/ui-kit/directus-image';
+import { PayloadImage } from '@/shared/components/ui-kit/payload-image';
 import { cn } from '@/shared/lib/css';
-import { getPayloadImageUrl } from '@/shared/lib/payload-image';
 import { Service } from '@/shared/payload/payload-types';
 
 export default function ServicesCard({ service }: { service: Service }) {
@@ -13,7 +12,7 @@ export default function ServicesCard({ service }: { service: Service }) {
     >
       <div className="mb-4 rounded-2xl bg-white p-2">
         <PayloadImage
-          src={getPayloadImageUrl(service.icon)}
+          src={service.icon}
           alt={service.title}
           width={65}
           height={65}

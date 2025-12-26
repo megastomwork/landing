@@ -21,6 +21,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'landing-chi-seven-29.vercel.app',
       },
+      {
+        protocol: 'https',
+        hostname: 'xqdllfufyblkramwhlmm.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+      },
     ],
     formats: ['image/webp', 'image/avif'],
     dangerouslyAllowSVG: true,
