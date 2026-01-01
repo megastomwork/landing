@@ -5,7 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useOpenContactModal } from '@/features/contact-modal/hooks/use-open-contact-modal';
 import { useScrollModalSettings } from '@/features/contact-modal/hooks/use-scroll-modal-settings';
 
-export const useTriggerModalOnScroll = () => {
+type UseTriggerModalOnScrollOptions = {
+  isEnabled?: boolean;
+};
+
+export const useTriggerModalOnScroll = ({
+  isEnabled = true,
+}: UseTriggerModalOnScrollOptions) => {
   const [hasScrolledDown, setHasScrolledDown] = useState(false);
   const [hasShownModal, setHasShownModal] = useState(false);
   const openModal = useOpenContactModal();
@@ -13,8 +19,7 @@ export const useTriggerModalOnScroll = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Only work on homepage
-    if (pathname !== '/') {
+    if (!isEnabled) {
       return;
     }
 

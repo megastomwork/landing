@@ -1,7 +1,6 @@
 'use client';
 
 import { ScrollAnimatedContainer } from '@/shared/components/animations/scroll-animated-container';
-import { FadeLoadingContainer } from '@/shared/components/animations/fade-loading-container';
 import { ArticleItem } from '@/shared/components/ui-kit/article';
 import { Button } from '@/shared/components/ui-kit/button';
 import {
@@ -29,11 +28,11 @@ export function BlogGridWithFaqSection({
   const articlesCount = 4;
   const finalButtonText = buttonText || 'Показати більше';
 
-  const { data: articles, isLoading: articlesLoading } = usePageArticles({
+  const { data: articles } = usePageArticles({
     articlesCount: isShowingAll ? 100 : articlesCount,
   });
 
-  const { data: questions, isLoading: questionsLoading } = useQuestions();
+  const { data: questions } = useQuestions();
 
   const toggleShowAll = useCallback(() => {
     setIsShowingAll(state => !state);
@@ -55,37 +54,33 @@ export function BlogGridWithFaqSection({
               {blogTitle}
             </h2>
 
-            <FadeLoadingContainer isLoading={articlesLoading}>
-              <ArticlesContent
-                articles={articles ?? []}
-                isShowingAll={isShowingAll}
-                toggleShowAll={toggleShowAll}
-                totalArticles={totalArticles}
-                showMoreLink={showMoreLink}
-                buttonText={finalButtonText}
-              />
-            </FadeLoadingContainer>
+            <ArticlesContent
+              articles={articles ?? []}
+              isShowingAll={isShowingAll}
+              toggleShowAll={toggleShowAll}
+              totalArticles={totalArticles}
+              showMoreLink={showMoreLink}
+              buttonText={finalButtonText}
+            />
           </div>
 
           {/* FAQ Questions - 1/3 width */}
           <div className="max-lg:mx-7 max-lg:mb-6 lg:w-1/3">
             <h2 className="mb-2 w-full text-center">{faqTitle}</h2>
-            <FadeLoadingContainer isLoading={questionsLoading}>
-              <Accordion type="multiple">
-                {questions?.map((question, index) => (
-                  <AccordionItem
-                    key={question.id}
-                    value={'item-' + index}
-                    className="max-w-full"
-                  >
-                    <AccordionTrigger>{question.question}</AccordionTrigger>
-                    <AccordionContent className="max-w-full">
-                      {question.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </FadeLoadingContainer>
+            <Accordion type="multiple">
+              {questions?.map((question, index) => (
+                <AccordionItem
+                  key={question.id}
+                  value={'item-' + index}
+                  className="max-w-full"
+                >
+                  <AccordionTrigger>{question.question}</AccordionTrigger>
+                  <AccordionContent className="max-w-full">
+                    {question.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </>
       </ScrollAnimatedContainer>
