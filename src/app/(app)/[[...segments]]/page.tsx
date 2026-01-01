@@ -19,7 +19,6 @@ type PageProps = {
 export default function Page({ params }: PageProps) {
   const { segments } = use(params);
   const path = segments ? `/${segments.join('/')}` : '/';
-  const queryClient = useQueryClient();
 
   useTriggerModalOnScroll({
     isEnabled: path === '/',
