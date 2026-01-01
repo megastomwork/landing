@@ -23,14 +23,14 @@ export const ArticleItem = ({ article, className }: ArticleItemProps) => {
     >
       <div>
         <Image
-          src={getPayloadImageUrl(article.image)}
+          src={getPayloadImageUrl(article.image) || ''}
           width={3300}
           height={150}
           alt={article.title || 'Article image'}
           className="h-[200px] rounded-xl object-cover"
         />
       </div>
-      <span className="mb-3 mt-2 line-clamp-2 text-center font-bold">
+      <span className="mt-2 mb-3 line-clamp-2 text-center font-bold">
         {article.title}
       </span>
       <Button variant="white" asChild>

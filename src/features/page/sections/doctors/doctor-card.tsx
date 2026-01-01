@@ -24,7 +24,7 @@ export const DoctorItemCard = ({
       <div className="h-[422px] w-full max-w-[330px] flex-none">
         <Image
           className="h-[422px] w-[330px] rounded-[20px] object-cover"
-          src={getPayloadImageUrl(photo)}
+          src={getPayloadImageUrl(photo) || ''}
           alt={name || 'doctor'}
           width={330}
           height={422}

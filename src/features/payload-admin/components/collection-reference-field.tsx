@@ -89,11 +89,14 @@ export const CollectionReferenceField: React.FC<
     window.open(`/admin/collections/${collectionSlug}/${rowId}`, '_blank');
   };
 
-  const dataTableColumns: DataTableColumn[] = columns.map(col => ({
-    key: col.key,
-    label: col.label,
-    render: col.render,
-  }));
+  const dataTableColumns: DataTableColumn<Record<string, unknown>>[] =
+    columns.map(col => ({
+      key: col.key,
+      label: col.label,
+      render: col.render as
+        | ((value: unknown, row: Record<string, unknown>) => React.ReactNode)
+        | undefined,
+    }));
 
   const actions: DataTableAction[] = [
     {

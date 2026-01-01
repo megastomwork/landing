@@ -8,10 +8,8 @@ import { Underline } from '@ui/underline';
 
 type ContactInfoSectionProps = SectionProps<'contact-info'>;
 
-export function ContactInfoSection({
-  title,
-  showMap = true,
-}: ContactInfoSectionProps) {
+export function ContactInfoSection({ title }: ContactInfoSectionProps) {
+  const showMap = true;
   return (
     <section className="mx-auto flex max-w-[1150px] flex-col items-center bg-white px-4 pb-12">
       <div className="flex w-full flex-col items-center justify-between text-center md:items-start">

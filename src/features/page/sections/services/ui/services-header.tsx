@@ -1,9 +1,15 @@
-import { ContentTextHomePage } from '@/shared/types/content.types';
 import { useContent } from '@/shared/hooks/use-content';
 import { Markdown } from '@/shared/components/ui-kit/markdown';
 
+type ContentTextHomePage = {
+  servicesTitle?: string;
+  servicesDescription?: string;
+};
+
 export default function ServicesHeader() {
-  const texts = useContent<ContentTextHomePage>({ context: 'homePage' });
+  const texts = useContent<ContentTextHomePage>({
+    context: 'homePage' as 'navigationMenu',
+  });
 
   return (
     <div className="w-full">
