@@ -1,6 +1,6 @@
 'use client';
 
-import { WorkingHoursList } from '@/features/working-hours';
+import { WorkingHoursList } from '@/features/page/sections/working-hours';
 import { useContacts } from '@/shared/hooks/use-contacts';
 import { clearAddressSyntax } from '@/shared/utils/addrutils/address';
 import { Loader2, PhoneIcon } from 'lucide-react';

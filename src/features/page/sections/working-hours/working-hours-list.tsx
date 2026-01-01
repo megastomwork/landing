@@ -1,13 +1,13 @@
-import { cn } from '@/shared/lib/css'
-import { Fragment } from 'react'
-import { useWorkingHours } from '@/features/page/hooks/use-working-hours'
+import { cn } from '@/shared/lib/css';
+import { Fragment } from 'react';
+import { useWorkingHours } from './use-working-hours';
 
 type WorkingHoursListProps = {
-  size?: 'normal' | 'small'
-}
+  size?: 'normal' | 'small';
+};
 
 export function WorkingHoursList({ size }: WorkingHoursListProps) {
-  const schedule = useWorkingHours()
+  const schedule = useWorkingHours();
 
   return (
     <div
@@ -17,7 +17,7 @@ export function WorkingHoursList({ size }: WorkingHoursListProps) {
         size === 'small' && 'gap-y-1.5 text-sm',
       )}
     >
-      {schedule.data?.map((item) => (
+      {schedule.data?.map(item => (
         <Fragment key={item.id}>
           <p
             className={cn(
@@ -33,5 +33,5 @@ export function WorkingHoursList({ size }: WorkingHoursListProps) {
         </Fragment>
       ))}
     </div>
-  )
+  );
 }

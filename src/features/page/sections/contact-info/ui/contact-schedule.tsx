@@ -1,4 +1,4 @@
-import { WorkingHoursList } from '@/features/working-hours';
+import { WorkingHoursList } from '@/features/page/sections/working-hours';
 
 export default function ContactSchedule() {
   return (
