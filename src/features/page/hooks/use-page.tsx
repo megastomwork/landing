@@ -23,7 +23,7 @@ export const usePage = (path: string) => {
 
   const { data: live, isLoading: isLiveLoading } = useLivePreview<Page>({
     initialData: data ?? ({} as Page),
-    serverURL: CONFIG.SERVER_URL,
+    serverURL: CONFIG.SERVER_URL || '',
     depth: 2,
   });
 
