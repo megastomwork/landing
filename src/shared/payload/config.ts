@@ -99,6 +99,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
+    push: false,
     pool: {
       connectionString: SERVER_CONFIG.DATABASE_URL,
       max: 3, // Limited connections to stay within Supabase free tier limits
