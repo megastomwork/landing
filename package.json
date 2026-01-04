@@ -10,7 +10,8 @@
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettir --write --ignore-path .gitignore .",
-    "generate:types": "payload generate:types"
+    "generate:types": "payload generate:types",
+    "payload": "payload"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.62.0",
