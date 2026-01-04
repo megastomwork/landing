@@ -41,50 +41,34 @@ export const contacts: GlobalConfig = {
 
   fields: [
     {
-      type: 'collapsible',
-      label: 'Основна інформація',
+      name: 'address',
+      type: 'textarea',
+      label: 'Адреса',
+      required: true,
       admin: {
-        initCollapsed: false,
+        placeholder: 'вул. Прикладна 123, Київ',
+        rows: 3,
       },
-      fields: [
-        {
-          name: 'address',
-          type: 'textarea',
-          label: 'Адреса',
-          required: true,
-          admin: {
-            placeholder: 'вул. Прикладна 123, Київ',
-            rows: 3,
-          },
-        },
-        {
-          name: 'phone',
-          type: 'text',
-          label: 'Телефон',
-          required: true,
-          admin: {
-            placeholder: '+380 XX XXX XX XX',
-          },
-        },
-      ],
     },
     {
-      type: 'collapsible',
-      label: 'Налаштування відображення',
-      fields: [
-        {
-          name: 'addressLabel',
-          type: 'text',
-          label: 'Підпис адреси',
-          defaultValue: 'Наша адреса',
-        },
-        {
-          name: 'phoneLabel',
-          type: 'text',
-          label: 'Підпис телефону',
-          defaultValue: 'Телефон',
-        },
-      ],
+      name: 'phone',
+      type: 'text',
+      label: 'Телефон',
+      required: true,
+      admin: {
+        placeholder: '+380 XX XXX XX XX',
+      },
+    },
+    {
+      name: 'iframeSrc',
+      type: 'text',
+      label: 'Карта',
+      required: true,
+      admin: {
+        placeholder:
+          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6...',
+        description: 'Вставте код iframe для картки Google Maps',
+      },
     },
   ],
 };

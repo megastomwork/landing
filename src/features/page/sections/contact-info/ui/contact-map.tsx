@@ -12,7 +12,7 @@ export default function ContactMap() {
     );
   }
 
-  if (!contacts.data?.address) {
+  if (!contacts.data?.iframeSrc) {
     return (
       <div className="flex h-[350px] w-full items-center justify-center rounded-xl bg-gray-100 text-gray-500">
         Карта недоступна
@@ -20,7 +20,7 @@ export default function ContactMap() {
     );
   }
 
-  const address = contacts.data.address;
+  const address = 'Megastom, ' + contacts.data.address;
   const encodedAddress = encodeURIComponent(address);
 
   const mapSrc = `https://www.google.com/maps?q=${encodedAddress}&hl=uk&z=17&output=embed`;
@@ -28,13 +28,11 @@ export default function ContactMap() {
   return (
     <div className="grow overflow-hidden rounded-xl shadow-md">
       <iframe
-        src={mapSrc}
+        src={contacts.data.iframeSrc}
         width="100%"
         height="350"
-        style={{ border: 0 }}
-        allowFullScreen
         loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen={true}
         title="Розташування клініки Megastom"
       ></iframe>
     </div>

@@ -1045,8 +1045,10 @@ export interface Contact {
   id: number;
   address: string;
   phone: string;
-  addressLabel?: string | null;
-  phoneLabel?: string | null;
+  /**
+   * Вставте код iframe для картки Google Maps
+   */
+  iframeSrc: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1111,8 +1113,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
 export interface ContactsSelect<T extends boolean = true> {
   address?: T;
   phone?: T;
-  addressLabel?: T;
-  phoneLabel?: T;
+  iframeSrc?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -1,6 +1,6 @@
-import payloadAPI from '@/shared/lib/payload-rest'
-import { Contact } from '@/shared/types/contact.types'
-import { useQuery } from '@tanstack/react-query'
+import payloadAPI from '@/shared/lib/payload-rest';
+import { useQuery } from '@tanstack/react-query';
+import { Contact } from '../payload/payload-types';
 
 export const useContacts = () => {
   return useQuery({
