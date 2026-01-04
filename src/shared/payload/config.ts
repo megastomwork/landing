@@ -94,14 +94,14 @@ export default buildConfig({
       BlockquoteFeature(),
     ],
   }),
-  secret: SERVER_CONFIG.PAYLOAD_SECRET,
+  secret: SERVER_CONFIG.PAYLOAD_SECRET || 'fallback-secret-for-build',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     push: false,
     pool: {
-      connectionString: SERVER_CONFIG.DATABASE_URL,
+      connectionString: SERVER_CONFIG.DATABASE_URL || 'postgresql://fallback',
       max: 3, // Limited connections to stay within Supabase free tier limits
       min: 0, // Don't keep idle connections
       idleTimeoutMillis: 30000, // 30 seconds
@@ -117,15 +117,16 @@ export default buildConfig({
           prefix: 'media',
         },
       },
-      bucket: SERVER_CONFIG.S3_BUCKET,
+      bucket: SERVER_CONFIG.S3_BUCKET || 'fallback-bucket',
       config: {
         forcePathStyle: true,
         credentials: {
-          accessKeyId: SERVER_CONFIG.S3_ACCESS_KEY_ID,
-          secretAccessKey: SERVER_CONFIG.S3_SECRET_ACCESS_KEY,
+          accessKeyId: SERVER_CONFIG.S3_ACCESS_KEY_ID || 'fallback-key',
+          secretAccessKey:
+            SERVER_CONFIG.S3_SECRET_ACCESS_KEY || 'fallback-secret',
         },
-        region: SERVER_CONFIG.S3_REGION,
-        endpoint: SERVER_CONFIG.S3_ENDPOINT,
+        region: SERVER_CONFIG.S3_REGION || 'us-east-1',
+        endpoint: SERVER_CONFIG.S3_ENDPOINT || 'https://fallback.endpoint',
       },
     }),
   ],
