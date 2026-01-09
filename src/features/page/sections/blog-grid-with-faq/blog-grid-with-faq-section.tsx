@@ -13,9 +13,9 @@ import { cn } from '@/shared/lib/css';
 import type { Article } from '@/shared/payload/payload-types';
 import { motion } from 'framer-motion';
 import { SectionProps } from '@/shared/types/page.types';
-import { usePageArticles } from '@/features/page/hooks/use-page-articles';
+import { useInfinitePageArticles } from '@/features/page/hooks/use-infinite-page-articles';
 import { useQuestions } from '@/features/page/hooks/use-questions';
-import { useCallback, useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 type BlogGridWithFaqSectionProps = SectionProps<'blog-grid-with-faq'>;
 
@@ -24,22 +24,14 @@ export function BlogGridWithFaqSection({
   buttonText,
   faqTitle,
 }: BlogGridWithFaqSectionProps) {
-  const [isShowingAll, setIsShowingAll] = useState(false);
-  const articlesCount = 4;
   const finalButtonText = buttonText || 'Показати більше';
 
-  const { data: articles } = usePageArticles({
-    articlesCount: isShowingAll ? 100 : articlesCount,
-  });
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfinitePageArticles();
 
   const { data: questions } = useQuestions();
 
-  const toggleShowAll = useCallback(() => {
-    setIsShowingAll(state => !state);
-  }, []);
-
-  const totalArticles = articles?.length ?? 0;
-  const showMoreLink = true;
+  const articles = data?.pages.flatMap(page => page.docs) ?? [];
 
   return (
     <div className="mx-auto mt-[1.25rem] max-w-[1040px]">
@@ -55,11 +47,11 @@ export function BlogGridWithFaqSection({
             </h2>
 
             <ArticlesContent
-              articles={articles ?? []}
-              isShowingAll={isShowingAll}
-              toggleShowAll={toggleShowAll}
-              totalArticles={totalArticles}
-              showMoreLink={showMoreLink}
+              articles={articles}
+              isLoading={isLoading}
+              hasNextPage={hasNextPage}
+              isFetchingNextPage={isFetchingNextPage}
+              fetchNextPage={fetchNextPage}
               buttonText={finalButtonText}
             />
           </div>
@@ -90,34 +82,37 @@ export function BlogGridWithFaqSection({
 
 type ArticlesContentProps = {
   articles: Article[];
-  isShowingAll: boolean;
-  toggleShowAll: () => void;
-  totalArticles: number;
-  showMoreLink: boolean;
+  isLoading: boolean;
+  hasNextPage: boolean | undefined;
+  isFetchingNextPage: boolean;
+  fetchNextPage: () => void;
   buttonText: string;
 };
 
 const ArticlesContent = ({
   articles,
-  isShowingAll,
-  toggleShowAll,
-  totalArticles,
-  showMoreLink,
+  isLoading,
+  hasNextPage,
+  isFetchingNextPage,
+  fetchNextPage,
   buttonText,
 }: ArticlesContentProps) => {
+  if (isLoading) {
+    return (
+      <div className="flex min-h-[700px] items-center justify-center">
+        <p className="text-gray-500">Завантаження статей...</p>
+      </div>
+    );
+  }
+
   return (
-    <>
-      <motion.div
-        layout
-        layoutScroll
+    <div className="mb-6 lg:mb-12">
+      <div
         className={cn(
-          'min-h-[700px] grid-cols-[minmax(200px,356px)_minmax(200px,356px)] flex-col gap-x-4 gap-y-6 overflow-hidden max-lg:px-[28px] max-sm:flex sm:grid',
+          'min-h-[700px] grid-cols-[minmax(200px,356px)_minmax(200px,356px)] flex-col gap-x-4 gap-y-6 max-lg:px-[28px] max-sm:flex sm:grid',
         )}
-        initial={{ height: 0 }}
-        animate={{ height: isShowingAll ? 'auto' : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        {articles?.map((article, index) => (
+        {articles.map((article, index) => (
           <ScrollAnimatedContainer
             delay={index % 2 === 0 ? 0.1 : 0.2}
             key={article.id}
@@ -125,14 +120,22 @@ const ArticlesContent = ({
             <ArticleItem article={article} />
           </ScrollAnimatedContainer>
         ))}
-      </motion.div>
-      {showMoreLink && totalArticles > 4 && (
-        <div className="mt-8 mb-0 flex justify-center lg:mb-12">
-          <Button variant="header" onClick={toggleShowAll}>
-            {isShowingAll ? 'Приховати' : buttonText}
+      </div>
+      {hasNextPage && (
+        <div className="mt-8 mb-0 flex justify-center">
+          <Button
+            variant="header"
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              buttonText
+            )}
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 };
