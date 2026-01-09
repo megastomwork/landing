@@ -12,7 +12,7 @@ export default function ContactDetails() {
   return (
     <div className="flex-1 py-2 text-xl text-black">
       <div className="flex flex-col items-center text-center">
-        <h2 className="relative text-xl font-bold">
+        <h2 className="relative mt-0 text-xl leading-[150%] font-bold">
           <FormatedTextWithUnderline>
             {contacts.data?.address || ''}
           </FormatedTextWithUnderline>
@@ -20,7 +20,7 @@ export default function ContactDetails() {
       </div>
 
       <div className="flex items-center justify-center gap-2 text-center">
-        <PhoneIcon className="h-4 w-4" />
+        <PhoneIcon className="size-6" />
         <a href={`tel:${contacts.data?.phone}`} className="hover:text-cyan-600">
           {contacts.data?.phone}
         </a>

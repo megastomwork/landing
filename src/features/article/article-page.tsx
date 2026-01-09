@@ -28,7 +28,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
   return (
     <>
       <RefreshRouteOnSave />
-      <div className="max-w-container animate-fade-in max-lg:px-container mx-auto mt-5 max-w-[1120px]">
+      <div className="max-w-container animate-fade-in max-lg:px-container mx-auto mt-5 max-w-[1160px] px-5">
         <Image
           src={getPayloadImageUrl(article?.image) || ''}
           alt={article?.title || 'Article image'}

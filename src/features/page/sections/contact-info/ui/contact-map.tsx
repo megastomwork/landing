@@ -25,7 +25,7 @@ export default function ContactMap() {
       <iframe
         src={contacts.data.iframeSrc}
         width="100%"
-        height="350"
+        height="400"
         loading="lazy"
         allowFullScreen={true}
         title="Розташування клініки Megastom"
