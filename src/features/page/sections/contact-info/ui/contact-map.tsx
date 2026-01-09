@@ -20,11 +20,6 @@ export default function ContactMap() {
     );
   }
 
-  const address = 'Megastom, ' + contacts.data.address;
-  const encodedAddress = encodeURIComponent(address);
-
-  const mapSrc = `https://www.google.com/maps?q=${encodedAddress}&hl=uk&z=17&output=embed`;
-
   return (
     <div className="grow overflow-hidden rounded-xl shadow-md">
       <iframe
@@ -34,6 +29,7 @@ export default function ContactMap() {
         loading="lazy"
         allowFullScreen={true}
         title="Розташування клініки Megastom"
+        className="h-full w-full"
       ></iframe>
     </div>
   );
