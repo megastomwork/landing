@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Logo() {
   return (
-    <Link href="/home" className="inline-block">
+    <Link href="/" className="inline-block">
       <Image
         src="/logo.svg"
         alt="Логотип"
