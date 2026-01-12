@@ -6,11 +6,13 @@ type LexicalNode = {
   type?: string;
   children?: LexicalNode[];
   text?: string;
-  format?: number;
+  format?: number | string; // Can be number (text formatting) or string (alignment)
   tag?: string;
   url?: string;
   newTab?: boolean;
   root?: LexicalNode;
+  direction?: string | null;
+  indent?: number;
   [k: string]: unknown;
 };
 
@@ -21,6 +23,18 @@ type LexicalContentProps = {
     | string
     | { root: LexicalNode; [k: string]: unknown };
   className?: string;
+};
+
+/**
+ * Helper function to get text alignment style
+ */
+const getAlignmentStyle = (
+  textAlign?: 'left' | 'center' | 'right' | 'justify',
+): React.CSSProperties => {
+  if (!textAlign || textAlign === 'left') {
+    return {};
+  }
+  return { textAlign };
 };
 
 /**
@@ -47,12 +61,24 @@ export function LexicalContent({ content, className }: LexicalContentProps) {
 
     const { type, children, text, format, tag } = node;
 
+    // Debug: show full node structure for block elements
+    if (type === 'paragraph' || type === 'heading') {
+      console.log('Full node:', node);
+      console.log('All node keys:', Object.keys(node));
+    }
+
+    // Get alignment style from format field (for block elements)
+    const alignmentStyle =
+      typeof format === 'string'
+        ? getAlignmentStyle(format as 'left' | 'center' | 'right' | 'justify')
+        : {};
+
     // Text node
     if (type === 'text' || text !== undefined) {
       let textContent: React.ReactNode = text || '';
 
-      // Apply text formatting
-      if (format) {
+      // Apply text formatting (only if format is a number)
+      if (typeof format === 'number' && format) {
         if (format & 1)
           textContent = <strong key={index}>{textContent}</strong>; // Bold
         if (format & 2) textContent = <em key={index}>{textContent}</em>; // Italic
@@ -73,21 +99,41 @@ export function LexicalContent({ content, className }: LexicalContentProps) {
         );
 
       case 'paragraph':
-        return <p key={index}>{children?.map(renderNode)}</p>;
+        return (
+          <p key={index} style={alignmentStyle}>
+            {children?.map(renderNode)}
+          </p>
+        );
 
       case 'heading':
         const HeadingTag = (tag || 'h2') as keyof React.JSX.IntrinsicElements;
-        return <HeadingTag key={index}>{children?.map(renderNode)}</HeadingTag>;
+        return (
+          <HeadingTag key={index} style={alignmentStyle}>
+            {children?.map(renderNode)}
+          </HeadingTag>
+        );
 
       case 'list':
         const ListTag = tag === 'ol' ? 'ol' : 'ul';
-        return <ListTag key={index}>{children?.map(renderNode)}</ListTag>;
+        return (
+          <ListTag key={index} style={alignmentStyle}>
+            {children?.map(renderNode)}
+          </ListTag>
+        );
 
       case 'listitem':
-        return <li key={index}>{children?.map(renderNode)}</li>;
+        return (
+          <li key={index} style={alignmentStyle}>
+            {children?.map(renderNode)}
+          </li>
+        );
 
       case 'quote':
-        return <blockquote key={index}>{children?.map(renderNode)}</blockquote>;
+        return (
+          <blockquote key={index} style={alignmentStyle}>
+            {children?.map(renderNode)}
+          </blockquote>
+        );
 
       case 'link':
         return (

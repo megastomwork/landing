@@ -12,6 +12,7 @@ import {
   OrderedListFeature,
   BlockquoteFeature,
   FixedToolbarFeature,
+  AlignFeature,
 } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -89,6 +90,7 @@ export default buildConfig({
       BoldFeature(),
       ItalicFeature(),
       UnderlineFeature(),
+      AlignFeature(),
       UnorderedListFeature(),
       OrderedListFeature(),
       BlockquoteFeature(),

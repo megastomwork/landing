@@ -3,12 +3,28 @@
 .markdown {
   @apply mb-[24px] text-base;
 
+  h1 {
+    @apply mt-8 mb-6 text-4xl leading-tight font-bold text-gray-900;
+  }
+
+  h2 {
+    @apply mt-8 mb-4 text-3xl leading-tight font-bold text-gray-900;
+  }
+
   h3 {
-    @apply mb-3 px-5 text-center sm:mx-auto sm:w-2/3 md:inline-block md:max-w-[46%] md:px-5 lg:px-10;
+    @apply mt-6 mb-3 text-2xl leading-snug font-semibold text-gray-800 sm:mx-auto sm:w-2/3 md:inline-block md:max-w-[46%];
   }
 
   h4 {
-    @apply mb-5 mt-8;
+    @apply mt-6 mb-3 text-xl font-semibold text-gray-800;
+  }
+
+  h5 {
+    @apply mt-4 mb-2 text-lg font-semibold text-gray-700;
+  }
+
+  h6 {
+    @apply mt-4 mb-2 text-base font-semibold text-gray-700;
   }
 
   p {
@@ -16,7 +32,7 @@
   }
 
   ul {
-    @apply translate-x-6 list-disc marker:text-[20px] marker:text-accent-100;
+    @apply marker:text-accent-100 translate-x-6 list-disc marker:text-[20px];
 
     li {
       @apply mb-2 pr-5;
@@ -24,10 +40,10 @@
   }
 
   hr {
-    @apply my-5 border-accent-100;
+    @apply border-accent-100 my-5;
   }
 
   a {
-    @apply font-bold text-accent-100 underline transition;
+    @apply text-accent-100 font-bold underline transition;
   }
 }
