@@ -129,12 +129,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vercel-build
-          path: .vercel/
+          path: .
 
       - name: Verify downloaded artifacts
         run: |
           echo "📦 Downloaded artifacts:"
-          ls -laR .vercel/
+          ls -la .vercel/
+          echo "📦 Output structure:"
+          ls -la .vercel/output/ || echo "No output folder"
+          echo "📦 Functions:"
+          ls -la .vercel/output/functions/ || echo "No functions folder"
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
