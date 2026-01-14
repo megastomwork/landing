@@ -5,7 +5,7 @@ import { TextFormat } from './types';
  * Get text alignment style from format string
  */
 export function getAlignmentStyle(
-  format?: string | number
+  format?: string | number,
 ): CSSProperties | undefined {
   if (typeof format !== 'string' || format === 'left' || !format) {
     return undefined;
@@ -37,17 +37,4 @@ export function getIndentStyle(indent?: number): CSSProperties | undefined {
   return {
     paddingLeft: `${indent * 2}rem`,
   };
-}
-
-/**
- * Merge multiple style objects
- */
-export function mergeStyles(
-  ...styles: (CSSProperties | undefined)[]
-): CSSProperties | undefined {
-  const merged = styles.filter(Boolean).reduce((acc, style) => {
-    return { ...acc, ...style };
-  }, {});
-
-  return Object.keys(merged).length > 0 ? merged : undefined;
 }
