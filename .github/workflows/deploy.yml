@@ -11,14 +11,11 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  # Step 1: Build and prepare deployment artifacts
+  # Step 1: Build validation (check that code compiles)
   build:
-    name: Build Production Artifacts
+    name: Validate Build
     runs-on: ubuntu-latest
     environment: production
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
     steps:
       - name: Checkout code
@@ -33,47 +30,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-
-      - name: Create Vercel project config
-        run: |
-          mkdir -p .vercel
-          echo '{"orgId":"${{ secrets.VERCEL_ORG_ID }}","projectId":"${{ secrets.VERCEL_PROJECT_ID }}"}' > .vercel/project.json
-          echo "📄 Created .vercel/project.json:"
-          cat .vercel/project.json
-
-      - name: Pull Vercel Environment Information
-        run: |
-          echo "🔄 Pulling Vercel environment..."
-          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-          echo "✅ Vercel environment pulled successfully"
-          ls -la .vercel/
-
-      - name: Build production artifacts with Vercel
-        run: |
-          echo "🏗️ Building production artifacts..."
-          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-          echo "✅ Build completed"
-          echo "📦 Contents of .vercel/:"
-          ls -laR .vercel/
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: vercel-build
-          path: .vercel/
-          retention-days: 1
-          if-no-files-found: error
+      - name: Run build validation
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          NEXT_PUBLIC_BACKEND_URL: ${{ secrets.NEXT_PUBLIC_BACKEND_URL }}
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
+        run: npm run build
 
       - name: Notify build success
         if: success()
-        run: echo "✅ Build completed successfully"
+        run: echo "✅ Build validation passed"
 
       - name: Notify build failure
         if: failure()
         run: |
-          echo "❌ Build failed - stopping deployment pipeline"
+          echo "❌ Build validation failed - stopping deployment pipeline"
           exit 1
 
   # Step 2: Run migrations on production database
@@ -114,7 +86,7 @@ jobs:
           echo "❌ Migration failed - stopping deployment"
           exit 1
 
-  # Step 3: Deploy pre-built artifacts to Vercel
+  # Step 3: Build and deploy to Vercel
   deploy:
     name: Deploy to Vercel
     needs: migrate
@@ -125,25 +97,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: vercel-build
-          path: .
-
-      - name: Verify downloaded artifacts
-        run: |
-          echo "📦 Downloaded artifacts:"
-          ls -la .vercel/
-          echo "📦 Output structure:"
-          ls -la .vercel/output/ || echo "No output folder"
-          echo "📦 Functions:"
-          ls -la .vercel/output/functions/ || echo "No functions folder"
-
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Deploy pre-built artifacts to Vercel
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
         id: deploy
         run: |
           url=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
