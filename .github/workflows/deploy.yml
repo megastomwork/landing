@@ -121,6 +121,7 @@ jobs:
     name: Post-deployment Health Check
     needs: deploy
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Wait for deployment to stabilize
