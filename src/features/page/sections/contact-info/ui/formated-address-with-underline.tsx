@@ -1,4 +1,5 @@
 import { Underline } from '@/shared/components/ui-kit/underline';
+import { parseEscapedString } from '@/shared/lib/parse-escaped-string';
 import React, { Fragment, ReactNode } from 'react';
 
 type FormatedTextWithUnderlineProps = {
@@ -9,7 +10,8 @@ export function FormatedTextWithUnderline({
   children,
 }: FormatedTextWithUnderlineProps): ReactNode[] {
   const regex = /(__[^_]+__)/g;
-  const parts = children.split(regex).filter(Boolean);
+  const parsedText = parseEscapedString(children);
+  const parts = parsedText.split(regex).filter(Boolean);
 
   return parts.flatMap((part, partIndex) => {
     if (part.startsWith('__') && part.endsWith('__')) {
@@ -21,7 +23,7 @@ export function FormatedTextWithUnderline({
         </Underline>
       );
     } else {
-      const lines = part.split('\\n');
+      const lines = part.split('\n');
       return lines.flatMap((line, lineIndex) => {
         const elements: ReactNode[] = [
           <Fragment key={`${partIndex}-${lineIndex}`}>{line}</Fragment>,

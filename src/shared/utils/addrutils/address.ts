@@ -1,3 +1,6 @@
+import { parseEscapedString } from '@/shared/lib/parse-escaped-string';
+
 export function clearAddressSyntax(address: string | undefined) {
-  return address?.replaceAll('__', '')
+  if (!address) return '';
+  return parseEscapedString(address.replaceAll('__', ''));
 }
