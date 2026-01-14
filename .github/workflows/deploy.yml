@@ -40,19 +40,31 @@ jobs:
         run: |
           mkdir -p .vercel
           echo '{"orgId":"${{ secrets.VERCEL_ORG_ID }}","projectId":"${{ secrets.VERCEL_PROJECT_ID }}"}' > .vercel/project.json
+          echo "📄 Created .vercel/project.json:"
           cat .vercel/project.json
 
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          echo "🔄 Pulling Vercel environment..."
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+          echo "✅ Vercel environment pulled successfully"
+          ls -la .vercel/
 
       - name: Build production artifacts with Vercel
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          echo "🏗️ Building production artifacts..."
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          echo "✅ Build completed"
+          echo "📦 Contents of .vercel/:"
+          ls -laR .vercel/
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: vercel-build
-          path: .vercel/
+          path: |
+            .vercel/output/
+            .vercel/project.json
           retention-days: 1
 
       - name: Notify build success
@@ -119,6 +131,11 @@ jobs:
         with:
           name: vercel-build
           path: .vercel/
+
+      - name: Verify downloaded artifacts
+        run: |
+          echo "📦 Downloaded artifacts:"
+          ls -laR .vercel/
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
