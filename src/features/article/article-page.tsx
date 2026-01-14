@@ -1,7 +1,7 @@
 'use client';
 
 import { ErrorPage } from '@/features/error-pages';
-import { LexicalContent } from '@/shared/components/ui-kit/lexical-content';
+import { LexicalContent } from '@/shared/components/lexical-content/lexical-content';
 import { getPayloadImageUrl } from '@/shared/lib/payload-image';
 import { ROUTES } from '@/shared/constants/routes.constants';
 import Image from 'next/image';
