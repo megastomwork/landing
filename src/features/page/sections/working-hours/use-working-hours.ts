@@ -5,6 +5,7 @@ import { Schedule } from '@/shared/types/schedule.types';
 export const useWorkingHours = () => {
   return useQuery({
     queryKey: ['working-hours'],
-    queryFn: () => payloadAPI.getCollection<Schedule>('schedule'),
+    queryFn: () =>
+      payloadAPI.getCollection<Schedule>('schedule', { sort: 'createdAt' }),
   });
 };
