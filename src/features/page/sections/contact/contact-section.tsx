@@ -34,19 +34,19 @@ export function PageContactSection({
     <section className="bg-white px-4 py-4">
       <div className="mx-auto grid max-w-6xl items-center gap-4 md:grid-cols-2">
         {imageData?.url && (
-          <div className="w-[500px] overflow-hidden rounded-xl shadow-lg">
+          <div className="w-[470px] overflow-hidden rounded-xl shadow-lg">
             <Image
               src={imageData.url}
               alt={imageData.alt || 'Contact image'}
               width={imageData.width || 1000}
               height={imageData.height || 1000}
-              className="h-[700px] w-[500px] object-cover object-center"
+              className="h-[670px] w-full object-cover object-center"
             />
           </div>
         )}
         <div className="w-full text-center">
           {title && (
-            <h2 className="mb-3 text-3xl leading-snug font-extrabold text-black md:text-5xl">
+            <h2 className="mt-0 mb-10 text-3xl leading-[120%] font-extrabold text-black md:text-6xl">
               <FormatedTextWithUnderline>{title}</FormatedTextWithUnderline>
             </h2>
           )}
@@ -63,7 +63,7 @@ export function PageContactSection({
               </p>
               <a
                 href={`tel:${contacts.data.phone}`}
-                className="flex items-center justify-center gap-3 text-xl font-semibold text-black transition hover:text-cyan-600 md:text-2xl"
+                className="flex items-center justify-center gap-3 text-xl font-medium text-black transition hover:text-cyan-600 md:text-2xl"
               >
                 <PhoneIcon className="h-6 w-6" />
                 {contacts.data.phone}
@@ -77,7 +77,7 @@ export function PageContactSection({
                 Написати нам у соц. мережах:
               </p>
               <div className="flex justify-center">
-                <div className="flex flex-col gap-4 text-xl font-bold text-black md:text-2xl">
+                <div className="flex flex-col gap-4 text-xl font-medium text-black md:text-2xl">
                   {socials.data.map(item => {
                     const media =
                       typeof item.icon === 'object' ? item.icon : null;
