@@ -6,6 +6,7 @@ import { Loader2, PhoneIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SectionProps } from '@/shared/types/page.types';
+import { FormatedTextWithUnderline } from '../contact-info/ui/formated-address-with-underline';
 
 type PageContactSectionProps = SectionProps<'contact'>;
 
@@ -33,20 +34,20 @@ export function PageContactSection({
     <section className="bg-white px-4 py-4">
       <div className="mx-auto grid max-w-6xl items-center gap-4 md:grid-cols-2">
         {imageData?.url && (
-          <div className="overflow-hidden rounded-xl shadow-lg">
+          <div className="w-[500px] overflow-hidden rounded-xl shadow-lg">
             <Image
               src={imageData.url}
               alt={imageData.alt || 'Contact image'}
-              width={imageData.width || 400}
-              height={imageData.height || 400}
-              className="max-h-[700px] w-full object-cover"
+              width={imageData.width || 1000}
+              height={imageData.height || 1000}
+              className="h-[700px] w-[500px] object-cover object-center"
             />
           </div>
         )}
         <div className="w-full text-center">
           {title && (
             <h2 className="mb-3 text-3xl leading-snug font-extrabold text-black md:text-5xl">
-              {title}
+              <FormatedTextWithUnderline>{title}</FormatedTextWithUnderline>
             </h2>
           )}
           {description && (

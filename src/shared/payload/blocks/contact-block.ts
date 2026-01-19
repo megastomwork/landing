@@ -41,11 +41,9 @@ export const createContactBlockFields = (): Field[] => [
 export const contactsGlobalReferenceConfig = {
   globalSlug: 'contacts' as const,
   title: 'Контактна інформація',
-  fields: ['phone', 'email', 'address'] as const,
+  fields: ['phone'] as const,
   fieldLabels: {
     phone: 'Телефон',
-    email: 'Email',
-    address: 'Адреса',
   },
 };
 
@@ -59,7 +57,6 @@ export const socialsReferenceConfig = {
   showTable: true,
   columns: [
     { key: 'title', label: 'Назва' },
-    { key: 'username', label: 'Username' },
     { key: 'link', label: 'Посилання' },
     // { key: 'icon', label: 'Іконка' }, // Currently we cant render this field, because we need to implement image cell. (Currently it shows like [Object Object] in the cell)
   ],
