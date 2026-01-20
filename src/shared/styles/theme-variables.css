@@ -1,6 +1,28 @@
 @custom-variant dark (:where([data-theme='dark'], .dark) &);
 
 @theme {
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
   /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -64,7 +86,7 @@
 
   /* Font Family */
   --font-family-sans: var(--font-montserrat), sans-serif;
-  
+
   /* Tailwind v4 font-sans utility */
   --font-sans: var(--font-montserrat), sans-serif;
 }
@@ -131,7 +153,8 @@
   --field-link-hover: hsl(214 32% 91%);
 }
 
- [data-theme='dark'], .dark {
+[data-theme='dark'],
+.dark {
   --background: #141414;
   --foreground: hsl(0 0% 98%);
 
@@ -156,7 +179,7 @@
   --destructive: hsl(0 62.8% 30.6%);
   --destructive-foreground: hsl(0 0% 98%);
 
-  --border: #4A4A4A;
+  --border: #4a4a4a;
   --input: hsl(240 3.7% 15.9%);
   --ring: hsl(240 4.9% 83.9%);
 
@@ -178,7 +201,7 @@
   --table-primary-foreground: hsl(217 33% 17%);
 
   /* Reference Field Colors */
-  --field-bg: var(--color-card); 
+  --field-bg: var(--color-card);
   --field-border: var(--color-border);
   --field-text: var(--color-foreground);
   --field-text-muted: var(--color-muted-foreground);
