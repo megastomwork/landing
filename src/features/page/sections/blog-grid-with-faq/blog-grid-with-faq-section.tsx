@@ -42,7 +42,7 @@ export function BlogGridWithFaqSection({
         <>
           {/* Blog Articles - 2/3 width */}
           <div className="mx-auto lg:w-2/3">
-            <h2 className="mb-4 w-full text-center max-lg:hidden">
+            <h2 className="mb-4 w-full text-center text-5xl max-lg:hidden">
               {blogTitle}
             </h2>
 
@@ -58,7 +58,9 @@ export function BlogGridWithFaqSection({
 
           {/* FAQ Questions - 1/3 width */}
           <div className="max-lg:mx-7 max-lg:mb-6 lg:w-1/3">
-            <h2 className="mb-2 w-full text-center">{faqTitle}</h2>
+            <h2 className="mb-2 w-full text-center text-[32px] lg:text-5xl">
+              {faqTitle}
+            </h2>
             <Accordion type="multiple">
               {questions?.map((question, index) => (
                 <AccordionItem
