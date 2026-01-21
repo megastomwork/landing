@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import '../../shared/styles/theme-variables.css';
 
 @layer base {
@@ -18,14 +18,14 @@
   }
 
   h2 {
-    @apply text-[2rem] font-semibold leading-none lg:text-3xl mb-4 mt-10;
+    @apply mt-10 mb-4 text-3xl leading-none font-semibold max-md:w-full max-md:text-center md:text-6xl;
   }
 
   h3 {
-    @apply text-[24px] font-bold leading-normal md:text-[32px];
+    @apply text-[24px] leading-normal font-bold md:text-[32px];
   }
 
   h4 {
-    @apply text-[24px] font-bold leading-normal;
+    @apply text-[24px] leading-normal font-bold;
   }
 }

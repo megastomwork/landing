@@ -40,7 +40,7 @@ export default function ServicesCarousel({
             return (
               <CarouselItem
                 key={service.id}
-                className={`flex items-center md:basis-1/2 lg:basis-1/3`}
+                className={`flex items-center md:basis-1/2 lg:basis-1/3 max-md:justify-center`}
               >
                 <ServicesCard service={service} />
               </CarouselItem>

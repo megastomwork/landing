@@ -20,7 +20,7 @@ export function ContactInfoSection({ title }: ContactInfoSectionProps) {
 
       <div className="flex w-full flex-col gap-10 lg:flex-row">
         {showMap && <ContactMap />}
-        <div className="flex w-[30%] flex-col items-center py-2 md:py-7">
+        <div className="flex flex-col items-center py-2 md:w-[30%] md:py-7">
           <ContactDetails />
           <ContactSchedule />
         </div>

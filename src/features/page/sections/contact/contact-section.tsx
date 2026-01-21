@@ -32,22 +32,22 @@ export function PageContactSection({
 
   return (
     <section className="bg-white px-4 py-4">
-      <div className="mx-auto flex max-w-6xl items-center justify-center gap-[50px]">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-center gap-[25px] max-md:flex-col md:gap-[50px]">
         {imageData?.url && (
-          <div className="h-[588px] w-[424px] shrink-0 overflow-hidden rounded-[20px]">
+          <div className="w-full shrink-0 overflow-hidden rounded-[20px] md:h-[588px] md:w-[424px]">
             <Image
               src={imageData.url}
               alt={imageData.alt || 'Contact image'}
               width={imageData.width || 1000}
               height={imageData.height || 1000}
-              className="h-[635px] w-full object-cover object-center"
+              className="w-full object-cover object-center md:h-[635px]"
             />
           </div>
         )}
-        <div className="flex w-[516px] flex-col items-center gap-4">
+        <div className="flex w-full flex-col items-center gap-4 md:w-[516px]">
           {title && (
             <div className="flex flex-col gap-6">
-              <h2 className="text-center text-[48px] leading-[150%] font-semibold text-[#060606]">
+              <h2 className="text-center text-3xl leading-[150%] font-semibold text-[#060606] md:text-[48px]">
                 <FormatedTextWithUnderline>{title}</FormatedTextWithUnderline>
               </h2>
               {description && (
