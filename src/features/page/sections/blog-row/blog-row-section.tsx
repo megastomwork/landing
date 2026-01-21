@@ -32,7 +32,7 @@ export function BlogRowSection({
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-8">
       {title && (
-        <h2 className="relative mb-8 text-5xl font-bold">
+        <h2 className="relative mb-8 text-6xl font-bold">
           {title}
           <span className="absolute bottom-0 left-0 mt-1 h-1 w-[100px] rounded-md bg-cyan-400" />
         </h2>

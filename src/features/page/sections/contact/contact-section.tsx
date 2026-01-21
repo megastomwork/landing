@@ -32,79 +32,81 @@ export function PageContactSection({
 
   return (
     <section className="bg-white px-4 py-4">
-      <div className="mx-auto grid max-w-6xl items-center gap-4 md:grid-cols-2">
+      <div className="mx-auto flex max-w-6xl items-center justify-center gap-[50px]">
         {imageData?.url && (
-          <div className="w-[470px] overflow-hidden rounded-xl shadow-lg">
+          <div className="h-[588px] w-[424px] shrink-0 overflow-hidden rounded-[20px]">
             <Image
               src={imageData.url}
               alt={imageData.alt || 'Contact image'}
               width={imageData.width || 1000}
               height={imageData.height || 1000}
-              className="h-[670px] w-full object-cover object-center"
+              className="h-[635px] w-full object-cover object-center"
             />
           </div>
         )}
-        <div className="w-full text-center">
+        <div className="flex w-[516px] flex-col items-center gap-4">
           {title && (
-            <h2 className="mt-0 mb-10 text-3xl leading-[120%] font-extrabold text-black md:text-6xl">
-              <FormatedTextWithUnderline>{title}</FormatedTextWithUnderline>
-            </h2>
-          )}
-          {description && (
-            <p className="mb-6 text-base text-gray-700 md:text-2xl">
-              {description}
-            </p>
+            <div className="flex flex-col gap-6">
+              <h2 className="text-center text-[48px] leading-[150%] font-semibold text-[#060606]">
+                <FormatedTextWithUnderline>{title}</FormatedTextWithUnderline>
+              </h2>
+              {description && (
+                <p className="text-center text-[20px] leading-[24px] text-[#060606]">
+                  {description}
+                </p>
+              )}
+            </div>
           )}
 
           {contacts.data?.phone && (
-            <div className="mb-6">
-              <p className="mb-2 text-center text-base text-gray-600 md:text-2xl">
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-center text-[20px] leading-[24px] text-[#060606]">
                 За номер телефона:
               </p>
               <a
                 href={`tel:${contacts.data.phone}`}
-                className="flex items-center justify-center gap-3 text-xl font-medium text-black transition hover:text-cyan-600 md:text-2xl"
+                className="flex items-center gap-3 text-[24px] leading-[150%] font-medium text-[#060606] transition hover:text-cyan-600"
               >
-                <PhoneIcon className="h-6 w-6" />
+                <PhoneIcon className="h-9 w-9" strokeWidth={2} />
                 {contacts.data.phone}
               </a>
             </div>
           )}
 
           {socials.data && socials.data.length > 0 && (
-            <>
-              <p className="mb-4 flex justify-center text-base text-gray-600 md:text-xl">
+            <div className="flex flex-col items-center gap-[15px]">
+              <p className="text-center text-[20px] leading-[24px] text-[#060606]">
                 Написати нам у соц. мережах:
               </p>
-              <div className="flex justify-center">
-                <div className="flex flex-col gap-4 text-xl font-medium text-black md:text-2xl">
-                  {socials.data.map(item => {
-                    const media =
-                      typeof item.icon === 'object' ? item.icon : null;
-                    if (!media?.url) return null;
+              <div className="flex flex-col items-start gap-[9px]">
+                {socials.data.map(item => {
+                  const media =
+                    typeof item.icon === 'object' ? item.icon : null;
+                  if (!media?.url) return null;
 
-                    return (
-                      <Link
-                        key={item.id}
-                        href={item.link}
-                        className="flex items-center gap-3 transition hover:text-cyan-600"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.link}
+                      className="flex items-center gap-[10px] text-[24px] leading-[150%] font-medium text-[#060606] transition hover:text-cyan-600"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="flex h-[42px] w-[42px] items-center justify-center rounded-[9px] bg-white">
                         <Image
                           src={media.url}
-                          width={32}
-                          height={32}
+                          width={42}
+                          height={42}
                           alt={item.title}
-                          className="h-8 w-8 object-contain"
+                          className="h-[42px] w-[42px] object-contain"
                         />
-                        <span>{item.title}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
+                      </span>
+                      <span>{item.title}</span>
+                    </Link>
+                  );
+                })}
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
