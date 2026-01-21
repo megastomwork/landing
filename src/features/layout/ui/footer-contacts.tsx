@@ -9,7 +9,7 @@ export const FooterContacts = () => {
   const contacts = useContacts();
 
   if (contacts.isLoading) {
-    return <Loader2 className="animate-spin" />;
+    return null;
   }
 
   return (
