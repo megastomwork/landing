@@ -8,14 +8,14 @@ import { Markdown } from '@/shared/components/ui-kit/markdown';
 interface ServicesSectionProps {
   title?: string | null;
   description?: string | null;
-  selectedServices?: (number | Service)[] | null;
+  services?: (number | Service)[] | null;
   displayLimit?: number | null;
 }
 
 export function ServicesSection({
   title,
   description,
-  selectedServices,
+  services: selectedServices,
   displayLimit,
 }: ServicesSectionProps) {
   const { data: services, isLoading } = usePageServices({

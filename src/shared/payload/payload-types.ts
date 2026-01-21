@@ -213,6 +213,10 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
+            /**
+             * Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.
+             */
+            services?: (number | Service)[] | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'services';
@@ -351,6 +355,31 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  /**
+   * Коротка назва послуги, яка відображатиметься на сайті
+   */
+  title: string;
+  /**
+   * Детальний опис послуги для відвідувачів
+   */
+  description: string;
+  /**
+   * Завантажте іконку для послуги (рекомендовано SVG або PNG)
+   */
+  icon: number | Media;
+  /**
+   * Тільки опубліковані послуги відображаються на сайті
+   */
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Статті та публікації блогу
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -418,31 +447,6 @@ export interface Doctor {
   experience: string;
   /**
    * Тільки опубліковані профілі відображаються на сайті
-   */
-  status: 'draft' | 'published';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services".
- */
-export interface Service {
-  id: number;
-  /**
-   * Коротка назва послуги, яка відображатиметься на сайті
-   */
-  title: string;
-  /**
-   * Детальний опис послуги для відвідувачів
-   */
-  description: string;
-  /**
-   * Завантажте іконку для послуги (рекомендовано SVG або PNG)
-   */
-  icon: number | Media;
-  /**
-   * Тільки опубліковані послуги відображаються на сайті
    */
   status: 'draft' | 'published';
   updatedAt: string;
@@ -741,6 +745,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
+              services?: T;
               id?: T;
               blockName?: T;
             };

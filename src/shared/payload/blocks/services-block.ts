@@ -18,16 +18,32 @@ export const createServicesBlockFields = (): Field[] => [
     type: 'textarea',
     label: 'Опис',
   },
+  {
+    name: 'services',
+    type: 'relationship',
+    relationTo: 'services',
+    hasMany: true,
+    label: 'Послуги',
+    admin: {
+      description:
+        'Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.',
+    },
+    filterOptions: {
+      status: { equals: 'published' },
+    },
+  },
 ];
 
 /**
+ * DEPRECATED
  * Configuration for services reference field
  * Used by createCollectionReferenceField in the block definition
  */
 export const servicesReferenceConfig = {
   collectionSlug: 'services' as const,
   title: 'Послуги',
-  description: 'Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.',
+  description:
+    'Оберіть конкретні послуги для відображення або залиште порожнім щоб показати всі опубліковані.',
   showTable: true,
   pageSize: 5,
   columns: [
@@ -43,8 +59,5 @@ export const servicesBlock: Block = {
     plural: 'Секції послуг',
   },
   imageURL: '/blocks/services.png',
-  fields: [
-    ...createServicesBlockFields(),
-    createCollectionReferenceField(servicesReferenceConfig),
-  ],
+  fields: [...createServicesBlockFields()],
 };
