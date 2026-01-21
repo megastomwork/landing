@@ -2,6 +2,7 @@ import React from 'react';
 import type { NodeRenderer } from './types';
 import { getAlignmentStyle, hasTextFormat } from './style-helpers';
 import { TextFormat } from './types';
+import { Underline } from '../ui-kit/underline';
 
 /**
  * Renderer for text nodes
@@ -18,7 +19,7 @@ export const TextRenderer: NodeRenderer = (node, index) => {
       content = <em key={`italic-${index}`}>{content}</em>;
     }
     if (hasTextFormat(format, TextFormat.Underline)) {
-      content = <u key={`underline-${index}`}>{content}</u>;
+      content = <Underline key={`underline-${index}`}>{content}</Underline>;
     }
     if (hasTextFormat(format, TextFormat.Code)) {
       content = <code key={`code-${index}`}>{content}</code>;
