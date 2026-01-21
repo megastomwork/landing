@@ -1,16 +1,19 @@
 import type { ReactNode } from 'react';
 import type { LexicalNode, LexicalContent } from './types';
 import { getRendererForNode } from './config';
+import { preprocessNodes } from './preprocessors';
 
 /**
  * Recursively render children nodes
+ * Applies preprocessors before rendering
  */
 function renderChildren(children?: LexicalNode[]): ReactNode[] {
   if (!children || children.length === 0) {
     return [];
   }
 
-  return children.map((child, index) => renderNode(child, index));
+  const processedChildren = preprocessNodes(children);
+  return processedChildren.map((child, index) => renderNode(child, index));
 }
 
 /**

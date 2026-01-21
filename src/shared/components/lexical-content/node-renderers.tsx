@@ -1,5 +1,5 @@
 import React from 'react';
-import type { NodeRenderer } from './types';
+import type { NodeRenderer, EmojiListItem } from './types';
 import { getAlignmentStyle, hasTextFormat } from './style-helpers';
 import { TextFormat } from './types';
 import { Underline } from '../ui-kit/underline';
@@ -145,4 +145,31 @@ export const DefaultRenderer: NodeRenderer = (node, index, renderChildren) => {
     return <div key={index}>{renderChildren(node.children)}</div>;
   }
   return null;
+};
+
+/**
+ * Renderer for emoji list nodes (created by preprocessor)
+ * Renders a list with custom emoji markers
+ */
+export const EmojiListRenderer: NodeRenderer = (
+  node,
+  index,
+  renderChildren,
+) => {
+  const items = node.items as EmojiListItem[];
+
+  if (!items?.length) {
+    return null;
+  }
+
+  return (
+    <ul key={index} className="list-none space-y-2 pl-0">
+      {items.map((item, i) => (
+        <li key={i} className="flex gap-3">
+          <span className="shrink-0">{item.emoji}</span>
+          <span>{renderChildren(item.children)}</span>
+        </li>
+      ))}
+    </ul>
+  );
 };

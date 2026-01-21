@@ -10,6 +10,7 @@ import {
   LinebreakRenderer,
   RootRenderer,
   DefaultRenderer,
+  EmojiListRenderer,
 } from './node-renderers';
 
 /**
@@ -46,6 +47,7 @@ export const nodeRenderersConfig: NodeRenderersConfig = {
   link: LinkRenderer,
   linebreak: LinebreakRenderer,
   root: RootRenderer,
+  'emoji-list': EmojiListRenderer,
 };
 
 /**

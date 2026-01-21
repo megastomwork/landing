@@ -33,7 +33,7 @@ export type LexicalContent =
 export type NodeRenderer = (
   node: LexicalNode,
   index: number,
-  renderChildren: (children?: LexicalNode[]) => ReactNode[]
+  renderChildren: (children?: LexicalNode[]) => ReactNode[],
 ) => ReactNode;
 
 /**
@@ -55,3 +55,11 @@ export enum TextFormat {
   Subscript = 32,
   Superscript = 64,
 }
+
+/**
+ * Emoji list item (created by preprocessor)
+ */
+export type EmojiListItem = {
+  emoji: string;
+  children: LexicalNode[];
+};
