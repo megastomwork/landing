@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArticleItem } from '@/shared/components/ui-kit/article';
 import { Button } from '@/shared/components/ui-kit/button';
+import { Underline } from '@/shared/components/ui-kit/underline';
 
 type BlogRowSectionProps = SectionProps<'blog-row'>;
 
@@ -33,10 +34,7 @@ export function BlogRowSection({
     <section className="mx-auto w-full max-w-6xl px-4 py-8">
       {title && (
         <h2 className="relative mb-8 font-bold">
-          <span className="relative">
-            {title}
-            <span className="absolute bottom-0 left-0 mt-1 h-1 w-[100px] rounded-md bg-cyan-400" />
-          </span>
+          <Underline variant="accent">{title}</Underline>
         </h2>
       )}
 

@@ -4,6 +4,7 @@ import type { Service } from '@/shared/payload/payload-types';
 import { usePageServices } from '@/features/page/hooks/use-page-services';
 import ServicesCarousel from './ui/services-carousel';
 import { Markdown } from '@/shared/components/ui-kit/markdown';
+import { Underline } from '@/shared/components/ui-kit/underline';
 
 interface ServicesSectionProps {
   title?: string | null;
@@ -36,11 +37,10 @@ export function ServicesSection({
       id="services"
       className="mx-auto flex max-w-6xl flex-col items-start px-4 py-4"
     >
-      <div className="mb-8">
+      <div className="mb-8 w-full">
         {title && (
-          <h2 className="relative mb-6 text-3xl font-bold md:text-6xl">
-            {title}
-            <span className="absolute -bottom-1.5 left-0 h-1 w-[70px] rounded-full bg-cyan-400" />
+          <h2 className="relative mb-6 font-bold">
+            <Underline variant="accent">{title}</Underline>
           </h2>
         )}
         {description && (
