@@ -275,6 +275,10 @@ export interface Page {
             blockType: 'paragraph';
           }
         | {
+            /**
+             * Оберіть стиль відображення лікарів
+             */
+            style?: ('list' | 'grid') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'doctors';
@@ -805,6 +809,7 @@ export interface PagesSelect<T extends boolean = true> {
         doctors?:
           | T
           | {
+              style?: T;
               id?: T;
               blockName?: T;
             };

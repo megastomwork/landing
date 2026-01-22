@@ -4,9 +4,28 @@ import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 
 /**
  * Schema for Doctors block
- * No custom fields needed - only displays collection reference UI
  */
-export const createDoctorsBlockFields = (): Field[] => [];
+export const createDoctorsBlockFields = (): Field[] => [
+  {
+    name: 'style',
+    type: 'select',
+    label: 'Стилістика',
+    defaultValue: 'list',
+    options: [
+      {
+        label: 'Список',
+        value: 'list',
+      },
+      {
+        label: 'Сітка',
+        value: 'grid',
+      },
+    ],
+    admin: {
+      description: 'Оберіть стиль відображення лікарів',
+    },
+  },
+];
 
 /**
  * Configuration for doctors collection reference field

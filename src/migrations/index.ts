@@ -4,6 +4,7 @@ import * as migration_20251125_111952_update_blog_row_button from './20251125_11
 import * as migration_20251225_140603_remove_usefull_address_field from './20251225_140603_remove_usefull_address_field';
 import * as migration_20260104_102741_update_address_fields from './20260104_102741_update_address_fields';
 import * as migration_20260121_162654_add_relation_field_to_services_section from './20260121_162654_add_relation_field_to_services_section';
+import * as migration_20260122_112453_add_doctors_section_style from './20260122_112453_add_doctors_section_style';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20260121_162654_add_relation_field_to_services_section.up,
     down: migration_20260121_162654_add_relation_field_to_services_section.down,
-    name: '20260121_162654_add_relation_field_to_services_section'
+    name: '20260121_162654_add_relation_field_to_services_section',
+  },
+  {
+    up: migration_20260122_112453_add_doctors_section_style.up,
+    down: migration_20260122_112453_add_doctors_section_style.down,
+    name: '20260122_112453_add_doctors_section_style'
   },
 ];
