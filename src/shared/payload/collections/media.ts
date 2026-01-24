@@ -47,5 +47,41 @@ export const Media: CollectionConfig = {
       },
     },
   ],
-  upload: true,
+  upload: {
+    // Generate optimized image sizes on upload
+    imageSizes: [
+      {
+        name: 'thumbnail',
+        width: 400,
+        height: undefined, // Maintain aspect ratio
+        position: 'centre',
+      },
+      {
+        name: 'card',
+        width: 768,
+        height: undefined,
+        position: 'centre',
+      },
+      {
+        name: 'tablet',
+        width: 1200,
+        height: undefined,
+        position: 'centre',
+      },
+      {
+        name: 'desktop',
+        width: 1440,
+        height: undefined,
+        position: 'centre',
+      },
+    ],
+    filesRequiredOnCreate: false,
+    mimeTypes: ['image/*'],
+    // Limit max file size to 15MB
+    staticOptions: {
+      limits: {
+        fileSize: 15 * 1024 * 1024, // 15MB
+      },
+    },
+  },
 };

@@ -1,4 +1,5 @@
 import { buildConfig } from 'payload';
+import sharp from 'sharp';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { s3Storage } from '@payloadcms/storage-s3';
 import {
@@ -112,6 +113,7 @@ export default buildConfig({
     },
   }),
   cors: '*',
+  sharp,
   plugins: [
     s3Storage({
       collections: {
