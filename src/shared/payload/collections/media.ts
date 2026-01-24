@@ -77,11 +77,5 @@ export const Media: CollectionConfig = {
     ],
     filesRequiredOnCreate: false,
     mimeTypes: ['image/*'],
-    // Limit max file size to 15MB
-    staticOptions: {
-      limits: {
-        fileSize: 15 * 1024 * 1024, // 15MB
-      },
-    },
   },
 };

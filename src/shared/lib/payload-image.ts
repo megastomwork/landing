@@ -27,23 +27,12 @@ export function getPayloadImageUrl(
     return `/api/media/${media}`;
   }
 
+  // Return requested size if available, otherwise fall back to original
   if (size !== 'original' && media.sizes?.[size]?.url) {
     return media.sizes[size].url;
   }
 
-  if (size === 'desktop' && media.sizes?.tablet?.url) {
-    return media.sizes.tablet.url;
-  }
-  if ((size === 'desktop' || size === 'tablet') && media.sizes?.card?.url) {
-    return media.sizes.card.url;
-  }
-  if (
-    (size === 'desktop' || size === 'tablet' || size === 'card') &&
-    media.sizes?.thumbnail?.url
-  ) {
-    return media.sizes.thumbnail.url;
-  }
-
+  // Fall back to original to avoid pixelation from smaller sizes
   if (media.url) {
     return media.url;
   }
