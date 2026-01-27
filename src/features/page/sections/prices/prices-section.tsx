@@ -21,7 +21,7 @@ export function PricesSection({ title, description }: PricesSectionProps) {
   return (
     <section className="pt-10">
       <div className="bg-accent-80">
-        <div className="mx-auto max-w-6xl space-y-2 px-2 py-6 text-center">
+        <div className="mx-auto max-w-6xl space-y-2 px-4 py-6 text-center sm:px-2">
           <h1 className="text-3xl font-bold">
             <Underline underlineClassName="w-[120px] right-0 left-auto -bottom-1">
               {title || 'Prices'}
@@ -58,8 +58,12 @@ export function PricesSection({ title, description }: PricesSectionProps) {
                         key={price.id}
                         className="border-none hover:bg-transparent"
                       >
-                        <TableCell className="pl-0">{price.title}</TableCell>
-                        <TableCell>{price.price}</TableCell>
+                        <TableCell className="w-2/3 pl-0">
+                          {price.title}
+                        </TableCell>
+                        <TableCell className="w-1/3 min-w-[100px] whitespace-nowrap max-lg:text-end">
+                          {price.price}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </Table>
