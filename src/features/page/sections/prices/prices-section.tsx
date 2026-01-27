@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { useServices } from '@/features/page/hooks/use-services'
+import { useServices } from '@/features/page/hooks/use-services';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/shared/components/ui-kit/accordion'
-import { Table, TableCell, TableRow } from '@/shared/components/ui-kit/table'
-import { Underline } from '@/shared/components/ui-kit/underline'
-import { usePrices } from '@/features/page/hooks/use-prices'
-import { SectionProps } from '@/shared/types/page.types'
+} from '@/shared/components/ui-kit/accordion';
+import { Table, TableCell, TableRow } from '@/shared/components/ui-kit/table';
+import { Underline } from '@/shared/components/ui-kit/underline';
+import { usePrices } from '@/features/page/hooks/use-prices';
+import { SectionProps } from '@/shared/types/page.types';
 
-type PricesSectionProps = SectionProps<'prices'>
+type PricesSectionProps = SectionProps<'prices'>;
 
 export function PricesSection({ title, description }: PricesSectionProps) {
-  const { services } = useServices()
-  const prices = usePrices()
+  const { services } = useServices();
+  const prices = usePrices();
 
   return (
     <section className="pt-10">
@@ -34,12 +34,12 @@ export function PricesSection({ title, description }: PricesSectionProps) {
       {services?.length && (
         <Accordion
           type="multiple"
-          className="mx-auto w-2/3 max-w-6xl px-2 py-10"
+          className="mx-auto max-w-6xl px-5 py-10 sm:w-2/3 sm:px-2"
           defaultValue={[String(services[0].id)]}
         >
-          {services?.map((service) => {
+          {services?.map(service => {
             if (prices.data?.[service.id] == undefined) {
-              return null
+              return null;
             }
 
             return (
@@ -53,7 +53,7 @@ export function PricesSection({ title, description }: PricesSectionProps) {
                 </AccordionTrigger>
                 <AccordionContent className="py-5">
                   <Table>
-                    {prices.data?.[service.id]?.map((price) => (
+                    {prices.data?.[service.id]?.map(price => (
                       <TableRow
                         key={price.id}
                         className="border-none hover:bg-transparent"
@@ -65,10 +65,10 @@ export function PricesSection({ title, description }: PricesSectionProps) {
                   </Table>
                 </AccordionContent>
               </AccordionItem>
-            )
+            );
           })}
         </Accordion>
       )}
     </section>
-  )
+  );
 }
