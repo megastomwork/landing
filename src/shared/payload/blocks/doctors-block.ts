@@ -36,7 +36,7 @@ export const doctorsReferenceConfig: CollectionReferenceFieldOptions = {
   reorderable: true,
   title: 'Лікарі',
   showTable: true,
-  pageSize: 2,
+  pageSize: 10,
   paginationType: 'load-more',
   columns: [
     { key: 'name', label: "Ім'я" },
