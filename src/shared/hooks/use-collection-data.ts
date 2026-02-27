@@ -7,6 +7,7 @@ interface UseCollectionDataParams {
   limit?: number;
   enabled?: boolean;
   where?: Record<string, unknown>;
+  sort?: string;
 }
 
 export function useCollectionData<T = Record<string, unknown>>({
@@ -15,14 +16,16 @@ export function useCollectionData<T = Record<string, unknown>>({
   limit = 10,
   enabled = true,
   where,
+  sort,
 }: UseCollectionDataParams) {
   return useQuery({
-    queryKey: ['collection', collectionSlug, page, limit, where],
+    queryKey: ['collection', collectionSlug, page, limit, where, sort],
     queryFn: () =>
       payloadAPI.getCollectionWithPagination<T>(collectionSlug, {
         page,
         limit,
         where,
+        sort,
       }),
     enabled,
   });

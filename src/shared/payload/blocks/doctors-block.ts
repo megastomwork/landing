@@ -1,5 +1,5 @@
 import type { Block, Field } from 'payload';
-import { createCollectionReferenceField } from '@/features/payload-admin';
+import { CollectionReferenceFieldOptions, createCollectionReferenceField } from '@/features/payload-admin';
 import { BLOCK_TYPES } from '@/shared/payload/constants/block-types';
 
 /**
@@ -31,11 +31,13 @@ export const createDoctorsBlockFields = (): Field[] => [
  * Configuration for doctors collection reference field
  * Used by createCollectionReferenceField in the block definition
  */
-export const doctorsReferenceConfig = {
+export const doctorsReferenceConfig: CollectionReferenceFieldOptions = {
   collectionSlug: 'doctors' as const,
+  reorderable: true,
   title: 'Лікарі',
   showTable: true,
-  pageSize: 10,
+  pageSize: 2,
+  paginationType: 'load-more',
   columns: [
     { key: 'name', label: "Ім'я" },
     { key: 'position', label: 'Посада' },

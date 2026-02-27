@@ -24,6 +24,8 @@ export interface CollectionReferenceFieldOptions {
    * filters: { authorId: '$createdBy', status: 'published' } // Multiple filters
    */
   filters?: Record<string, string>;
+  reorderable?: boolean;
+  paginationType?: 'page' | 'load-more';
 }
 
 export const createCollectionReferenceField = ({
@@ -35,6 +37,8 @@ export const createCollectionReferenceField = ({
   columns = [],
   pageSize = 10,
   filters,
+  reorderable,
+  paginationType,
 }: CollectionReferenceFieldOptions): Field => {
   return {
     name,
@@ -51,6 +55,8 @@ export const createCollectionReferenceField = ({
             columns,
             pageSize,
             filters,
+            reorderable,
+            paginationType,
           },
         },
       },

@@ -1,4 +1,5 @@
 import { GROUPS_LABELS } from '@/shared/payload/constants/groups';
+import { createSortOrderField } from '@/shared/payload/fields/sort-order';
 import type { CollectionConfig } from 'payload';
 
 /**
@@ -89,5 +90,6 @@ export const Doctors: CollectionConfig = {
         description: 'Тільки опубліковані профілі відображаються на сайті',
       },
     },
+    createSortOrderField(),
   ],
 };

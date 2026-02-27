@@ -7,6 +7,7 @@ import * as migration_20260121_162654_add_relation_field_to_services_section fro
 import * as migration_20260122_112453_add_doctors_section_style from './20260122_112453_add_doctors_section_style';
 import * as migration_20260124_131129_add_image_sizes from './20260124_131129_add_image_sizes';
 import * as migration_20260124_133037_add_image_size from './20260124_133037_add_image_size';
+import * as migration_20260227_220453_add_sort_field from './20260227_220453_add_sort_field';
 
 export const migrations = [
   {
@@ -52,6 +53,11 @@ export const migrations = [
   {
     up: migration_20260124_133037_add_image_size.up,
     down: migration_20260124_133037_add_image_size.down,
-    name: '20260124_133037_add_image_size'
+    name: '20260124_133037_add_image_size',
+  },
+  {
+    up: migration_20260227_220453_add_sort_field.up,
+    down: migration_20260227_220453_add_sort_field.down,
+    name: '20260227_220453_add_sort_field'
   },
 ];

@@ -487,6 +487,7 @@ export interface Doctor {
    * Тільки опубліковані профілі відображаються на сайті
    */
   status: 'draft' | 'published';
+  sortOrder?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -918,6 +919,7 @@ export interface DoctorsSelect<T extends boolean = true> {
   position?: T;
   experience?: T;
   status?: T;
+  sortOrder?: T;
   updatedAt?: T;
   createdAt?: T;
 }

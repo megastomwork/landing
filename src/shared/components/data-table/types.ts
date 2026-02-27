@@ -21,6 +21,7 @@ export interface DataTableProps<T = Record<string, unknown>> {
   totalItems?: number;
   isLoading?: boolean;
   emptyMessage?: string;
+  hidePagination?: boolean;
 }
 
 export interface PaginationProps {

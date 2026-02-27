@@ -29,7 +29,7 @@ const buttonVariants = cva(
           'bg-white text-center text-base font-sans font-bold text-black shadow-sm hover:bg-[#f1fdff] rounded-[20px]',
         'admin-secondary': 'bg-secondary hover:bg-white/10 rounded-sm no-underline',
         'admin-outline': 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground rounded-lg no-underline',
-        'admin-ghost': 'bg-transparent hover:bg-accent hover:text-accent-foreground rounded-lg no-underline border-none'
+        'admin-ghost': 'bg-transparent hover:bg-foreground/5 hover:text-accent-foreground rounded-lg no-underline border-none'
       },
       size: {
         default: 'h-[40px]  w-[198px] px-4 py-2',

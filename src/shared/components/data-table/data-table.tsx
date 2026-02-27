@@ -17,6 +17,7 @@ export function DataTable<T extends Record<string, unknown>>({
   totalItems: controlledTotalItems,
   isLoading = false,
   emptyMessage = 'No data available',
+  hidePagination = false,
 }: DataTableProps<T>) {
   const [internalPage, setInternalPage] = useState(1);
 
@@ -92,7 +93,7 @@ export function DataTable<T extends Record<string, unknown>>({
   };
 
   return (
-    <div className="border-table-border bg-table-bg w-full overflow-hidden rounded-sm border shadow-sm">
+    <div className="border-table-border bg-table-bg w-full overflow-hidden rounded-sm border">
       <div className="w-full overflow-x-auto">
         <table className="w-full border-collapse">
           <thead className="border-table-border bg-table-header-bg border-b-2">
@@ -165,13 +166,15 @@ export function DataTable<T extends Record<string, unknown>>({
           </tbody>
         </table>
       </div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
-        pageSize={pageSize}
-        totalItems={totalItems}
-      />
+      {!hidePagination && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+          pageSize={pageSize}
+          totalItems={totalItems}
+        />
+      )}
     </div>
   );
 }

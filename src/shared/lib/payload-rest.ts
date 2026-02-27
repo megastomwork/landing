@@ -95,9 +95,33 @@ export const payloadAPI = {
     return data as T;
   },
 
+  updateItem: async <T>(
+    collection: string,
+    id: string,
+    body: Record<string, unknown>,
+  ) => {
+    const { data } = await axiosInstance.patch(`/${collection}/${id}`, body);
+    return data as T;
+  },
+
   getGlobal: async <T>(slug: string) => {
     const { data } = await axiosInstance.get(`/globals/${slug}`);
     return data as T;
+  },
+
+  batchUpdateSortOrder: async (
+    collectionSlug: string,
+    items: Array<{ id: string; sortOrder: number }>,
+  ) => {
+    const { data } = await axiosInstance.post('/batch-sort-order', {
+      collectionSlug,
+      items,
+    });
+    return data as {
+      success: boolean;
+      updated: number;
+      errors?: Array<{ id: string; message: string }>;
+    };
   },
 };
 

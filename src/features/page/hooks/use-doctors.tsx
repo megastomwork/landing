@@ -12,6 +12,7 @@ export const useDoctors = () => {
             equals: 'published',
           },
         },
+        sort: 'sortOrder',
       }),
   });
 };
